@@ -4,37 +4,37 @@ layout: default
 
 ![Oxynet](https://andreazignoli.github.io/images/front_cover_blog_5.png)
 
-**Oxynet is a powerful toolset for the automatic interpretation of cardiopulmonary exercise test (CPET) data.**
+**Oxynet is a powerful AI-driven toolset for the automatic interpretation of cardiopulmonary exercise test (CPET) data.**
 
 💻 [Try the web app](https://pyoxynet-lite-app-b415901c79ab.herokuapp.com/)
 
 ## About the Oxynet Project
 
-Universal access to high-quality healthcare is a global challenge. Leveraging AI and vast data resources, *Oxynet* aims to revolutionize the diagnosis of medical conditions through CPET, facilitating accurate and timely clinical decisions while reducing costs associated with diagnostic errors and delays.
+Universal access to high-quality healthcare remains a global challenge. *Oxynet* leverages AI and vast data resources to revolutionize the diagnosis of medical conditions through CPET analysis, enabling accurate and timely clinical decisions while reducing costs associated with diagnostic errors and delays.
 
-*Oxynet* combines:
+*Oxynet* combines three key components:
 
-- A network of CPET experts
-- A large crowdsourced dataset
-- AI algorithms approximating human cognition in CPET analysis
+- A network of CPET experts providing clinical expertise
+- A large crowdsourced dataset for comprehensive training
+- Advanced AI algorithms that approximate human cognition in CPET analysis
 
-We seek collaboration with universities, hospitals, clinics, medical professionals, and companies involved in medical device development and commercialization. Together, we can advance R&D, support research financially, contribute to scientific publications, share data, develop web applications, conduct market analyses, and validate algorithms for clinical use.
+We actively seek collaboration with universities, hospitals, clinics, medical professionals, and companies involved in medical device development and commercialization. Together, we can advance research and development, provide financial support for research initiatives, contribute to scientific publications, share valuable data, develop innovative web applications, conduct comprehensive market analyses, and validate algorithms for clinical implementation.
 
 ## The *Pyoxynet* Package
 
-*Pyoxynet* is a suite of deep neural network algorithms designed for CPET data analysis. Built with [Keras](https://keras.io/) and [TensorFlow](https://www.tensorflow.org/), the models are available in TFLite format for efficiency, with direct TensorFlow model usage from version 11.6 onward.
+*Pyoxynet* is a comprehensive suite of deep neural network algorithms specifically designed for CPET data analysis. Built using [Keras](https://keras.io/) and [TensorFlow](https://www.tensorflow.org/), the models are available in efficient TFLite format, with direct TensorFlow model usage supported from version 11.6 onward.
 
-The package includes two main models:
+The package includes two primary models:
 
-- **Inference Model:** Estimates exercise intensity domains from CPET data.
-- **Generator Model:** Creates synthetic CPET data.
+- **Inference Model:** Estimates exercise intensity domains from CPET data with high accuracy
+- **Generator Model:** Creates realistic synthetic CPET data for research and validation purposes
 
 🐍 [Install the Python package](https://pypi.org/project/pyoxynet/)  
 📁 [Read the docs](https://pyoxynet.readthedocs.io/en/latest/index.html)
 
 ### Installation
 
-*Pyoxynet* is compatible with **Python 3.8**. To install, run:
+*Pyoxynet* requires **Python 3.8** or higher. To install the package, run:
 
 ```sh
 pip install pyoxynet
@@ -48,9 +48,9 @@ pip install git+https://github.com/andreazignoli/pyoxynet.git#subdirectory=pyoxy
 
 ## Usage
 
-To use the *inference* model, input CPET data including VO2, VCO2, VE, PetO2, PetCO2, VEVO2, and VEVCO2. *Pyoxynet* handles data interpolation, supporting sec-by-sec, breath-by-breath, and averaged data.
+To use the inference model, provide CPET data including VO₂, VCO₂, VE, PetO₂, PetCO₂, VE/VO₂, and VE/VCO₂. *Pyoxynet* automatically handles data interpolation and supports multiple data formats: second-by-second, breath-by-breath, and averaged data.
 
-Example usage:
+### Basic Example
 
 ```python
 import pyoxynet
@@ -65,9 +65,11 @@ test_tfl_model(tfl_model)
 pyoxynet.test_pyoxynet()
 ```
 
-## Generation
+## Data Generation
 
-*Pyoxynet* includes a Conditional Generative Adversarial Network (CGAN) for generating realistic CPET data. Example:
+*Pyoxynet* includes a Conditional Generative Adversarial Network (CGAN) capable of generating realistic CPET data for research and testing purposes.
+
+### Generation Example
 
 ```python
 from pyoxynet import *
@@ -82,16 +84,16 @@ df = generate_CPET(generator, plot=True)
 test_pyoxynet(input_df=df)
 ```
 
-Generated data includes VO2, VCO2, VE, HR, RF, PetO2, and PetCO2.
+The generated synthetic data includes all essential CPET parameters: VO₂, VCO₂, VE, HR, RF, PetO₂, and PetCO₂.
 
-## Contacts
+## Contact Information
 
-📧 Feedback & Issues: oxynetcpetinterpreter@gmail.com  
-📧 PI: Andrea Zignoli: andrea.zignoli@unitn.it
+📧 **Feedback & Issues:** oxynetcpetinterpreter@gmail.com  
+📧 **Principal Investigator:** Andrea Zignoli (andrea.zignoli@unitn.it)
 
-## Publications
+## Scientific Publications
 
-Explore the research behind *Oxynet*:
+Explore the peer-reviewed research and publications behind *Oxynet*:
 
 - [Research](https://www.sciencedirect.com/science/article/abs/pii/S1746809423002690): AI for CPET interpretation
 - [Review](https://link.springer.com/article/10.1007%2Fs11332-019-00557-x): AI technologies in exercise data processing
@@ -107,7 +109,7 @@ Explore the research behind *Oxynet*:
 
 ## Acknowledgments
 
-Special thanks to the following for their contributions:
+We extend our gratitude to the following resources and contributors:
 
 - [TFLite Inference](https://www.tensorflow.org/lite/guide/inference)
 - [Amazon Lightsail](https://aws.amazon.com/getting-started/hands-on/serve-a-flask-app/)
@@ -119,4 +121,4 @@ Special thanks to the following for their contributions:
 
 ## Disclaimer
 
-All content found on this website, including text, images, tables, and other formats, is for informational purposes only. The information provided by this software is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of information provided by this software.
+All content on this website, including text, images, tables, and other materials, is provided for informational purposes only. The information and software tools provided here are not substitutes for professional medical advice, diagnosis, or treatment. Always consult your physician or other qualified healthcare provider with any questions regarding a medical condition. Never disregard professional medical advice or delay seeking it based on information provided by this software.
