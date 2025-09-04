@@ -6,7 +6,7 @@ layout: default
 
 **Oxynet is a powerful toolset for the automatic interpretation of cardiopulmonary exercise test (CPET) data.**
 
-💻 [Try the web app](https://flask-service.ci6m7bo8luvmq.eu-central-1.cs.amazonlightsail.com/)
+💻 [Try the web app](https://pyoxynet-lite-app-b415901c79ab.herokuapp.com/)
 
 ## About the Oxynet Project
 
