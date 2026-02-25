@@ -1,57 +1,106 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with code in this repository.
 
 ## Project Overview
 
-This is the Oxynet website, a Jekyll-based GitHub Pages site that serves as the main landing page for the Oxynet project - an AI-powered toolset for automatic interpretation of cardiopulmonary exercise test (CPET) data. The site uses the Cayman theme and is deployed on GitHub Pages.
+This is the Oxynet website — a modern Next.js 14 single-page site for the Oxynet project, an AI-powered toolset for automatic interpretation of cardiopulmonary exercise test (CPET) data.
+
+- **Branch:** `next` (active development / Vercel deployment)
+- **Legacy:** `gh-pages` (old Jekyll site, kept for reference)
+- **Domain:** `www.oxynet.net` (DNS pointed to Vercel)
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router, TypeScript)
+- **Styling:** Tailwind CSS + custom design tokens (dark theme)
+- **UI Components:** shadcn/ui (Button, Badge, Tabs, Separator) — Radix UI primitives
+- **Animations:** Framer Motion (scroll-triggered entrance animations)
+- **Syntax Highlighting:** Shiki (server-side, `github-dark-dimmed` theme)
+- **Font:** Geist (sans + mono, from Vercel)
+- **Deployment:** Vercel (`vercel.json` configured)
 
 ## Development Commands
 
-### Setup and Installation
 ```bash
-script/bootstrap          # Install dependencies (runs gem install bundler && bundle install)
+npm install          # Install dependencies
+npm run dev          # Start dev server at http://localhost:3000
+npm run build        # Production build
+npm run lint         # ESLint
+npx tsc --noEmit     # TypeScript check
 ```
 
-### Development Server
-```bash
-script/server            # Start local development server (runs bundle exec jekyll serve)
-# Access at http://localhost:4000
+## Architecture
+
+### Directory Structure
+
+```
+src/
+  app/
+    layout.tsx          # Root layout: Geist fonts, metadata, Navbar
+    page.tsx            # Home page: assembles all section components
+    globals.css         # Tailwind base + CSS vars + .glass + .gradient-text utilities
+    not-found.tsx       # 404 page
+  components/
+    layout/
+      navbar.tsx        # Fixed glassmorphism nav ('use client')
+      footer.tsx        # Disclaimer, acknowledgments, links
+    sections/
+      hero-section.tsx        # Full-viewport hero with bg image + CTAs ('use client')
+      about-section.tsx       # 3 feature cards
+      package-section.tsx     # Pyoxynet package info + links
+      usage-section.tsx       # async Server Component: pre-renders Shiki HTML
+      usage-tabs.tsx          # Radix Tabs client component
+      publications-section.tsx # 11 publication cards
+      contact-section.tsx     # Two contact cards with mailto links
+    shared/
+      section-wrapper.tsx  # Framer Motion useInView entrance animation ('use client')
+      glass-card.tsx       # Glassmorphism card with hover animation ('use client')
+      gradient-text.tsx    # Gradient text span
+      code-block.tsx       # async Server Component wrapping Shiki highlight()
+    ui/                  # shadcn/ui components (button, badge, tabs, separator)
+  content/
+    code-examples.ts     # Typed code snippet strings (install, usage, generation)
+    publications.ts      # Typed array of all 11 publications
+  lib/
+    shiki.ts             # Module-level Shiki singleton + highlight() helper
+    utils.ts             # shadcn cn() helper
+  types/
+    index.ts             # Publication, CodeExample, NavItem types
+public/
+  hero-bg.jpg            # Hero background image (from Unsplash / Pawel Czerwinski)
 ```
 
-### Build and Test
+### Key Architecture Decisions
+
+**Server/Client boundary for code tabs:**
+`usage-section.tsx` is an async Server Component that pre-renders all Shiki HTML and passes the strings to `usage-tabs.tsx` (Client Component with Radix Tabs). Shiki never ships to the client.
+
+**Shiki singleton:**
+`src/lib/shiki.ts` creates one `Highlighter` instance reused across requests. Theme: `github-dark-dimmed`, langs: `python`, `sh`, `bash`.
+
+**Glass morphism utility:**
+The `.glass` class is defined in `globals.css` — `background: rgba(255,255,255,0.04)` + `backdrop-filter: blur(12px)`.
+
+### Design Tokens
+- Background: `#0a0a0a` (CSS var `--background`)
+- Accent green: `#00dc82` (Tailwind `accent.DEFAULT`)
+- Secondary blue: `#155799` (Tailwind `accent.blue`)
+- Gradient text: `#00dc82 → #155799`
+
+## Deployment
+
+The site deploys automatically on Vercel from the `next` branch.
+
+To run locally:
 ```bash
-bundle exec jekyll build            # Build the site to _site/ directory
-script/cibuild                     # Full CI build with tests and validation
-script/validate-html               # Validate HTML and CSS using W3C validators
-bundle exec htmlproofer ./_site    # Check links and HTML structure
-bundle exec rubocop -D --config .rubocop.yml  # Ruby linting
+npm run dev   # http://localhost:3000
 ```
 
-## Architecture and Structure
+To deploy:
+```bash
+git push origin next   # Vercel picks it up automatically
+```
 
-### Jekyll Site Structure
-- `_config.yml` - Main Jekyll configuration (title: "Oxynet", theme: jekyll-theme-cayman)
-- `index.md` - Primary content page with project information and documentation
-- `_layouts/default.html` - Main layout template with header, content area, and footer
-- `_includes/` - Partial templates for custom head elements
-- `_sass/` - Sass stylesheets extending the Cayman theme
-- `assets/css/style.scss` - Main stylesheet that imports the theme
-
-### Content Management
-The site uses Jekyll's front matter system:
-- Pages use `layout: default` to apply the main template
-- Content is written in Markdown with Jekyll liquid templating
-- The main content showcases the Pyoxynet Python package, web app links, and research publications
-
-### Theme Customization
-Built on the Cayman Jekyll theme with:
-- Custom Google Analytics integration support
-- Extended Sass styling system
-- Responsive design with mobile optimization
-- SEO optimization through jekyll-seo-tag plugin
-
-### Deployment
-- Hosted on GitHub Pages (branch: gh-pages)
-- Custom domain configured via CNAME file
-- Automated deployment through GitHub Pages integration
+### DNS / Domain
+Point `www.oxynet.net` to Vercel using the A records or CNAME provided in the Vercel dashboard under "Domains".
