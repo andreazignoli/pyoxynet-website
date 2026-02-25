@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/sections/hero-section'
 import { AboutSection } from '@/components/sections/about-section'
+import { DemoSection } from '@/components/sections/demo-section'
 import { PackageSection } from '@/components/sections/package-section'
 import { UsageSection } from '@/components/sections/usage-section'
 import { PublicationsSection } from '@/components/sections/publications-section'
@@ -11,6 +12,7 @@ export default function HomePage() {
     <main>
       <HeroSection />
       <AboutSection />
+      <DemoSection />
       <PackageSection />
       <UsageSection />
       <PublicationsSection />

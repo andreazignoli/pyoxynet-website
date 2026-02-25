@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
+  { label: 'Demo', href: '#demo' },
   { label: 'Package', href: '#package' },
   { label: 'Docs', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html', external: true },
   { label: 'Publications', href: '#publications' },
