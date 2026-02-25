@@ -48,19 +48,19 @@ export function DemoSection() {
               </h3>
               {[
                 {
-                  color: 'bg-green-500',
+                  color: 'bg-emerald-500',
                   label: 'Moderate Domain',
                   threshold: 'Below LT',
                   description: 'VO₂ reaches steady state within minutes. Blood lactate returns to resting levels. Exercise is fully sustainable.',
                 },
                 {
-                  color: 'bg-yellow-500',
+                  color: 'bg-amber-500',
                   label: 'Heavy Domain',
                   threshold: 'LT → RCP',
                   description: 'A VO₂ slow component emerges. Lactate rises but stabilises above baseline. Prolonged exercise remains possible.',
                 },
                 {
-                  color: 'bg-red-500',
+                  color: 'bg-rose-500',
                   label: 'Severe Domain',
                   threshold: 'Above RCP',
                   description: 'Respiratory compensation is engaged. Lactate and VO₂ rise continuously toward VO₂max. Exercise tolerance is time-limited.',
