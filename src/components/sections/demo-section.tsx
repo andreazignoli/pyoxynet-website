@@ -17,8 +17,8 @@ export function DemoSection() {
               From Raw Data to <GradientText>Clinical Insight</GradientText>
             </h2>
             <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
-              Drag or hover the slider to see how Oxynet transforms raw CPET measurements into
-              color-coded intensity zones — automatically identifying VT1, VT2, and RCP thresholds.
+              Drag the slider to see how Oxynet transforms raw CPET measurements into
+              intensity domains — automatically detecting LT and RCP to classify every breath.
             </p>
           </div>
         </SectionWrapper>
@@ -55,41 +55,42 @@ export function DemoSection() {
             {/* Legend / explanation */}
             <div className="max-w-sm space-y-5">
               <h3 className="text-xl font-semibold text-white mb-6">
-                Automatic Zone Detection
+                Intensity Domains
               </h3>
               {[
                 {
-                  color: 'bg-blue-500',
-                  label: 'Moderate Intensity',
-                  description: 'Below the first ventilatory threshold (VT1). Sustainable aerobic exercise.',
+                  color: 'bg-green-500',
+                  label: 'Moderate Domain',
+                  threshold: 'Below LT',
+                  description: 'VO₂ reaches steady state within minutes. Blood lactate returns to resting levels. Exercise is fully sustainable.',
                 },
                 {
                   color: 'bg-yellow-500',
-                  label: 'Heavy Intensity',
-                  description: 'Between VT1 and VT2. Increasing metabolic stress, still compensated.',
-                },
-                {
-                  color: 'bg-orange-500',
-                  label: 'Severe Intensity',
-                  description: 'Between VT2 and RCP. Respiratory compensation point reached.',
+                  label: 'Heavy Domain',
+                  threshold: 'LT → RCP',
+                  description: 'A VO₂ slow component emerges. Lactate rises but stabilises above baseline. Prolonged exercise remains possible.',
                 },
                 {
                   color: 'bg-red-500',
-                  label: 'Extreme Intensity',
-                  description: 'Above RCP. Maximum effort, non-sustainable for extended periods.',
+                  label: 'Severe Domain',
+                  threshold: 'Above RCP',
+                  description: 'Respiratory compensation is engaged. Lactate and VO₂ rise continuously toward VO₂max. Exercise tolerance is time-limited.',
                 },
               ].map((zone) => (
                 <div key={zone.label} className="flex items-start gap-4">
                   <div className={`w-3 h-3 rounded-full ${zone.color} mt-1.5 flex-shrink-0 opacity-80`} />
                   <div>
-                    <p className="text-white/90 font-medium text-sm">{zone.label}</p>
+                    <div className="flex items-baseline gap-2">
+                      <p className="text-white/90 font-medium text-sm">{zone.label}</p>
+                      <span className="text-white/30 text-xs font-mono">{zone.threshold}</span>
+                    </div>
                     <p className="text-white/45 text-sm leading-relaxed mt-0.5">{zone.description}</p>
                   </div>
                 </div>
               ))}
 
               <p className="text-white/30 text-xs mt-6 font-mono">
-                * Placeholder CPET graphs — replace with real data images.
+                Based on Keir et al., Sports Medicine (2022)
               </p>
             </div>
           </div>
