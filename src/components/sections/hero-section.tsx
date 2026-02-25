@@ -41,10 +41,21 @@ export function HeroSection() {
           AI-powered CPET analysis
         </motion.p>
 
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.7, ease: 'easeOut' }}
+          className="mb-4 leading-none"
+        >
+          <span className="font-3d-animals gradient-text text-[10rem] sm:text-[12rem] md:text-[14rem] select-none">
+            E
+          </span>
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.8 }}
+          transition={{ delay: 0.35, duration: 0.8 }}
           className="text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight mb-6 leading-none"
         >
           <GradientText>Oxynet</GradientText>
@@ -53,7 +64,7 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.45, duration: 0.8 }}
+          transition={{ delay: 0.55, duration: 0.8 }}
           className="text-lg sm:text-xl md:text-2xl text-white/65 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
           Where AI meets CPET. An open toolset for the automatic interpretation
@@ -63,7 +74,7 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65, duration: 0.6 }}
+          transition={{ delay: 0.75, duration: 0.6 }}
           className="flex gap-4 justify-center flex-wrap"
         >
           <Button size="lg" asChild>
@@ -84,7 +95,7 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
+          transition={{ delay: 1.0, duration: 0.8 }}
           className="mt-20 flex flex-wrap justify-center gap-x-10 gap-y-4"
         >
           {[
