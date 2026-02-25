@@ -1,6 +1,22 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-.claude
+# Next.js
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Vercel
+.vercel/
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS
+.DS_Store
+
+# Claude
+.claude/
