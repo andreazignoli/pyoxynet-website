@@ -39,17 +39,6 @@ export function DemoSection() {
                   autoplayDuration={3000}
                 />
               </div>
-              {/* Labels */}
-              <div className="absolute top-6 left-6 z-50 pointer-events-none">
-                <span className="text-xs font-mono bg-black/60 text-white/60 px-2 py-1 rounded border border-white/10">
-                  Raw
-                </span>
-              </div>
-              <div className="absolute top-6 right-6 z-50 pointer-events-none">
-                <span className="text-xs font-mono bg-black/60 text-accent px-2 py-1 rounded border border-accent/30">
-                  Oxynet
-                </span>
-              </div>
             </div>
 
             {/* Legend / explanation */}
