@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-const NAV_LINKS = [
-  { label: 'About', href: '#about' },
+const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
   { label: 'Demo', href: '#demo' },
+  { label: 'How it works', href: '#how-it-works' },
   { label: 'Package', href: '#package' },
   { label: 'Docs', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html', external: true },
   { label: 'Publications', href: '#publications' },
@@ -55,16 +54,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button size="sm" asChild>
-            <a
-              href="https://pyoxynet-lite-app-b415901c79ab.herokuapp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Try the App
-            </a>
-          </Button>
-
           {/* Mobile menu button */}
           <button
             className="md:hidden text-white/60 hover:text-white transition-colors"

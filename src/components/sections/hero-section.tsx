@@ -38,7 +38,7 @@ export function HeroSection() {
           transition={{ delay: 0.1, duration: 0.6 }}
           className="text-accent text-xs font-mono uppercase tracking-[0.25em] mb-8"
         >
-          AI-powered CPET analysis
+          AI-powered CPET interpretation
         </motion.p>
 
         <motion.div
@@ -64,30 +64,39 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.55, duration: 0.8 }}
-          className="text-lg sm:text-xl md:text-2xl text-white/65 mb-10 max-w-2xl mx-auto leading-relaxed"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="text-xl sm:text-2xl font-semibold text-white/85 mb-4 leading-tight"
         >
-          Where AI meets CPET. An open toolset for the automatic interpretation
-          of cardiopulmonary exercise test data — built with deep learning.
+          Consistent, scalable, system-agnostic.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.65, duration: 0.8 }}
+          className="text-base sm:text-lg text-white/55 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
+          Oxynet provides a data-driven interpretation layer for cardiopulmonary exercise testing (CPET),
+          enabling consistent detection of thresholds and key markers across protocols, populations, and devices.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 0.6 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
           className="flex gap-4 justify-center flex-wrap"
         >
           <Button size="lg" asChild>
             <a
-              href="https://pyoxynet-lite-app-b415901c79ab.herokuapp.com/"
+              href="https://www.exercisethresholds.com/oxynet"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Try the Web App
+              Try Oxynet on Exercise Thresholds
             </a>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <a href="#package">Explore the Package</a>
+            <a href="#contact">Request API access</a>
           </Button>
         </motion.div>
 
@@ -95,12 +104,12 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.8 }}
+          transition={{ delay: 1.05, duration: 0.8 }}
           className="mt-20 flex flex-wrap justify-center gap-x-10 gap-y-4"
         >
           {[
-            { value: '11+', label: 'Publications' },
-            { value: 'Python 3.8+', label: 'Supported' },
+            { value: '12+', label: 'Publications' },
+            { value: 'API + Web + Python', label: 'Deployment options' },
             { value: 'Open Source', label: 'on GitHub' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
