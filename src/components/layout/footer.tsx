@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg gradient-text font-mono mb-3">Oxynet</h3>
             <p className="text-white/50 text-sm leading-relaxed">
-              AI-driven toolset for automatic interpretation of cardiopulmonary exercise test data.
+              A standardisation layer for CPET interpretation — consistent, scalable, and system-agnostic.
             </p>
           </div>
 
@@ -21,7 +21,7 @@ export function Footer() {
                 { label: 'Python Package (PyPI)', href: 'https://pypi.org/project/pyoxynet/' },
                 { label: 'Documentation', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html' },
                 { label: 'GitHub Repository', href: 'https://github.com/andreazignoli/pyoxynet' },
-                { label: 'Web App', href: 'https://pyoxynet-lite-app-b415901c79ab.herokuapp.com/' },
+                { label: 'Web App', href: 'https://www.exercisethresholds.com/oxynet' },
               ].map((link) => (
                 <li key={link.label}>
                   <a

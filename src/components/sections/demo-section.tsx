@@ -3,6 +3,7 @@
 import { Compare } from '@/components/ui/compare'
 import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GradientText } from '@/components/shared/gradient-text'
+import { Button } from '@/components/ui/button'
 
 export function DemoSection() {
   return (
@@ -11,13 +12,13 @@ export function DemoSection() {
         <SectionWrapper>
           <div className="text-center mb-16">
             <p className="text-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">
-              See it in action
+              See how it works
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               From Raw Data to <GradientText>Clinical Insight</GradientText>
             </h2>
             <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
-              Drag the slider to see how Oxynet transforms raw CPET measurements into
+              Drag the slider to see how raw CPET measurements are transformed into standardised
               intensity domains — automatically detecting LT and RCP to classify every breath.
             </p>
           </div>
@@ -82,6 +83,25 @@ export function DemoSection() {
                 Based on Keir et al., Sports Medicine (2022)
               </p>
             </div>
+          </div>
+        </SectionWrapper>
+
+        {/* CTA block */}
+        <SectionWrapper delay={0.3}>
+          <div className="mt-16 glass rounded-2xl p-10 max-w-2xl mx-auto text-center border border-white/8">
+            <p className="text-white/55 text-sm mb-2">Ready to interpret your own CPET data?</p>
+            <h3 className="text-xl font-semibold text-white mb-6">
+              Try Oxynet on a real test
+            </h3>
+            <Button size="lg" asChild>
+              <a
+                href="https://www.exercisethresholds.com/oxynet"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Try Oxynet on Exercise Thresholds →
+              </a>
+            </Button>
           </div>
         </SectionWrapper>
       </div>

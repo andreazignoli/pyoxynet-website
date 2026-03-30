@@ -3,6 +3,15 @@ import type { Publication } from '@/types'
 export const PUBLICATIONS: Publication[] = [
   {
     type: 'research',
+    title: 'AI-Driven Analysis of CPET to Identify Gas Exchange and Ventilatory Thresholds',
+    description:
+      'Evaluates Oxynet for detecting lactate threshold and respiratory compensation points, showing performance comparable to expert evaluators with negligible differences in VO₂ at both thresholds.',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/41784915/',
+    year: 2026,
+    journal: 'Sports Medicine',
+  },
+  {
+    type: 'research',
     title: 'AI for CPET Interpretation',
     description:
       'Deep learning approach for automatic interpretation of cardiopulmonary exercise test data using neural networks.',
