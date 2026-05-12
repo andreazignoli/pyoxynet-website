@@ -2,15 +2,18 @@ import { createHighlighter, type Highlighter } from 'shiki'
 
 type SupportedLang = 'python' | 'sh' | 'bash'
 
-let highlighterInstance: Highlighter | null = null
+declare global {
+  // eslint-disable-next-line no-var
+  var __shikiHighlighter: Highlighter | undefined
+}
 
-export async function getHighlighter(): Promise<Highlighter> {
-  if (highlighterInstance) return highlighterInstance
-  highlighterInstance = await createHighlighter({
+async function getHighlighter(): Promise<Highlighter> {
+  if (globalThis.__shikiHighlighter) return globalThis.__shikiHighlighter
+  globalThis.__shikiHighlighter = await createHighlighter({
     themes: ['github-dark-dimmed'],
     langs: ['python', 'sh', 'bash'],
   })
-  return highlighterInstance
+  return globalThis.__shikiHighlighter
 }
 
 export async function highlight(code: string, lang: SupportedLang): Promise<string> {
