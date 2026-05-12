@@ -88,12 +88,12 @@ export function DemoSection() {
 
         {/* CTA block */}
         <SectionWrapper delay={0.3}>
-          <div className="mt-16 glass rounded-2xl p-10 max-w-2xl mx-auto text-center border border-white/8">
+          <div className="mt-16 glass rounded-2xl p-6 sm:p-10 max-w-2xl mx-auto text-center border border-white/8">
             <p className="text-white/55 text-sm mb-2">Ready to interpret your own CPET data?</p>
             <h3 className="text-xl font-semibold text-white mb-6">
               Try Oxynet on a real test
             </h3>
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="w-full sm:w-auto">
               <a
                 href="https://www.exercisethresholds.com/oxynet"
                 target="_blank"
