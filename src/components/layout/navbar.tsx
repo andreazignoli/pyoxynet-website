@@ -5,12 +5,13 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
-  { label: 'Demo', href: '#demo' },
-  { label: 'How it works', href: '#how-it-works' },
-  { label: 'Package', href: '#package' },
+  { label: 'Demo', href: '/#demo' },
+  { label: 'How it works', href: '/#how-it-works' },
+  { label: 'Integration', href: '/integration' },
+  { label: 'Package', href: '/#package' },
   { label: 'Docs', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html', external: true },
-  { label: 'Publications', href: '#publications' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Publications', href: '/#publications' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export function Navbar() {
@@ -34,7 +35,7 @@ export function Navbar() {
       )}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="font-bold text-xl gradient-text font-mono">
+        <a href="/" className="font-bold text-xl gradient-text font-mono">
           Oxynet
         </a>
 
