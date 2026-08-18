@@ -6,26 +6,26 @@ import { Badge } from '@/components/ui/badge'
 const DEPLOYMENT_OPTIONS = [
   {
     icon: '🔌',
-    title: 'API',
+    title: 'API & MCP',
     badge: 'Integration-ready',
     description:
-      'Send CPET data, receive interpretation outputs. Designed for embedding into existing CPET systems and clinical software.',
-    cta: { label: 'Request access', href: '#contact' },
+      'REST for clinical software, MCP for AI assistants, one key for both. Twenty vendor formats are detected automatically, so nothing upstream needs converting.',
+    cta: { label: 'Read the docs', href: 'https://app.oxynet.net/docs', external: true },
   },
   {
     icon: '🌐',
-    title: 'Web Platform',
+    title: 'Web app',
     badge: 'No setup required',
     description:
-      'Upload and interpret CPET data directly in the browser. Available now via Exercise Thresholds — no installation needed.',
-    cta: { label: 'Try the demo', href: 'https://www.exercisethresholds.com/oxynet', external: true },
+      'Drop a raw metabolimeter file into the browser at app.oxynet.net and read the result. Free inferences, nothing stored, no installation.',
+    cta: { label: 'Open app.oxynet.net', href: 'https://app.oxynet.net', external: true },
   },
   {
     icon: '🐍',
-    title: 'Python Package',
+    title: 'Python package',
     badge: 'Open source',
     description:
-      'Full access via the pyoxynet package. Run inference, generate synthetic data, and build custom research pipelines.',
+      'The pyoxynet research package: run inference locally, generate synthetic CPET data, and build custom pipelines.',
     cta: { label: 'Install from PyPI', href: 'https://pypi.org/project/pyoxynet/', external: true },
   },
 ]
@@ -43,8 +43,9 @@ export function DeploymentSection() {
               Available in <GradientText>Three Formats</GradientText>
             </h2>
             <p className="text-white/55 max-w-xl mx-auto text-lg leading-relaxed">
-              Deploy Oxynet in the way that fits your system — from direct API integration to
-              no-setup web access and open-source research tools.
+              One engine, three doors. Start in the browser, move to the API when it should
+              happen automatically, and use the open-source package when the work belongs in a
+              script.
             </p>
           </div>
         </SectionWrapper>
@@ -77,13 +78,13 @@ export function DeploymentSection() {
               <div className="text-4xl flex-shrink-0">🔗</div>
               <div>
                 <h3 className="text-xl font-semibold text-white mb-3">
-                  Designed to integrate — not replace
+                  Designed to integrate, not replace
                 </h3>
                 <p className="text-white/55 text-sm leading-relaxed">
-                  Oxynet is built as a modular layer that operates on top of existing CPET systems.
-                  It processes CPET time-series data and returns standardised interpretation outputs
-                  via API or embedded deployment — without requiring changes to your data capture
-                  hardware, clinical workflow, or reporting interface.
+                  Oxynet runs on top of existing CPET systems. It reads CPET time-series and
+                  returns structured outputs over the API or in an embedded deployment, without
+                  changes to your data capture hardware, clinical workflow, or reporting
+                  interface.
                 </p>
               </div>
             </div>

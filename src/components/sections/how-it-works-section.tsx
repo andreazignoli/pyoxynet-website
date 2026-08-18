@@ -43,7 +43,7 @@ export function HowItWorksSection() {
                 steps={[
                   'Upload or stream CPET time-series data from your existing system.',
                   'Oxynet processes the signals and detects ventilatory thresholds automatically.',
-                  'Receive structured interpretation outputs — intensity domains, VT1, VT2 — ready for clinical review.',
+                  'Receive structured outputs (intensity domains, VT1, VT2) ready for clinical review.',
                 ]}
               />
             </div>
@@ -57,7 +57,7 @@ export function HowItWorksSection() {
               <StepList
                 steps={[
                   'Integrate the Oxynet API into your existing CPET software or device platform.',
-                  'Send CPET data via standard API calls — no change to your data capture pipeline.',
+                  'Send CPET data via standard API calls, with no change to your data capture pipeline.',
                   'Receive standardised interpretation outputs and display them within your software.',
                 ]}
               />

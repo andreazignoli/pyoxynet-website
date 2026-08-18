@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { DuckMark } from '@/components/shared/duck-mark'
+
+const APP_URL = 'https://app.oxynet.net'
 
 const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
-  { label: 'Demo', href: '/#demo' },
-  { label: 'How it works', href: '/#how-it-works' },
+  { label: 'Measurement', href: '/#measurement' },
+  { label: 'Outputs', href: '/#outputs' },
+  { label: 'For developers', href: '/#agents' },
   { label: 'Integration', href: '/integration' },
   { label: 'Package', href: '/#package' },
-  { label: 'Docs', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html', external: true },
   { label: 'Publications', href: '/#publications' },
   { label: 'Contact', href: '/#contact' },
 ]
@@ -34,32 +37,48 @@ export function Navbar() {
         scrolled ? 'glass border-b border-white/10' : 'bg-transparent'
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="font-bold text-xl gradient-text font-mono">
-          Oxynet
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
+        {/* The mark and the wordmark, identical to the app's header. */}
+        <a href="/" className="flex items-center gap-2 group flex-shrink-0">
+          <DuckMark className="w-5 h-5 text-accent transition-opacity group-hover:opacity-80" />
+          <span className="font-bold text-base gradient-text font-mono tracking-tight">
+            Oxynet
+          </span>
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-0.5">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target={link.external ? '_blank' : undefined}
               rel={link.external ? 'noopener noreferrer' : undefined}
-              className="px-3 py-1.5 text-sm text-white/60 hover:text-white transition-colors rounded-md hover:bg-white/5"
+              className="px-2.5 py-1.5 text-sm text-white/60 hover:text-white transition-colors rounded-md hover:bg-white/5 whitespace-nowrap"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {/* The app is the product. It gets the only button in the bar. */}
+          <a
+            href={APP_URL}
+            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium
+                       bg-accent text-black rounded-lg px-3.5 py-1.5
+                       hover:bg-accent/85 transition-colors whitespace-nowrap"
+          >
+            Open the app
+            <span aria-hidden="true">→</span>
+          </a>
+
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-white/60 hover:text-white transition-colors"
+            className="lg:hidden text-white/60 hover:text-white transition-colors p-1"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             <svg
               className="w-6 h-6"
@@ -93,7 +112,7 @@ export function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden glass border-t border-white/10 px-6 pb-4"
+          className="lg:hidden glass border-t border-white/10 px-6 pb-5"
         >
           {NAV_LINKS.map((link) => (
             <a
@@ -107,6 +126,16 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+          <a
+            href={APP_URL}
+            onClick={() => setMenuOpen(false)}
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium
+                       bg-accent text-black rounded-lg px-3.5 py-2
+                       hover:bg-accent/85 transition-colors"
+          >
+            Open the app
+            <span aria-hidden="true">→</span>
+          </a>
         </motion.div>
       )}
     </motion.nav>

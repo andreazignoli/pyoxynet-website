@@ -7,7 +7,7 @@ import { GradientText } from '@/components/shared/gradient-text'
 import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'Integration — Oxynet',
+  title: 'Integration | Oxynet',
   description:
     'Bring automated CPET interpretation into the data pipeline. Oxynet processes CPET time-series programmatically and returns structured interpretation outputs for clinical, research, and software systems.',
 }
@@ -293,9 +293,18 @@ function IntegrationHero() {
             interpretation outputs. The next step is to move automated interpretation closer to
             where CPET data are acquired, processed, and used.
           </p>
-          <p className="text-white/30 text-sm font-mono tracking-wide">
+          <p className="text-white/30 text-sm font-mono tracking-wide mb-8">
             From exported files to continuous data flows.
           </p>
+          <div className="glass rounded-xl px-6 py-4 border border-accent/20 max-w-lg mx-auto">
+            <p className="text-white/85 text-sm font-medium">
+              No manual CSV or XLS transfer required.
+            </p>
+            <p className="text-white/45 text-xs leading-relaxed mt-1">
+              A test is recorded, and the interpretation follows, with nobody deciding one file
+              at a time to run it.
+            </p>
+          </div>
         </SectionWrapper>
       </div>
     </section>
@@ -328,7 +337,7 @@ function CurrentWorkflowSection() {
             <CurrentWorkflowDiagram />
             <p className="text-white/30 text-xs leading-relaxed mt-8 text-center max-w-xs mx-auto">
               Oxynet currently enters the workflow after data have been exported and manually
-              handled — necessary today, but not architecturally required.
+              handled. That is necessary today, but not architecturally required.
             </p>
           </div>
         </SectionWrapper>
@@ -367,7 +376,7 @@ function IntegratedWorkflowSection() {
           <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
             <div className="glass rounded-xl p-5 border border-white/8">
               <p className="text-white/88 font-semibold text-sm mb-2">
-                Designed to integrate — not replace.
+                Designed to integrate, not replace.
               </p>
               <p className="text-white/42 text-xs leading-relaxed">
                 Oxynet does not replace acquisition systems, manufacturer software, or existing
@@ -381,7 +390,7 @@ function IntegratedWorkflowSection() {
               </p>
               <p className="text-white/42 text-xs leading-relaxed">
                 When integrated at the data-pipeline level, CPET time-series reach Oxynet
-                programmatically — without any intermediate export or manual file handling.
+                programmatically, without any intermediate export or manual file handling.
               </p>
             </div>
           </div>
@@ -401,12 +410,12 @@ function DataFlowSection() {
     {
       n: '02',
       label: 'Oxynet interpretation',
-      body: 'Oxynet processes the metabolic time-series using its automated interpretation models, detecting ventilatory thresholds and classifying exercise intensity domains per breath.',
+      body: 'Oxynet parses the vendor file as exported: twenty formats, each with its own unit conventions and clock quirks, then measures the physiology in it.',
     },
     {
       n: '03',
       label: 'Structured outputs out',
-      body: 'Interpretation results — including VT1, VT2, and per-breath intensity domain classifications — are returned in a structured form for review, storage, visualisation, or downstream analysis.',
+      body: 'Thresholds, per-breath intensity domains, derived quantities, oscillation analysis and signal-integrity checks are returned as structured JSON for review, storage, visualisation or downstream analysis.',
     },
   ]
 
@@ -440,19 +449,19 @@ function DataFlowSection() {
         <SectionWrapper delay={0.3} className="mt-10">
           <div className="glass rounded-2xl p-6 max-w-3xl mx-auto border border-white/8 text-center">
             <p className="text-white/42 text-sm leading-relaxed">
-              Oxynet can be accessed via the API for programmatic integration or via the Python
-              package for research pipelines. Refer to the{' '}
+              Oxynet is reachable over REST, over MCP for AI assistants, or via the Python package
+              for local research pipelines. The{' '}
               <a
-                href="https://pyoxynet.readthedocs.io/en/latest/index.html"
+                href="https://app.oxynet.net/docs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent hover:underline underline-offset-2"
               >
-                pyoxynet documentation
+                API documentation
               </a>{' '}
-              for current input specifications and supported data formats. Oxynet&apos;s outputs are
-              not intended to replace clinical review — they provide a consistent, reproducible
-              interpretation baseline.
+              lists every endpoint and the twenty vendor formats detected automatically. Oxynet&apos;s
+              outputs are not intended to replace clinical review. They provide a consistent,
+              reproducible measurement baseline.
             </p>
           </div>
         </SectionWrapper>
@@ -495,8 +504,9 @@ function PartnersSection() {
             </h2>
             <p className="text-white/55 text-lg leading-relaxed">
               We are interested in working with organisations that acquire, process, or manage CPET
-              data at scale — including exercise testing core laboratories, clinical trial networks,
-              hospitals, research infrastructures, software providers, and CPET technology partners.
+              data at scale, including exercise testing core laboratories, clinical trial
+              networks, hospitals, research infrastructures, software providers, and CPET
+              technology partners.
             </p>
           </div>
         </SectionWrapper>

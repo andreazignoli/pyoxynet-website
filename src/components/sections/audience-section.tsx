@@ -2,30 +2,32 @@ import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GlassCard } from '@/components/shared/glass-card'
 import { GradientText } from '@/components/shared/gradient-text'
 
+const APP_URL = 'https://app.oxynet.net'
+
 const AUDIENCES = [
   {
     icon: '🏥',
-    label: 'For Clinics & Hospitals',
+    label: 'For clinics & hospitals',
     headline: 'Consistent interpretation at scale',
     description:
-      'Reduce variability across clinicians and sessions. Oxynet provides a standardised interpretation layer you can deploy directly — via web or API — without changing your existing workflow.',
-    cta: { label: 'Try Oxynet on Exercise Thresholds', href: 'https://www.exercisethresholds.com/oxynet', external: true },
+      'Reduce variability across clinicians and sessions. Oxynet reads your metabolimeter export as exported and returns the same structured measurements every time, with no change to how you capture data.',
+    cta: { label: 'Open the app', href: APP_URL, external: true },
   },
   {
     icon: '⚙️',
-    label: 'For CPET Manufacturers',
-    headline: 'Add AI interpretation to your system',
+    label: 'For manufacturers & software partners',
+    headline: 'A physiology engine behind your system',
     description:
-      'Integrate Oxynet via API to add automated, standardised CPET interpretation to your existing software. Send CPET data, receive structured outputs, display within your platform.',
-    cta: { label: 'Request API access', href: '#contact' },
+      'Call Oxynet from the software you already ship. Send the recording, receive structured measurements, display them in your own interface. Your product, your reporting, our physiology.',
+    cta: { label: 'See the integration', href: '/integration' },
   },
   {
     icon: '🔬',
-    label: 'For Researchers',
-    headline: 'Open tools for CPET science',
+    label: 'For researchers',
+    headline: 'A cohort, analysed in one pass',
     description:
-      'Use the open-source Python package to run inference, generate synthetic CPET data, and integrate Oxynet into your research pipelines. Well-documented, actively maintained.',
-    cta: { label: 'Explore the package', href: '#package' },
+      'Point an API client, or an AI assistant over MCP, at a directory of tests and get structured results back per recording. The open-source Python package covers local inference and synthetic data generation.',
+    cta: { label: 'Analyse a cohort', href: '#agents' },
   },
 ]
 
@@ -42,8 +44,8 @@ export function AudienceSection() {
               Built for <GradientText>Your Context</GradientText>
             </h2>
             <p className="text-white/55 max-w-xl mx-auto text-lg leading-relaxed">
-              Oxynet is available in formats designed for clinical deployment, system integration,
-              and research use.
+              The same engine, reached the way that fits your context: a browser, an API call,
+              an assistant, or a Python import.
             </p>
           </div>
         </SectionWrapper>

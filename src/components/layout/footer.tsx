@@ -1,4 +1,5 @@
 import { Separator } from '@/components/ui/separator'
+import { DuckMark } from '@/components/shared/duck-mark'
 
 export function Footer() {
   return (
@@ -6,10 +7,20 @@ export function Footer() {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div>
-            <h3 className="font-bold text-lg gradient-text font-mono mb-3">Oxynet</h3>
-            <p className="text-white/50 text-sm leading-relaxed">
-              A standardisation layer for CPET interpretation — consistent, scalable, and system-agnostic.
+            <div className="flex items-center gap-2 mb-3">
+              <DuckMark className="w-5 h-5 text-accent" />
+              <h3 className="font-bold text-base gradient-text font-mono tracking-tight">Oxynet</h3>
+            </div>
+            <p className="text-white/50 text-sm leading-relaxed mb-4">
+              A computational layer for CPET: physiological measurements, consistently, over an
+              API that people and machines can both call.
             </p>
+            <a
+              href="https://app.oxynet.net"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+            >
+              app.oxynet.net →
+            </a>
           </div>
 
           <div>
@@ -18,10 +29,13 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               {[
-                { label: 'Python Package (PyPI)', href: 'https://pypi.org/project/pyoxynet/' },
-                { label: 'Documentation', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html' },
-                { label: 'GitHub Repository', href: 'https://github.com/andreazignoli/pyoxynet' },
-                { label: 'Web App', href: 'https://www.exercisethresholds.com/oxynet' },
+                { label: 'Oxynet app', href: 'https://app.oxynet.net' },
+                { label: 'API documentation', href: 'https://app.oxynet.net/docs' },
+                { label: 'OpenAPI schema', href: 'https://app.oxynet.net/v1/openapi.json' },
+                { label: 'Agent guide (llms.txt)', href: 'https://app.oxynet.net/llms.txt' },
+                { label: 'Python package (PyPI)', href: 'https://pypi.org/project/pyoxynet/' },
+                { label: 'pyoxynet docs', href: 'https://pyoxynet.readthedocs.io/en/latest/index.html' },
+                { label: 'GitHub repository', href: 'https://github.com/andreazignoli/pyoxynet' },
               ].map((link) => (
                 <li key={link.label}>
                   <a
