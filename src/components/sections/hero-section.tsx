@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { GradientText } from '@/components/shared/gradient-text'
-import { DuckMark } from '@/components/shared/duck-mark'
 
 export function HeroSection() {
   return (
@@ -50,12 +49,16 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.7, ease: 'easeOut' }}
-          className="mb-4 leading-none flex justify-center"
+          className="mb-4 leading-none"
         >
-          {/* The mark, at hero scale. The same path the navbar and app.oxynet.net
-              draw, rather than the font glyph it was extracted from, so the two
-              properties cannot show slightly different ducks. */}
-          <DuckMark className="w-40 sm:w-48 md:w-56 h-auto text-accent select-none" />
+          {/* The wireframe duck, from the 3D Animals face. Do NOT swap this for
+              DuckMark: that component draws /oxynet-icon.svg, which is the same
+              path stroked until the mesh closes into a solid body so it survives
+              a 16px favicon. At hero scale it reads as a blob. The wireframe is
+              the logo; the solid is only for small sizes. */}
+          <span className="font-3d-animals gradient-text text-[10rem] sm:text-[12rem] md:text-[14rem] select-none">
+            E
+          </span>
         </motion.div>
 
         <motion.h1
