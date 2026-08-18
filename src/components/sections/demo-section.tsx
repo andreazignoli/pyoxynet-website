@@ -19,7 +19,7 @@ export function DemoSection() {
             </h2>
             <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
               Drag the slider to see how raw CPET measurements are transformed into standardised
-              intensity domains — automatically detecting LT and RCP to classify every breath.
+              intensity domains, automatically detecting LT and RCP to classify every breath.
             </p>
           </div>
         </SectionWrapper>
@@ -89,18 +89,16 @@ export function DemoSection() {
         {/* CTA block */}
         <SectionWrapper delay={0.3}>
           <div className="mt-16 glass rounded-2xl p-6 sm:p-10 max-w-2xl mx-auto text-center border border-white/8">
-            <p className="text-white/55 text-sm mb-2">Ready to interpret your own CPET data?</p>
-            <h3 className="text-xl font-semibold text-white mb-6">
-              Try Oxynet on a real test
+            <p className="text-white/55 text-sm mb-2">Ready to run one of your own?</p>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Drop a real CPET file into the app
             </h3>
+            <p className="text-white/40 text-sm mb-6">
+              Free inferences in the browser. Cortex, COSMED, MetaSoft and more, read as exported.
+              Nothing is stored.
+            </p>
             <Button size="lg" asChild className="w-full sm:w-auto">
-              <a
-                href="https://www.exercisethresholds.com/oxynet"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Try Oxynet on Exercise Thresholds →
-              </a>
+              <a href="https://app.oxynet.net">Open app.oxynet.net →</a>
             </Button>
           </div>
         </SectionWrapper>

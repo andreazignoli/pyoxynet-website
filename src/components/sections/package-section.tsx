@@ -34,8 +34,8 @@ export function PackageSection() {
               The <GradientText>Pyoxynet</GradientText> Package
             </h2>
             <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
-              A comprehensive suite of deep neural network algorithms specifically designed for CPET data
-              analysis. Built with{' '}
+              The open research side of Oxynet: the models and tools, in a package you can import.
+              Built with{' '}
               <a
                 href="https://keras.io/"
                 target="_blank"

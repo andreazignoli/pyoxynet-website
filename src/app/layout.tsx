@@ -4,35 +4,42 @@ import { GeistMono } from 'geist/font/mono'
 import { Navbar } from '@/components/layout/navbar'
 import './globals.css'
 
+const TITLE = 'Oxynet: physiological intelligence for CPET'
+const DESCRIPTION =
+  'A computational layer for cardiopulmonary exercise testing. Oxynet turns CPET ' +
+  'signals into structured physiological measurements: ventilatory thresholds, ' +
+  'intensity domains, oscillation analysis and signal integrity, over an API that ' +
+  'clinical systems, research pipelines and AI agents can call directly.'
+
 export const metadata: Metadata = {
-  title: 'Oxynet — Where AI meets CPET',
-  description:
-    'AI-driven toolset for the automatic interpretation of cardiopulmonary exercise test (CPET) data. Built with deep learning, Keras, and TensorFlow.',
+  title: TITLE,
+  description: DESCRIPTION,
   metadataBase: new URL('https://www.oxynet.net'),
+  icons: { icon: '/oxynet-icon.svg' },
   openGraph: {
-    title: 'Oxynet — Where AI meets CPET',
-    description:
-      'AI-driven toolset for the automatic interpretation of cardiopulmonary exercise test (CPET) data.',
+    title: TITLE,
+    description: DESCRIPTION,
     url: 'https://www.oxynet.net',
     siteName: 'Oxynet',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Oxynet — Where AI meets CPET',
-    description:
-      'AI-driven toolset for the automatic interpretation of cardiopulmonary exercise test (CPET) data.',
+    title: TITLE,
+    description: DESCRIPTION,
   },
   keywords: [
     'CPET',
     'cardiopulmonary exercise test',
-    'AI',
-    'deep learning',
-    'pyoxynet',
-    'VO2',
+    'CPET interpretation',
+    'ventilatory thresholds',
+    'VT1',
+    'VT2',
+    'exercise oscillatory ventilation',
+    'CPET API',
     'exercise physiology',
-    'TensorFlow',
-    'Keras',
+    'VO2',
+    'pyoxynet',
   ],
 }
 

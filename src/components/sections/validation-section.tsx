@@ -2,9 +2,9 @@ import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GradientText } from '@/components/shared/gradient-text'
 
 const METRICS = [
-  { value: 'VT1', label: 'First Ventilatory Threshold', note: 'Strong agreement with expert labelling' },
-  { value: 'VT2', label: 'Second Ventilatory Threshold', note: 'Validated across multiple populations' },
-  { value: '3', label: 'Intensity Domains', note: 'Consistent classification per breath' },
+  { value: 'VT1', label: 'First ventilatory threshold', note: 'Strong agreement with expert labelling' },
+  { value: 'VT2', label: 'Second ventilatory threshold', note: 'Evaluated across multiple populations' },
+  { value: '12', label: 'Peer-reviewed papers', note: 'Methodology and evaluation' },
 ]
 
 export function ValidationSection() {
@@ -17,12 +17,13 @@ export function ValidationSection() {
               Scientific Validation
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              Validated Against <GradientText>Expert Interpretation</GradientText>
+              Measured against <GradientText>expert interpretation</GradientText>
             </h2>
             <p className="text-white/55 text-lg leading-relaxed">
-              Oxynet has been evaluated against expert-level CPET interpretation, showing strong
-              agreement for key physiological markers such as ventilatory thresholds. Its
-              performance is documented in peer-reviewed publications.
+              Threshold detection is evaluated against expert labelling and shows strong
+              agreement, documented across peer-reviewed publications. Agreement with an expert is
+              the floor the engine has to clear. The measurements it makes beyond that are the
+              reason to build on it.
             </p>
           </div>
         </SectionWrapper>
@@ -45,9 +46,10 @@ export function ValidationSection() {
         <SectionWrapper delay={0.25}>
           <div className="max-w-2xl mx-auto glass rounded-2xl p-6 border border-white/8 text-center">
             <p className="text-white/45 text-sm leading-relaxed">
-              Oxynet&apos;s outputs are not intended to replace clinical judgement. They are designed to
-              reduce variability and provide a reproducible baseline for further clinical review.
-              Over 11 peer-reviewed publications document its methodology and validation.
+              Threshold detection carries the longest evidence record here. Oscillation analysis is
+              beta, developed on a single heart-failure cohort and not yet tested for
+              transportability to a second population. Both are research software, and neither is a
+              medical device.
             </p>
             <a
               href="#publications"

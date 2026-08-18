@@ -35,24 +35,24 @@ export function AboutSection() {
             <div className="glass rounded-2xl p-8 border border-accent/20">
               <p className="text-xs font-mono uppercase tracking-widest text-accent/70 mb-4">Solution</p>
               <h3 className="text-lg font-semibold text-white mb-4">
-                A consistent, data-driven interpretation layer
+                A measurement layer under the interpretation
               </h3>
               <p className="text-white/55 leading-relaxed text-sm">
-                Oxynet provides a standardised interpretation layer that reduces variability and
-                supports reproducible outputs — operating across protocols, populations, and
-                devices without manual adjustment.
+                Oxynet computes the same quantities the same way on every recording, whatever
+                produced it, so the reading a clinician gives is anchored to numbers that do not
+                move between sessions, sites or systems.
               </p>
             </div>
           </div>
         </SectionWrapper>
 
         <SectionWrapper delay={0.25} className="mt-10">
-          <div className="glass rounded-2xl p-8 text-center max-w-3xl mx-auto">
-            <p className="text-white/60 leading-relaxed text-sm">
-              Oxynet is not a replacement for clinical expertise. It is a{' '}
-              <span className="text-white/85 font-medium">standardisation engine</span> — a
-              consistency layer designed to reduce interpretation variability and support
-              reproducible outputs across clinical settings and systems.
+          <div className="glass rounded-2xl p-6 max-w-2xl mx-auto">
+            <p className="text-white/45 leading-relaxed text-sm text-center">
+              Oxynet is a{' '}
+              <span className="text-white/80 font-medium">computational engine</span>, not a
+              replacement for clinical expertise. It measures; the reading stays with the
+              clinician.
             </p>
           </div>
         </SectionWrapper>
