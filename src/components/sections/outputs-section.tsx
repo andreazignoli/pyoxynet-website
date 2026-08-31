@@ -35,6 +35,19 @@ const FAMILIES = [
       'Not a yes/no verdict. The oscillation is measured and located, so a rhythm that fades during exercise is reported as a different finding from one that emerges late.',
   },
   {
+    label: 'Metabolism',
+    status: null,
+    title: 'Substrate use and FATMAX',
+    items: [
+      'Fat and carbohydrate oxidation rates, stage by stage',
+      'FATMAX, against work rate and against %V̇O₂peak',
+      'The crossover where carbohydrate overtakes fat',
+      'Gross efficiency and the oxygen cost of a watt, on a cycle ergometer',
+    ],
+    description:
+      'Indirect calorimetry from V̇O₂ and V̇CO₂, so it also runs on tests with no ergometer channel, against %V̇O₂peak alone. Above RER 1.0 the fat figure is reported as a bound rather than a rate, because there the exhaled CO₂ is no longer all metabolic.',
+  },
+  {
     label: 'Derived quantities',
     status: null,
     title: 'Standard CPET measurements',
