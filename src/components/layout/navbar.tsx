@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { DuckMark } from '@/components/shared/duck-mark'
+import { ThemeToggle } from '@/components/shared/theme-toggle'
 
 const APP_URL = 'https://app.oxynet.net'
 
@@ -29,12 +30,16 @@ export function Navbar() {
 
   return (
     <motion.nav
+      // Transparent over the hero photograph, so until it scrolls the bar is
+      // reading against the picture and has to stay dark like the hero. Once
+      // it has its own glass background it follows the page theme.
+      data-theme={scrolled ? undefined : 'dark'}
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled ? 'glass border-b border-white/10' : 'bg-transparent'
+        scrolled ? 'glass border-b border-hairline' : 'bg-transparent'
       )}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
@@ -54,7 +59,7 @@ export function Navbar() {
               href={link.href}
               target={link.external ? '_blank' : undefined}
               rel={link.external ? 'noopener noreferrer' : undefined}
-              className="px-2.5 py-1.5 text-sm text-white/60 hover:text-white transition-colors rounded-md hover:bg-white/5 whitespace-nowrap"
+              className="px-2.5 py-1.5 text-sm text-ink-body hover:text-foreground transition-colors rounded-md hover:bg-surface whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -62,11 +67,13 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 flex-shrink-0">
+          <ThemeToggle />
+
           {/* The app is the product. It gets the only button in the bar. */}
           <a
             href={APP_URL}
             className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium
-                       bg-accent text-black rounded-lg px-3.5 py-1.5
+                       bg-accent-fill text-black rounded-lg px-3.5 py-1.5
                        hover:bg-accent/85 transition-colors whitespace-nowrap"
           >
             Open the app
@@ -75,7 +82,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden text-white/60 hover:text-white transition-colors p-1"
+            className="lg:hidden text-ink-body hover:text-foreground transition-colors p-1"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -112,7 +119,7 @@ export function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden glass border-t border-white/10 px-6 pb-5"
+          className="lg:hidden glass border-t border-hairline px-6 pb-5"
         >
           {NAV_LINKS.map((link) => (
             <a
@@ -121,7 +128,7 @@ export function Navbar() {
               target={link.external ? '_blank' : undefined}
               rel={link.external ? 'noopener noreferrer' : undefined}
               onClick={() => setMenuOpen(false)}
-              className="block py-2.5 text-sm text-white/60 hover:text-white transition-colors"
+              className="block py-2.5 text-sm text-ink-body hover:text-foreground transition-colors"
             >
               {link.label}
             </a>
@@ -130,7 +137,7 @@ export function Navbar() {
             href={APP_URL}
             onClick={() => setMenuOpen(false)}
             className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium
-                       bg-accent text-black rounded-lg px-3.5 py-2
+                       bg-accent-fill text-black rounded-lg px-3.5 py-2
                        hover:bg-accent/85 transition-colors"
           >
             Open the app

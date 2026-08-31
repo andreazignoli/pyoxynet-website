@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 
 export function DemoSection() {
   return (
-    <section id="demo" className="section-padding border-t border-white/5">
+    <section id="demo" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -17,7 +17,7 @@ export function DemoSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               From Raw Data to <GradientText>Clinical Insight</GradientText>
             </h2>
-            <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
               Drag the slider to see how raw CPET measurements are transformed into standardised
               intensity domains, automatically detecting LT and RCP to classify every breath.
             </p>
@@ -28,7 +28,7 @@ export function DemoSection() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
             {/* Compare slider */}
             <div className="relative">
-              <div className="p-3 glass rounded-3xl border border-white/10">
+              <div className="p-3 glass rounded-3xl border border-hairline">
                 <Compare
                   firstImage="/cpet-raw.svg"
                   secondImage="/cpet-analyzed.svg"
@@ -44,7 +44,7 @@ export function DemoSection() {
 
             {/* Legend / explanation */}
             <div className="max-w-sm space-y-5">
-              <h3 className="text-xl font-semibold text-white mb-6">
+              <h3 className="text-xl font-semibold text-foreground mb-6">
                 Intensity Domains
               </h3>
               {[
@@ -55,7 +55,7 @@ export function DemoSection() {
                   description: 'VO₂ reaches steady state within minutes. Blood lactate returns to resting levels. Exercise is fully sustainable.',
                 },
                 {
-                  color: 'bg-amber-500',
+                  color: 'bg-warn',
                   label: 'Heavy Domain',
                   threshold: 'LT → RCP',
                   description: 'A VO₂ slow component emerges. Lactate rises but stabilises above baseline. Prolonged exercise remains possible.',
@@ -71,15 +71,15 @@ export function DemoSection() {
                   <div className={`w-3 h-3 rounded-full ${zone.color} mt-1.5 flex-shrink-0 opacity-80`} />
                   <div>
                     <div className="flex items-baseline gap-2">
-                      <p className="text-white/90 font-medium text-sm">{zone.label}</p>
-                      <span className="text-white/30 text-xs font-mono">{zone.threshold}</span>
+                      <p className="text-ink-strong font-medium text-sm">{zone.label}</p>
+                      <span className="text-ink-faint text-xs font-mono">{zone.threshold}</span>
                     </div>
-                    <p className="text-white/45 text-sm leading-relaxed mt-0.5">{zone.description}</p>
+                    <p className="text-ink-subtle text-sm leading-relaxed mt-0.5">{zone.description}</p>
                   </div>
                 </div>
               ))}
 
-              <p className="text-white/30 text-xs mt-6 font-mono">
+              <p className="text-ink-faint text-xs mt-6 font-mono">
                 Based on Keir et al., Sports Medicine (2022)
               </p>
             </div>
@@ -88,12 +88,12 @@ export function DemoSection() {
 
         {/* CTA block */}
         <SectionWrapper delay={0.3}>
-          <div className="mt-16 glass rounded-2xl p-6 sm:p-10 max-w-2xl mx-auto text-center border border-white/8">
-            <p className="text-white/55 text-sm mb-2">Ready to run one of your own?</p>
-            <h3 className="text-xl font-semibold text-white mb-2">
+          <div className="mt-16 glass rounded-2xl p-6 sm:p-10 max-w-2xl mx-auto text-center border border-hairline">
+            <p className="text-ink-body text-sm mb-2">Ready to run one of your own?</p>
+            <h3 className="text-xl font-semibold text-foreground mb-2">
               Drop a real CPET file into the app
             </h3>
-            <p className="text-white/40 text-sm mb-6">
+            <p className="text-ink-subtle text-sm mb-6">
               Free inferences in the browser. Cortex, COSMED, MetaSoft and more, read as exported.
               Nothing is stored.
             </p>

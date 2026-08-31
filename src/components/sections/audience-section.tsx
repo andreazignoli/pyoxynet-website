@@ -33,7 +33,7 @@ const AUDIENCES = [
 
 export function AudienceSection() {
   return (
-    <section id="audience" className="section-padding border-t border-white/5">
+    <section id="audience" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -43,7 +43,7 @@ export function AudienceSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               Built for <GradientText>Your Context</GradientText>
             </h2>
-            <p className="text-white/55 max-w-xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-xl mx-auto text-lg leading-relaxed">
               The same engine, reached the way that fits your context: a browser, an API call,
               an assistant, or a Python import.
             </p>
@@ -57,8 +57,8 @@ export function AudienceSection() {
               <p className="text-xs font-mono uppercase tracking-widest text-accent/70 mb-2">
                 {audience.label}
               </p>
-              <h3 className="text-base font-semibold text-white mb-3">{audience.headline}</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-5">{audience.description}</p>
+              <h3 className="text-base font-semibold text-foreground mb-3">{audience.headline}</h3>
+              <p className="text-ink-subtle text-sm leading-relaxed mb-5">{audience.description}</p>
               <a
                 href={audience.cta.href}
                 target={'external' in audience.cta ? '_blank' : undefined}

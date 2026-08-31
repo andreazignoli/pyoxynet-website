@@ -24,14 +24,14 @@ export function UsageTabs({ tabs }: UsageTabsProps) {
       </TabsList>
       {tabs.map((tab) => (
         <TabsContent key={tab.label} value={tab.label}>
-          <div className="relative rounded-xl overflow-hidden border border-white/10 glass">
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/10 bg-white/[0.02]">
+          <div className="relative rounded-xl overflow-hidden border border-hairline glass">
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-hairline bg-surface/40">
               <div className="flex gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
               </div>
-              <span className="text-xs text-white/40 font-mono ml-2">{tab.filename}</span>
+              <span className="text-xs text-ink-subtle font-mono ml-2">{tab.filename}</span>
             </div>
             <div
               className="[&_pre]:!bg-transparent [&_pre]:p-5 [&_pre]:overflow-x-auto [&_pre]:text-sm [&_pre]:leading-relaxed"

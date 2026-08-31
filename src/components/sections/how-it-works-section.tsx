@@ -9,7 +9,7 @@ function StepList({ steps }: { steps: string[] }) {
           <span className="flex-shrink-0 w-6 h-6 rounded-full border border-accent/40 text-accent text-xs font-mono flex items-center justify-center mt-0.5">
             {i + 1}
           </span>
-          <span className="text-white/65 text-sm leading-relaxed">{step}</span>
+          <span className="text-ink-body text-sm leading-relaxed">{step}</span>
         </li>
       ))}
     </ol>
@@ -18,7 +18,7 @@ function StepList({ steps }: { steps: string[] }) {
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="section-padding border-t border-white/5">
+    <section id="how-it-works" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -34,11 +34,11 @@ export function HowItWorksSection() {
         <SectionWrapper delay={0.1}>
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {/* For clinics */}
-            <div className="glass rounded-2xl p-8 border border-white/8">
-              <p className="text-xs font-mono uppercase tracking-widest text-white/35 mb-5">
+            <div className="glass rounded-2xl p-8 border border-hairline">
+              <p className="text-xs font-mono uppercase tracking-widest text-ink-faint mb-5">
                 For clinics &amp; hospitals
               </p>
-              <h3 className="text-lg font-semibold text-white mb-6">Direct use</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-6">Direct use</h3>
               <StepList
                 steps={[
                   'Upload or stream CPET time-series data from your existing system.',
@@ -53,7 +53,7 @@ export function HowItWorksSection() {
               <p className="text-xs font-mono uppercase tracking-widest text-accent/60 mb-5">
                 For manufacturers &amp; software partners
               </p>
-              <h3 className="text-lg font-semibold text-white mb-6">API integration</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-6">API integration</h3>
               <StepList
                 steps={[
                   'Integrate the Oxynet API into your existing CPET software or device platform.',

@@ -30,10 +30,25 @@ const config: Config = {
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: '#00dc82',
+          // Accent as TEXT: flips with the theme, because #00dc82 on a light
+          // ground is 1.75:1. `fill` is the brand green itself and never
+          // flips, so buttons and the mark stay exactly as they are.
+          DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
+          fill: '#00dc82',
           blue: '#155799',
           green: '#159957',
         },
+        // The themed ink ramp that replaced the white/NN utilities.
+        ink: {
+          strong: 'rgb(var(--ink-strong) / <alpha-value>)',
+          body: 'rgb(var(--ink-body) / <alpha-value>)',
+          subtle: 'rgb(var(--ink-subtle) / <alpha-value>)',
+          faint: 'rgb(var(--ink-faint) / <alpha-value>)',
+        },
+        // The beta/caution marker. amber-400 is 1.9:1 on a light ground.
+        warn: 'rgb(var(--warn-rgb) / <alpha-value>)',
+        hairline: 'rgb(var(--hairline) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',

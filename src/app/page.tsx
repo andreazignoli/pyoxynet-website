@@ -13,10 +13,12 @@ import { UsageSection } from '@/components/sections/usage-section'
 import { PublicationsSection } from '@/components/sections/publications-section'
 import { ContactSection } from '@/components/sections/contact-section'
 import { Footer } from '@/components/layout/footer'
+import { SectionRail } from '@/components/layout/section-rail'
 
 export default function HomePage() {
   return (
     <main>
+      <SectionRail />
       <HeroSection />
       <DemoSection />
       <AboutSection />

@@ -9,7 +9,7 @@ const METRICS = [
 
 export function ValidationSection() {
   return (
-    <section id="validation" className="section-padding border-t border-white/5">
+    <section id="validation" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="max-w-3xl mx-auto text-center mb-14">
@@ -19,7 +19,7 @@ export function ValidationSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
               Measured against <GradientText>expert interpretation</GradientText>
             </h2>
-            <p className="text-white/55 text-lg leading-relaxed">
+            <p className="text-ink-body text-lg leading-relaxed">
               Threshold detection is evaluated against expert labelling and shows strong
               agreement, documented across peer-reviewed publications. Agreement with an expert is
               the floor the engine has to clear. The measurements it makes beyond that are the
@@ -33,19 +33,19 @@ export function ValidationSection() {
             {METRICS.map((m) => (
               <div
                 key={m.value}
-                className="glass rounded-2xl p-6 text-center border border-white/8"
+                className="glass rounded-2xl p-6 text-center border border-hairline"
               >
                 <div className="text-3xl font-bold gradient-text mb-2">{m.value}</div>
-                <div className="text-white/80 font-medium text-sm mb-1">{m.label}</div>
-                <div className="text-white/35 text-xs">{m.note}</div>
+                <div className="text-ink-strong font-medium text-sm mb-1">{m.label}</div>
+                <div className="text-ink-faint text-xs">{m.note}</div>
               </div>
             ))}
           </div>
         </SectionWrapper>
 
         <SectionWrapper delay={0.25}>
-          <div className="max-w-2xl mx-auto glass rounded-2xl p-6 border border-white/8 text-center">
-            <p className="text-white/45 text-sm leading-relaxed">
+          <div className="max-w-2xl mx-auto glass rounded-2xl p-6 border border-hairline text-center">
+            <p className="text-ink-subtle text-sm leading-relaxed">
               Threshold detection carries the longest evidence record here. Oscillation analysis is
               beta, developed on a single heart-failure cohort and not yet tested for
               transportability to a second population. Both are research software, and neither is a

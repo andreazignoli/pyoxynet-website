@@ -11,7 +11,8 @@
 }
 
 @layer base {
-  :root {
+  :root,
+  [data-theme='dark'] {
     --background: 0 0% 4%;
     --foreground: 0 0% 95%;
     --card: 0 0% 7%;
@@ -32,6 +33,113 @@
     --input: 0 0% 14%;
     --ring: 152 100% 43%;
     --radius: 0.75rem;
+
+    /* The semantic ink ramp. The site used to spell these as white/NN, which
+       cannot be themed: rgb(255 255 255 / .55) is white whatever the ground is.
+       Each step below is the exact colour that ramp already composited to on
+       #0a0a0a, so the dark theme is unchanged to the pixel. */
+    --ink-strong: 206 206 206;
+    --ink-body: 145 145 145;
+    --ink-subtle: 120 120 120;
+    --ink-faint: 84 84 84;
+    --hairline: 30 30 30;
+    --surface: 34 34 34;
+
+    /* Accent as TEXT. It flips; the fill does not (see accent.fill in the
+       Tailwind theme). #00dc82 reads 10.9:1 on the near-black and 1.75:1 on
+       white, so on a light ground it can be a fill with dark ink on it, never
+       a letterform. */
+    --accent-rgb: 0 220 130;
+    --warn-rgb: 251 191 36;
+    --grad-from: #00dc82;
+
+    --glass-bg: 255 255 255;
+    --glass-bg-a: 0.04;
+    --glass-line: 255 255 255;
+    --glass-line-a: 0.08;
+    --glass-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  /* Light theme. Follows the operating system unless the reader has chosen,
+     in which case data-theme on <html> wins in both directions. */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme='dark']) {
+    --background: 60 20% 98%;
+    --foreground: 210 12% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 12% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 12% 7%;
+    --primary: 152 93% 22%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 60 5% 94%;
+    --secondary-foreground: 210 12% 7%;
+    --muted: 60 5% 94%;
+    --muted-foreground: 218 5% 38%;
+    --accent: 152 93% 22%;
+    --accent-foreground: 0 0% 100%;
+    --border: 60 5% 89%;
+    --input: 60 5% 89%;
+    --ring: 152 93% 22%;
+
+    /* contrast-matched to the dark ramp above, measured over #fbfbfa:
+       strong 12.4:1 (dark 12.6), body 6.28 (6.28), subtle 4.41 (4.48) */
+    --ink-strong: 48 50 51;
+    --ink-body: 93 94 95;
+    --ink-subtle: 116 118 118;
+    --ink-faint: 157 157 158;
+    --hairline: 225 225 224;
+    --surface: 218 218 218;
+
+    --accent-rgb: 4 108 69;
+    --warn-rgb: 146 64 14;
+    --grad-from: #046c45;
+
+    --glass-bg: 255 255 255;
+    --glass-bg-a: 1;
+    --glass-line: 15 17 19;
+    --glass-line-a: 0.10;
+    --glass-shadow: 0 1px 2px rgba(15, 17, 19, 0.04);
+    }
+  }
+
+  [data-theme='light'] {
+    --background: 60 20% 98%;
+    --foreground: 210 12% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 12% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 12% 7%;
+    --primary: 152 93% 22%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 60 5% 94%;
+    --secondary-foreground: 210 12% 7%;
+    --muted: 60 5% 94%;
+    --muted-foreground: 218 5% 38%;
+    --accent: 152 93% 22%;
+    --accent-foreground: 0 0% 100%;
+    --border: 60 5% 89%;
+    --input: 60 5% 89%;
+    --ring: 152 93% 22%;
+
+    /* contrast-matched to the dark ramp above, measured over #fbfbfa:
+       strong 12.4:1 (dark 12.6), body 6.28 (6.28), subtle 4.41 (4.48) */
+    --ink-strong: 48 50 51;
+    --ink-body: 93 94 95;
+    --ink-subtle: 116 118 118;
+    --ink-faint: 157 157 158;
+    --hairline: 225 225 224;
+    --surface: 218 218 218;
+
+    --accent-rgb: 4 108 69;
+    --warn-rgb: 146 64 14;
+    --grad-from: #046c45;
+
+    --glass-bg: 255 255 255;
+    --glass-bg-a: 1;
+    --glass-line: 15 17 19;
+    --glass-line-a: 0.10;
+    --glass-shadow: 0 1px 2px rgba(15, 17, 19, 0.04);
   }
 }
 
@@ -42,14 +150,21 @@
   body {
     @apply bg-background text-foreground;
   }
+  :root { color-scheme: dark; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme='dark']) { color-scheme: light; }
+  }
+  [data-theme='light'] { color-scheme: light; }
+  [data-theme='dark'] { color-scheme: dark; }
 }
 
 @layer utilities {
   .glass {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgb(var(--glass-bg) / var(--glass-bg-a));
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgb(var(--glass-line) / var(--glass-line-a));
+    box-shadow: var(--glass-shadow);
   }
 
   .glass-hover {
@@ -57,8 +172,8 @@
   }
 
   .glass-hover:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(0, 220, 130, 0.3);
+    background: rgb(var(--glass-bg) / calc(var(--glass-bg-a) + 0.03));
+    border-color: rgb(var(--accent-rgb) / 0.3);
   }
 
   .font-3d-animals {
@@ -66,7 +181,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #00dc82 0%, #155799 100%);
+    background: linear-gradient(135deg, var(--grad-from) 0%, #155799 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

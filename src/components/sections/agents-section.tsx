@@ -41,7 +41,7 @@ const CHANNELS = [
 
 export function AgentsSection() {
   return (
-    <section id="agents" className="section-padding border-t border-white/5">
+    <section id="agents" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -52,7 +52,7 @@ export function AgentsSection() {
               Built for machines, agents and{' '}
               <GradientText>clinical systems</GradientText>
             </h2>
-            <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
               Oxynet exposes CPET interpretation as structured data, so clinical software,
               research pipelines and AI assistants can call the physiological models directly,
               without a person deciding, one test at a time, to use it.
@@ -66,46 +66,46 @@ export function AgentsSection() {
               <p className="text-xs font-mono uppercase tracking-widest text-accent/70 mb-3">
                 {channel.label}
               </p>
-              <h3 className="text-base font-semibold text-white mb-2">{channel.title}</h3>
-              <p className="text-[11px] font-mono text-white/30 mb-4 break-all">
+              <h3 className="text-base font-semibold text-foreground mb-2">{channel.title}</h3>
+              <p className="text-[11px] font-mono text-ink-faint mb-4 break-all">
                 {channel.endpoint}
               </p>
-              <p className="text-white/50 text-sm leading-relaxed">{channel.description}</p>
+              <p className="text-ink-subtle text-sm leading-relaxed">{channel.description}</p>
             </GlassCard>
           ))}
         </div>
 
         <SectionWrapper delay={0.3}>
           <div className="glass rounded-2xl p-8 sm:p-10 max-w-3xl mx-auto border border-accent/12">
-            <h3 className="text-xl font-semibold text-white mb-4">
+            <h3 className="text-xl font-semibold text-foreground mb-4">
               The test happens. The interpretation follows.
             </h3>
-            <p className="text-white/55 text-sm leading-relaxed mb-7">
+            <p className="text-ink-body text-sm leading-relaxed mb-7">
               The unit of work is not a person uploading a file. A testing service that runs
               thousands of CPETs a year can have every one of them interpreted as it is recorded:
               no export, no manual transfer, no decision to make per test. That is the integration
               Oxynet is built for.
             </p>
 
-            <div className="rounded-xl border border-white/8 bg-black/30 p-5 font-mono text-[12.5px] leading-relaxed overflow-x-auto">
-              <p className="text-white/30 mb-3"># any MCP client, one line</p>
-              <p className="text-white/70">
+            <div className="rounded-xl border border-hairline bg-black/30 p-5 font-mono text-[12.5px] leading-relaxed overflow-x-auto">
+              <p className="text-ink-faint mb-3"># any MCP client, one line</p>
+              <p className="text-ink-strong">
                 <span className="text-accent">claude mcp add</span> --transport http oxynet \
               </p>
-              <p className="text-white/70 pl-4">
+              <p className="text-ink-strong pl-4">
                 https://app.oxynet.net/oxynet-mcp --header{' '}
-                <span className="text-white/45">&quot;X-API-Key: ...&quot;</span>
+                <span className="text-ink-subtle">&quot;X-API-Key: ...&quot;</span>
               </p>
-              <p className="text-white/30 mt-4 mb-1"># then, in the conversation</p>
-              <p className="text-white/55">
+              <p className="text-ink-faint mt-4 mb-1"># then, in the conversation</p>
+              <p className="text-ink-body">
                 &quot;analyse every CPET in this folder and tell me which
               </p>
-              <p className="text-white/55">
+              <p className="text-ink-body">
                 {' '}ones show oscillatory ventilation&quot;
               </p>
             </div>
 
-            <p className="text-white/35 text-xs leading-relaxed mt-6">
+            <p className="text-ink-faint text-xs leading-relaxed mt-6">
               No result carries a confidence score, and an assistant should not invent one.
               Nothing here is calibrated against clinical outcomes. Where a recording cannot
               support an analysis, the API says so and says why. That refusal is the correct thing
