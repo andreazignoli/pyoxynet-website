@@ -8,7 +8,8 @@ const TITLE = 'Oxynet: physiological intelligence for CPET'
 const DESCRIPTION =
   'A computational layer for cardiopulmonary exercise testing. Oxynet turns CPET ' +
   'signals into structured physiological measurements: ventilatory thresholds, ' +
-  'intensity domains, oscillation analysis and signal integrity, over an API that ' +
+  'intensity domains, substrate use, oscillation analysis and signal integrity, ' +
+  'over an API that ' +
   'clinical systems, research pipelines and AI agents can call directly.'
 
 export const metadata: Metadata = {
@@ -36,6 +37,8 @@ export const metadata: Metadata = {
     'VT1',
     'VT2',
     'exercise oscillatory ventilation',
+    'fat oxidation',
+    'FATMAX',
     'CPET API',
     'exercise physiology',
     'VO2',

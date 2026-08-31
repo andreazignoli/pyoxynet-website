@@ -415,7 +415,7 @@ function DataFlowSection() {
     {
       n: '03',
       label: 'Structured outputs out',
-      body: 'Thresholds, per-breath intensity domains, derived quantities, oscillation analysis and signal-integrity checks are returned as structured JSON for review, storage, visualisation or downstream analysis.',
+      body: 'Thresholds, per-breath intensity domains, derived quantities, substrate use, oscillation analysis and signal-integrity checks are returned as structured JSON for review, storage, visualisation or downstream analysis.',
     },
   ]
 
