@@ -32,7 +32,7 @@ const CONTACTS = [
 
 export function ContactSection() {
   return (
-    <section id="contact" className="section-padding border-t border-white/5">
+    <section id="contact" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -42,7 +42,7 @@ export function ContactSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               <GradientText>Contact</GradientText>
             </h2>
-            <p className="text-white/55 max-w-xl mx-auto text-lg">
+            <p className="text-ink-body max-w-xl mx-auto text-lg">
               Interested in collaboration or have questions about the project?
             </p>
           </div>
@@ -54,8 +54,8 @@ export function ContactSection() {
               <p className="text-accent text-xs font-mono uppercase tracking-wider mb-3">
                 {contact.label}
               </p>
-              <h3 className="text-white font-semibold text-lg mb-2">{contact.name}</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-5">{contact.description}</p>
+              <h3 className="text-foreground font-semibold text-lg mb-2">{contact.name}</h3>
+              <p className="text-ink-subtle text-sm leading-relaxed mb-5">{contact.description}</p>
               <a
                 href={`mailto:${contact.email}`}
                 className="inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-2 font-medium"

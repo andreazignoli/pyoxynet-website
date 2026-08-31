@@ -33,13 +33,13 @@ function FlowColumn({
     <div
       className={[
         'glass rounded-2xl p-8',
-        accent ? 'border border-accent/20' : 'border border-white/8',
+        accent ? 'border border-accent/20' : 'border border-hairline',
       ].join(' ')}
     >
       <p
         className={[
           'text-xs font-mono uppercase tracking-widest mb-6',
-          accent ? 'text-accent/70' : 'text-white/35',
+          accent ? 'text-accent/70' : 'text-ink-faint',
         ].join(' ')}
       >
         {label}
@@ -54,10 +54,10 @@ function FlowColumn({
                 accent
                   ? i === steps.length - 1
                     ? 'text-accent bg-accent/8'
-                    : 'text-white/75'
+                    : 'text-ink-strong'
                   : i === steps.length - 1
-                  ? 'text-white/45 bg-white/4 font-mono text-[13px]'
-                  : 'text-white/60',
+                  ? 'text-ink-subtle bg-surface font-mono text-[13px]'
+                  : 'text-ink-body',
               ].join(' ')}
             >
               {step}
@@ -66,7 +66,7 @@ function FlowColumn({
               <div
                 className={[
                   'w-px h-4 ml-6',
-                  accent ? 'bg-accent/30' : 'bg-white/10',
+                  accent ? 'bg-accent/30' : 'bg-surface',
                 ].join(' ')}
               />
             )}
@@ -78,8 +78,8 @@ function FlowColumn({
         className={[
           'text-xs leading-relaxed mt-6 pt-5 border-t',
           accent
-            ? 'text-white/50 border-accent/12'
-            : 'text-white/35 border-white/8',
+            ? 'text-ink-subtle border-accent/12'
+            : 'text-ink-faint border-hairline',
         ].join(' ')}
       >
         {note}
@@ -90,7 +90,7 @@ function FlowColumn({
 
 export function MeasurementSection() {
   return (
-    <section id="measurement" className="section-padding border-t border-white/5">
+    <section id="measurement" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -100,7 +100,7 @@ export function MeasurementSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               From classification to <GradientText>measurement</GradientText>
             </h2>
-            <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
               Asking a CPET where VT1 and VT2 sit is one question. Asking what physiological
               structure the signals contain is a larger one, and it is the question the engine is
               now built to answer.
@@ -135,11 +135,11 @@ export function MeasurementSection() {
         </SectionWrapper>
 
         <SectionWrapper delay={0.2} className="mt-10">
-          <div className="glass rounded-2xl p-8 sm:p-10 max-w-3xl mx-auto border border-white/8">
-            <h3 className="text-lg font-semibold text-white mb-4">
+          <div className="glass rounded-2xl p-8 sm:p-10 max-w-3xl mx-auto border border-hairline">
+            <h3 className="text-lg font-semibold text-foreground mb-4">
               A worked example: oscillatory ventilation
             </h3>
-            <p className="text-white/55 text-sm leading-relaxed mb-6">
+            <p className="text-ink-body text-sm leading-relaxed mb-6">
               Exercise oscillatory ventilation is usually reported as present or absent. Oxynet
               returns the oscillation itself: each episode with its period, its amplitude as a
               share of ventilation, how many times it exceeds the background variation of that
@@ -165,11 +165,11 @@ export function MeasurementSection() {
                   <p className="text-accent/80 text-xs font-mono uppercase tracking-widest mb-2">
                     {item.k}
                   </p>
-                  <p className="text-white/45 text-xs leading-relaxed">{item.v}</p>
+                  <p className="text-ink-subtle text-xs leading-relaxed">{item.v}</p>
                 </div>
               ))}
             </div>
-            <p className="text-white/30 text-xs leading-relaxed mt-7 pt-5 border-t border-white/8">
+            <p className="text-ink-faint text-xs leading-relaxed mt-7 pt-5 border-t border-hairline">
               Oscillation analysis is in beta and has been developed on a single heart-failure
               cohort. It has not yet been tested for transportability to a second population, and
               is offered for research use on that basis.

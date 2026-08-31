@@ -7,7 +7,14 @@ import { GradientText } from '@/components/shared/gradient-text'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      // The hero always sits on a dark photograph, so it keeps the dark tokens
+      // whatever the page theme is. Without this the light theme flipped every
+      // ink token to near-black and put it on the picture: the subtitle, the
+      // secondary button label and the stat figures all went dark on dark.
+      data-theme="dark"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+    >
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -30,6 +37,18 @@ export function HeroSection() {
           style={{
             background:
               'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,220,130,0.08) 0%, transparent 70%)',
+          }}
+        />
+        {/* Reading scrim. The photograph is not uniform: near-black on the left
+            and a bright rust on the right, so one line of the paragraph held
+            contrast and the next did not. This darkens only the centre, where
+            the words are, and is fully transparent by 78%, so the picture is
+            untouched at the edges where it is doing the work. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(58% 62% at 50% 54%, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 78%)',
           }}
         />
       </div>
@@ -74,7 +93,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-xl sm:text-2xl font-semibold text-white/85 mb-4 leading-tight"
+          className="text-xl sm:text-2xl font-semibold text-ink-strong mb-4 leading-tight"
         >
           Physiological intelligence for exercise testing.
         </motion.p>
@@ -83,7 +102,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.65, duration: 0.8 }}
-          className="text-base sm:text-lg text-white/55 mb-10 max-w-2xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg text-white/85 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
           Oxynet extracts physiological structure from cardiopulmonary exercise test signals and
           returns it as structured measurements: consistent across protocols, populations and
@@ -114,13 +133,13 @@ export function HeroSection() {
           className="mt-20 flex flex-wrap justify-center gap-x-10 gap-y-4"
         >
           {[
-            { value: '20', label: 'Metabolimeter formats read' },
+            { value: '21', label: 'Metabolimeter formats read' },
             { value: 'REST, MCP, Python', label: 'Ways to call it' },
             { value: '12', label: 'Peer-reviewed papers' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-xl font-bold text-white/90">{stat.value}</div>
-              <div className="text-xs text-white/40 uppercase tracking-wider mt-0.5">{stat.label}</div>
+              <div className="text-xl font-bold text-ink-strong">{stat.value}</div>
+              <div className="text-xs text-ink-subtle uppercase tracking-wider mt-0.5">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -130,7 +149,7 @@ export function HeroSection() {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/25 text-sm"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-ink-faint text-sm"
       >
         ↓
       </motion.div>

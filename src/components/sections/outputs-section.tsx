@@ -75,7 +75,7 @@ const FAMILIES = [
 
 export function OutputsSection() {
   return (
-    <section id="outputs" className="section-padding border-t border-white/5">
+    <section id="outputs" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -85,7 +85,7 @@ export function OutputsSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               Structured physiological <GradientText>measurements</GradientText>
             </h2>
-            <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
               Every CPET processed by Oxynet returns the same structured set of results, in the
               same shape, regardless of the device, protocol or population that produced it.
             </p>
@@ -100,24 +100,24 @@ export function OutputsSection() {
                   {family.label}
                 </p>
                 {family.status && (
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400/90 border border-amber-500/35 rounded px-1.5 py-0.5 flex-shrink-0">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-warn/90 border border-warn/35 rounded px-1.5 py-0.5 flex-shrink-0">
                     {family.status}
                   </span>
                 )}
               </div>
 
-              <h3 className="text-base font-semibold text-white mb-4">{family.title}</h3>
+              <h3 className="text-base font-semibold text-foreground mb-4">{family.title}</h3>
 
               <ul className="space-y-2 mb-5">
                 {family.items.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <span className="w-1 h-1 rounded-full bg-accent/60 mt-2 flex-shrink-0" />
-                    <span className="text-white/65 text-sm leading-relaxed">{item}</span>
+                    <span className="text-ink-body text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
 
-              <p className="text-white/40 text-xs leading-relaxed pt-4 border-t border-white/8">
+              <p className="text-ink-subtle text-xs leading-relaxed pt-4 border-t border-hairline">
                 {family.description}
               </p>
             </GlassCard>
@@ -125,8 +125,8 @@ export function OutputsSection() {
         </div>
 
         <SectionWrapper delay={0.35} className="mt-10">
-          <div className="glass rounded-2xl p-6 max-w-3xl mx-auto border border-white/8 text-center">
-            <p className="text-white/45 text-sm leading-relaxed">
+          <div className="glass rounded-2xl p-6 max-w-3xl mx-auto border border-hairline text-center">
+            <p className="text-ink-subtle text-sm leading-relaxed">
               No output carries a confidence score. Nothing here is calibrated against clinical
               outcomes, so a percentage would be a number without a meaning. Where a recording
               cannot support an analysis, Oxynet says so, and says why.

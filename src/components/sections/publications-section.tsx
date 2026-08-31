@@ -40,7 +40,7 @@ function ExternalIcon() {
 
 export function PublicationsSection() {
   return (
-    <section id="publications" className="section-padding border-t border-white/5">
+    <section id="publications" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -50,7 +50,7 @@ export function PublicationsSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               Scientific <GradientText>Publications</GradientText>
             </h2>
-            <p className="text-white/55 max-w-xl mx-auto text-lg">
+            <p className="text-ink-body max-w-xl mx-auto text-lg">
               Peer-reviewed research, reviews, and articles behind the Oxynet project.
             </p>
           </div>
@@ -69,16 +69,16 @@ export function PublicationsSection() {
                   <Badge variant={TYPE_VARIANT[pub.type]}>
                     {TYPE_LABEL[pub.type]}
                   </Badge>
-                  <span className="text-white/25 group-hover:text-accent transition-colors mt-0.5">
+                  <span className="text-ink-faint group-hover:text-accent transition-colors mt-0.5">
                     <ExternalIcon />
                   </span>
                 </div>
-                <h3 className="text-white font-semibold mb-2 group-hover:text-accent transition-colors leading-snug">
+                <h3 className="text-foreground font-semibold mb-2 group-hover:text-accent transition-colors leading-snug">
                   {pub.title}
                 </h3>
-                <p className="text-white/50 text-sm leading-relaxed">{pub.description}</p>
+                <p className="text-ink-subtle text-sm leading-relaxed">{pub.description}</p>
                 {pub.journal && (
-                  <p className="text-white/25 text-xs mt-3 font-mono">
+                  <p className="text-ink-faint text-xs mt-3 font-mono">
                     {pub.journal}
                     {pub.year && ` · ${pub.year}`}
                   </p>

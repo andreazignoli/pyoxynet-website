@@ -53,6 +53,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <head>
+        {/* Applied before paint, so a reader who chose light does not get a
+            frame of dark first. Inline and synchronous on purpose: anything
+            deferred is a flash. Unset means follow the operating system, which
+            the CSS already handles on its own. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('oxynet-theme');" +
+              "if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})()",
+          }}
+        />
+      </head>
       <body className="bg-background text-foreground antialiased">
         <Navbar />
         {children}

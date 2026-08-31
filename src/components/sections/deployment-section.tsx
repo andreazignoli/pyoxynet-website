@@ -32,7 +32,7 @@ const DEPLOYMENT_OPTIONS = [
 
 export function DeploymentSection() {
   return (
-    <section id="deployment" className="section-padding border-t border-white/5">
+    <section id="deployment" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -42,7 +42,7 @@ export function DeploymentSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               Available in <GradientText>Three Formats</GradientText>
             </h2>
-            <p className="text-white/55 max-w-xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-xl mx-auto text-lg leading-relaxed">
               One engine, three doors. Start in the browser, move to the API when it should
               happen automatically, and use the open-source package when the work belongs in a
               script.
@@ -57,8 +57,8 @@ export function DeploymentSection() {
                 <div className="text-3xl">{option.icon}</div>
                 <Badge>{option.badge}</Badge>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-3">{option.title}</h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-5">{option.description}</p>
+              <h3 className="text-lg font-semibold text-foreground mb-3">{option.title}</h3>
+              <p className="text-ink-subtle text-sm leading-relaxed mb-5">{option.description}</p>
               <a
                 href={option.cta.href}
                 target={option.cta.external ? '_blank' : undefined}
@@ -73,14 +73,14 @@ export function DeploymentSection() {
 
         {/* Integration callout */}
         <SectionWrapper delay={0.3}>
-          <div className="glass rounded-2xl p-10 max-w-3xl mx-auto border border-white/8">
+          <div className="glass rounded-2xl p-10 max-w-3xl mx-auto border border-hairline">
             <div className="flex flex-col sm:flex-row items-start gap-6">
               <div className="text-4xl flex-shrink-0">🔗</div>
               <div>
-                <h3 className="text-xl font-semibold text-white mb-3">
+                <h3 className="text-xl font-semibold text-foreground mb-3">
                   Designed to integrate, not replace
                 </h3>
-                <p className="text-white/55 text-sm leading-relaxed">
+                <p className="text-ink-body text-sm leading-relaxed">
                   Oxynet runs on top of existing CPET systems. It reads CPET time-series and
                   returns structured outputs over the API or in an embedded deployment, without
                   changes to your data capture hardware, clinical workflow, or reporting

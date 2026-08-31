@@ -3,7 +3,7 @@ import { DuckMark } from '@/components/shared/duck-mark'
 
 export function Footer() {
   return (
-    <footer className="section-padding border-t border-white/10">
+    <footer className="section-padding border-t border-hairline">
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div>
@@ -11,7 +11,7 @@ export function Footer() {
               <DuckMark className="w-5 h-5 text-accent" />
               <h3 className="font-bold text-base gradient-text font-mono tracking-tight">Oxynet</h3>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-4">
+            <p className="text-ink-subtle text-sm leading-relaxed mb-4">
               A computational layer for CPET: physiological measurements, consistently, over an
               API that people and machines can both call.
             </p>
@@ -24,7 +24,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white/80 font-semibold mb-3 text-sm uppercase tracking-wider">
+            <h4 className="text-ink-strong font-semibold mb-3 text-sm uppercase tracking-wider">
               Resources
             </h4>
             <ul className="space-y-2 text-sm">
@@ -42,7 +42,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/50 hover:text-accent transition-colors"
+                    className="text-ink-subtle hover:text-accent transition-colors"
                   >
                     {link.label}
                   </a>
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white/80 font-semibold mb-3 text-sm uppercase tracking-wider">
+            <h4 className="text-ink-strong font-semibold mb-3 text-sm uppercase tracking-wider">
               Acknowledgments
             </h4>
             <ul className="space-y-2 text-sm">
@@ -69,7 +69,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/50 hover:text-accent transition-colors"
+                    className="text-ink-subtle hover:text-accent transition-colors"
                   >
                     {link.label}
                   </a>
@@ -79,11 +79,11 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="bg-white/10 mb-8" />
+        <Separator className="bg-surface mb-8" />
 
         <div className="space-y-4">
-          <div className="text-xs text-white/30 leading-relaxed max-w-3xl">
-            <strong className="text-white/50">Disclaimer:</strong> All content on this website, including text,
+          <div className="text-xs text-ink-faint leading-relaxed max-w-3xl">
+            <strong className="text-ink-subtle">Disclaimer:</strong> All content on this website, including text,
             images, and other materials, is provided for informational purposes only. The information and
             software tools provided here are not substitutes for professional medical advice, diagnosis, or
             treatment. Always consult your physician or other qualified healthcare provider with any questions
@@ -91,14 +91,14 @@ export function Footer() {
             based on information provided by this software.
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-white/30">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-ink-faint">
             <p>
               © {new Date().getFullYear()} Oxynet. Header photo by{' '}
               <a
                 href="https://unsplash.com/@pawel_czerwinski"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white/60 underline"
+                className="hover:text-ink-body underline"
               >
                 Pawel Czerwinski
               </a>{' '}
@@ -107,13 +107,13 @@ export function Footer() {
                 href="https://unsplash.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white/60 underline"
+                className="hover:text-ink-body underline"
               >
                 Unsplash
               </a>
               .
             </p>
-            <p className="text-white/20">
+            <p className="text-ink-faint">
               Built with Next.js &amp; Vercel
             </p>
           </div>

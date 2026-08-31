@@ -20,7 +20,7 @@ export async function UsageSection() {
   ]
 
   return (
-    <section id="usage" className="section-padding border-t border-white/5">
+    <section id="usage" className="section-padding border-t border-hairline">
       <div className="section-container max-w-4xl">
         <SectionWrapper>
           <div className="mb-12">
@@ -30,8 +30,8 @@ export async function UsageSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               <GradientText>Code Examples</GradientText>
             </h2>
-            <p className="text-white/55 text-lg leading-relaxed max-w-2xl">
-              Requires <strong className="text-white/80">Python 3.8+</strong>. Pyoxynet automatically
+            <p className="text-ink-body text-lg leading-relaxed max-w-2xl">
+              Requires <strong className="text-ink-strong">Python 3.8+</strong>. Pyoxynet automatically
               handles data interpolation and supports second-by-second, breath-by-breath, and averaged
               CPET data formats.
             </p>

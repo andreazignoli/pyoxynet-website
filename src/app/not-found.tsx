@@ -9,7 +9,7 @@ export default function NotFound() {
         <h1 className="text-6xl sm:text-7xl font-bold mb-4">
           <GradientText>Page Not Found</GradientText>
         </h1>
-        <p className="text-white/55 text-lg mb-10 max-w-md mx-auto">
+        <p className="text-ink-body text-lg mb-10 max-w-md mx-auto">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <Button size="lg" asChild>

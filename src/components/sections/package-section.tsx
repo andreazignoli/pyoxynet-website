@@ -23,7 +23,7 @@ const MODELS = [
 
 export function PackageSection() {
   return (
-    <section id="package" className="section-padding border-t border-white/5">
+    <section id="package" className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-16">
@@ -33,14 +33,14 @@ export function PackageSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               The <GradientText>Pyoxynet</GradientText> Package
             </h2>
-            <p className="text-white/55 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
               The open research side of Oxynet: the models and tools, in a package you can import.
               Built with{' '}
               <a
                 href="https://keras.io/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 hover:text-accent transition-colors underline underline-offset-2"
+                className="text-ink-strong hover:text-accent transition-colors underline underline-offset-2"
               >
                 Keras
               </a>{' '}
@@ -49,7 +49,7 @@ export function PackageSection() {
                 href="https://www.tensorflow.org/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 hover:text-accent transition-colors underline underline-offset-2"
+                className="text-ink-strong hover:text-accent transition-colors underline underline-offset-2"
               >
                 TensorFlow
               </a>
@@ -65,8 +65,8 @@ export function PackageSection() {
                 <div className="text-3xl">{model.icon}</div>
                 <Badge>{model.badge}</Badge>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-3">{model.title}</h3>
-              <p className="text-white/55 text-sm leading-relaxed">{model.description}</p>
+              <h3 className="text-lg font-semibold text-foreground mb-3">{model.title}</h3>
+              <p className="text-ink-body text-sm leading-relaxed">{model.description}</p>
             </GlassCard>
           ))}
         </div>

@@ -17,14 +17,14 @@ export const metadata: Metadata = {
 function NodeDot({ accent = false, friction = false }: { accent?: boolean; friction?: boolean }) {
   if (accent) {
     return (
-      <div className="w-2.5 h-2.5 rounded-full bg-accent flex-shrink-0 shadow-[0_0_8px_rgba(0,220,130,0.55)]" />
+      <div className="w-2.5 h-2.5 rounded-full bg-accent-fill flex-shrink-0 shadow-[0_0_8px_rgba(0,220,130,0.55)]" />
     )
   }
   if (friction) {
-    return <div className="w-2.5 h-2.5 rounded-full bg-amber-400/45 flex-shrink-0" />
+    return <div className="w-2.5 h-2.5 rounded-full bg-warn/45 flex-shrink-0" />
   }
   return (
-    <div className="w-2.5 h-2.5 rounded-full border border-white/28 bg-transparent flex-shrink-0" />
+    <div className="w-2.5 h-2.5 rounded-full border border-hairline bg-transparent flex-shrink-0" />
   )
 }
 
@@ -37,7 +37,7 @@ function VLine({
   friction?: boolean
   h?: number
 }) {
-  const color = accent ? 'bg-accent/35' : friction ? 'bg-amber-400/18' : 'bg-white/10'
+  const color = accent ? 'bg-accent/35' : friction ? 'bg-warn/18' : 'bg-surface'
   return <div className={`w-px flex-shrink-0 ${color}`} style={{ height: `${h}px` }} />
 }
 
@@ -64,7 +64,7 @@ function LinearStep({
         <p
           className={[
             'text-sm font-medium leading-snug',
-            accent ? 'text-accent' : friction ? 'text-white/48' : 'text-white/75',
+            accent ? 'text-accent' : friction ? 'text-ink-subtle' : 'text-ink-strong',
           ].join(' ')}
         >
           {label}
@@ -73,7 +73,7 @@ function LinearStep({
           <p
             className={[
               'text-[11px] font-mono mt-0.5',
-              friction ? 'text-white/25' : 'text-white/30',
+              friction ? 'text-ink-faint' : 'text-ink-faint',
             ].join(' ')}
           >
             {sublabel}
@@ -105,11 +105,11 @@ function CurrentWorkflowDiagram() {
           {/* Label before friction zone */}
           {i === 3 && (
             <div className="flex items-center gap-3 ml-1 mb-1 mt-0">
-              <div className="flex-1 h-px bg-amber-500/18" />
-              <span className="text-[9px] font-mono text-amber-400/55 uppercase tracking-[0.2em] whitespace-nowrap px-1">
+              <div className="flex-1 h-px bg-warn/18" />
+              <span className="text-[9px] font-mono text-warn/55 uppercase tracking-[0.2em] whitespace-nowrap px-1">
                 Export &amp; manual transfer
               </span>
-              <div className="flex-1 h-px bg-amber-500/18" />
+              <div className="flex-1 h-px bg-warn/18" />
             </div>
           )}
 
@@ -122,7 +122,7 @@ function CurrentWorkflowDiagram() {
           />
 
           {/* Thin divider after friction zone */}
-          {i === 5 && <div className="ml-5 h-px bg-white/6 mt-1 mb-1" />}
+          {i === 5 && <div className="ml-5 h-px bg-surface mt-1 mb-1" />}
         </Fragment>
       ))}
     </div>
@@ -150,19 +150,19 @@ function CentredNode({
           ? 'border-accent/28'
           : highlight
           ? 'border-accent/14'
-          : 'border-white/8',
+          : 'border-hairline',
       ].join(' ')}
     >
       <p
         className={[
           'text-sm font-medium leading-snug',
-          accent ? 'text-accent' : 'text-white/72',
+          accent ? 'text-accent' : 'text-ink-strong',
         ].join(' ')}
       >
         {label}
       </p>
       {sublabel && (
-        <p className="text-[11px] font-mono mt-0.5 text-white/30">{sublabel}</p>
+        <p className="text-[11px] font-mono mt-0.5 text-ink-faint">{sublabel}</p>
       )}
     </div>
   )
@@ -201,9 +201,9 @@ function IntegratedWorkflowDiagram() {
       {/* Linear top section */}
       <div className="max-w-[16rem] mx-auto flex flex-col items-center gap-0">
         <CentredNode label="CPET Device" sublabel="Exercise laboratory" />
-        <div className="w-px h-7 bg-white/10" />
+        <div className="w-px h-7 bg-surface" />
         <CentredNode label="Manufacturer Software / Core Lab" sublabel="Acquisition & data infrastructure" />
-        <div className="w-px h-7 bg-white/10" />
+        <div className="w-px h-7 bg-surface" />
         <CentredNode label="CPET Data Pipeline" sublabel="Existing infrastructure" highlight />
       </div>
 
@@ -214,13 +214,13 @@ function IntegratedWorkflowDiagram() {
       <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-lg mx-auto">
         {/* Left: existing workflow (muted) */}
         <div className="flex flex-col items-center gap-0">
-          <p className="text-[9px] font-mono text-white/22 uppercase tracking-[0.18em] mb-2.5 text-center">
+          <p className="text-[9px] font-mono text-ink-faint uppercase tracking-[0.18em] mb-2.5 text-center">
             Existing workflow
           </p>
-          <div className="glass rounded-xl px-3 py-3 border border-white/5 w-full text-center opacity-40">
-            <p className="text-xs text-white/50 leading-snug">Continues unchanged</p>
+          <div className="glass rounded-xl px-3 py-3 border border-hairline w-full text-center opacity-40">
+            <p className="text-xs text-ink-subtle leading-snug">Continues unchanged</p>
           </div>
-          <p className="text-[9px] text-white/18 mt-1.5 text-center">↓ as before</p>
+          <p className="text-[9px] text-ink-faint mt-1.5 text-center">↓ as before</p>
         </div>
 
         {/* Right: Oxynet interpretation layer (accent) */}
@@ -247,12 +247,12 @@ function IntegratedWorkflowDiagram() {
                       ? 'text-accent'
                       : i < 3
                       ? 'text-accent/75'
-                      : 'text-white/55',
+                      : 'text-ink-body',
                   ].join(' ')}
                 >
                   {node.label}
                 </p>
-                <p className="text-[10px] text-white/30 font-mono mt-0.5">{node.sublabel}</p>
+                <p className="text-[10px] text-ink-faint font-mono mt-0.5">{node.sublabel}</p>
               </div>
               {i < oxynetNodes.length - 1 && (
                 <div className="w-px h-5 bg-accent/28 flex-shrink-0" />
@@ -288,19 +288,19 @@ function IntegrationHero() {
             Bring automated CPET interpretation{' '}
             <GradientText>into the data pipeline</GradientText>
           </h1>
-          <p className="text-white/55 text-lg leading-relaxed max-w-2xl mx-auto mb-6">
+          <p className="text-ink-body text-lg leading-relaxed max-w-2xl mx-auto mb-6">
             Oxynet is designed to process CPET time-series programmatically and return structured
             interpretation outputs. The next step is to move automated interpretation closer to
             where CPET data are acquired, processed, and used.
           </p>
-          <p className="text-white/30 text-sm font-mono tracking-wide mb-8">
+          <p className="text-ink-faint text-sm font-mono tracking-wide mb-8">
             From exported files to continuous data flows.
           </p>
           <div className="glass rounded-xl px-6 py-4 border border-accent/20 max-w-lg mx-auto">
-            <p className="text-white/85 text-sm font-medium">
+            <p className="text-ink-strong text-sm font-medium">
               No manual CSV or XLS transfer required.
             </p>
-            <p className="text-white/45 text-xs leading-relaxed mt-1">
+            <p className="text-ink-subtle text-xs leading-relaxed mt-1">
               A test is recorded, and the interpretation follows, with nobody deciding one file
               at a time to run it.
             </p>
@@ -313,7 +313,7 @@ function IntegrationHero() {
 
 function CurrentWorkflowSection() {
   return (
-    <section className="section-padding border-t border-white/5">
+    <section className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-14">
@@ -324,7 +324,7 @@ function CurrentWorkflowSection() {
               Today: interpretation often starts{' '}
               <GradientText>after export</GradientText>
             </h2>
-            <p className="text-white/55 max-w-xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-xl mx-auto text-lg leading-relaxed">
               File-based analysis is effective for research, validation, and individual testing.
               At scale, however, export and manual transfer create an unnecessary boundary between
               CPET acquisition and automated interpretation.
@@ -333,9 +333,9 @@ function CurrentWorkflowSection() {
         </SectionWrapper>
 
         <SectionWrapper delay={0.15}>
-          <div className="glass rounded-2xl p-8 sm:p-10 border border-white/8 max-w-lg mx-auto">
+          <div className="glass rounded-2xl p-8 sm:p-10 border border-hairline max-w-lg mx-auto">
             <CurrentWorkflowDiagram />
-            <p className="text-white/30 text-xs leading-relaxed mt-8 text-center max-w-xs mx-auto">
+            <p className="text-ink-faint text-xs leading-relaxed mt-8 text-center max-w-xs mx-auto">
               Oxynet currently enters the workflow after data have been exported and manually
               handled. That is necessary today, but not architecturally required.
             </p>
@@ -348,7 +348,7 @@ function CurrentWorkflowSection() {
 
 function IntegratedWorkflowSection() {
   return (
-    <section className="section-padding border-t border-white/5">
+    <section className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-14">
@@ -358,7 +358,7 @@ function IntegratedWorkflowSection() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
               Interpretation <GradientText>as part of the pipeline</GradientText>
             </h2>
-            <p className="text-white/55 max-w-xl mx-auto text-lg leading-relaxed">
+            <p className="text-ink-body max-w-xl mx-auto text-lg leading-relaxed">
               Existing acquisition and data-management workflows can remain unchanged. Oxynet can
               operate as an interpretation layer, receiving CPET time-series programmatically
               and returning structured outputs for downstream systems.
@@ -374,21 +374,21 @@ function IntegratedWorkflowSection() {
 
         <SectionWrapper delay={0.25} className="mt-8">
           <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-            <div className="glass rounded-xl p-5 border border-white/8">
-              <p className="text-white/88 font-semibold text-sm mb-2">
+            <div className="glass rounded-xl p-5 border border-hairline">
+              <p className="text-ink-strong font-semibold text-sm mb-2">
                 Designed to integrate, not replace.
               </p>
-              <p className="text-white/42 text-xs leading-relaxed">
+              <p className="text-ink-subtle text-xs leading-relaxed">
                 Oxynet does not replace acquisition systems, manufacturer software, or existing
                 clinical workflows. It adds an automated interpretation layer that operates on the
                 same CPET time-series.
               </p>
             </div>
             <div className="glass rounded-xl p-5 border border-accent/15">
-              <p className="text-white/88 font-semibold text-sm mb-2">
+              <p className="text-ink-strong font-semibold text-sm mb-2">
                 No manual CSV or XLS transfer required.
               </p>
-              <p className="text-white/42 text-xs leading-relaxed">
+              <p className="text-ink-subtle text-xs leading-relaxed">
                 When integrated at the data-pipeline level, CPET time-series reach Oxynet
                 programmatically, without any intermediate export or manual file handling.
               </p>
@@ -410,7 +410,7 @@ function DataFlowSection() {
     {
       n: '02',
       label: 'Oxynet interpretation',
-      body: 'Oxynet parses the vendor file as exported: twenty formats, each with its own unit conventions and clock quirks, then measures the physiology in it.',
+      body: 'Oxynet parses the vendor file as exported: twenty-one formats, each with its own unit conventions and clock quirks, then measures the physiology in it.',
     },
     {
       n: '03',
@@ -420,7 +420,7 @@ function DataFlowSection() {
   ]
 
   return (
-    <section className="section-padding border-t border-white/5">
+    <section className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="text-center mb-14">
@@ -440,15 +440,15 @@ function DataFlowSection() {
               <p className="text-accent/70 text-xs font-mono uppercase tracking-widest mb-4">
                 {step.n}
               </p>
-              <h3 className="text-white/90 font-semibold text-base mb-3">{step.label}</h3>
-              <p className="text-white/50 text-sm leading-relaxed">{step.body}</p>
+              <h3 className="text-ink-strong font-semibold text-base mb-3">{step.label}</h3>
+              <p className="text-ink-subtle text-sm leading-relaxed">{step.body}</p>
             </GlassCard>
           ))}
         </div>
 
         <SectionWrapper delay={0.3} className="mt-10">
-          <div className="glass rounded-2xl p-6 max-w-3xl mx-auto border border-white/8 text-center">
-            <p className="text-white/42 text-sm leading-relaxed">
+          <div className="glass rounded-2xl p-6 max-w-3xl mx-auto border border-hairline text-center">
+            <p className="text-ink-subtle text-sm leading-relaxed">
               Oxynet is reachable over REST, over MCP for AI assistants, or via the Python package
               for local research pipelines. The{' '}
               <a
@@ -491,7 +491,7 @@ function PartnersSection() {
   ]
 
   return (
-    <section className="section-padding border-t border-white/5">
+    <section className="section-padding border-t border-hairline">
       <div className="section-container">
         <SectionWrapper>
           <div className="max-w-2xl mx-auto text-center mb-12">
@@ -502,7 +502,7 @@ function PartnersSection() {
               Do you operate a{' '}
               <GradientText>CPET data pipeline?</GradientText>
             </h2>
-            <p className="text-white/55 text-lg leading-relaxed">
+            <p className="text-ink-body text-lg leading-relaxed">
               We are interested in working with organisations that acquire, process, or manage CPET
               data at scale, including exercise testing core laboratories, clinical trial
               networks, hospitals, research infrastructures, software providers, and CPET
@@ -516,16 +516,16 @@ function PartnersSection() {
             <div className="grid sm:grid-cols-2 gap-5 mb-8">
               {contexts.map((item) => (
                 <div key={item.label} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent-fill mt-1.5 flex-shrink-0" />
                   <div>
-                    <p className="text-white/80 text-sm font-medium">{item.label}</p>
-                    <p className="text-white/38 text-xs leading-relaxed mt-0.5">{item.desc}</p>
+                    <p className="text-ink-strong text-sm font-medium">{item.label}</p>
+                    <p className="text-ink-subtle text-xs leading-relaxed mt-0.5">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-white/48 text-sm leading-relaxed mb-8 max-w-lg mx-auto text-center">
+            <p className="text-ink-subtle text-sm leading-relaxed mb-8 max-w-lg mx-auto text-center">
               We are particularly interested in prospective integration, continuous data flows,
               multicentre validation, and evaluating automated interpretation within real-world
               CPET workflows.
