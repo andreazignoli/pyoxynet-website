@@ -30,10 +30,6 @@ export function Navbar() {
 
   return (
     <motion.nav
-      // Transparent over the hero photograph, so until it scrolls the bar is
-      // reading against the picture and has to stay dark like the hero. Once
-      // it has its own glass background it follows the page theme.
-      data-theme={scrolled ? undefined : 'dark'}
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
