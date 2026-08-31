@@ -1,54 +1,31 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { Vortex } from '@/components/ui/vortex'
 import { Button } from '@/components/ui/button'
 import { GradientText } from '@/components/shared/gradient-text'
 
 export function HeroSection() {
   return (
-    <section
-      // The hero always sits on a dark photograph, so it keeps the dark tokens
-      // whatever the page theme is. Without this the light theme flipped every
-      // ink token to near-black and put it on the picture: the subtitle, the
-      // secondary button label and the stat figures all went dark on dark.
-      data-theme="dark"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
-    >
-      {/* Background image with dark overlay */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* The field, in place of the photograph.
+          The photograph was a fixed dark image, which is why the hero had to be
+          pinned to the dark tokens whatever the page theme was. A canvas we
+          draw ourselves takes the theme's own ground and the wordmark's own two
+          hues, so the hero follows light and dark like everything else. */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-bg.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover object-center"
-          quality={80}
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-hero-overlay" />
-        {/* A short scrim behind the fixed nav only. The photograph is at its
-            brightest along the top edge, which is exactly where the wordmark
-            and the nav links sit. */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/70 to-transparent" />
-        {/* Subtle radial glow */}
+        <Vortex containerClassName="h-full w-full" className="h-full w-full" />
+        {/* A short scrim behind the fixed nav, kept from the photograph: the
+            field is at its densest across the middle band, and the wordmark and
+            nav links sit above it. */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background/80 to-transparent" />
+        {/* Reading scrim. Same job as before: the field is uneven by nature, so
+            the centre is settled for the words and left alone at the edges. */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,220,130,0.08) 0%, transparent 70%)',
-          }}
-        />
-        {/* Reading scrim. The photograph is not uniform: near-black on the left
-            and a bright rust on the right, so one line of the paragraph held
-            contrast and the next did not. This darkens only the centre, where
-            the words are, and is fully transparent by 78%, so the picture is
-            untouched at the edges where it is doing the work. */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(58% 62% at 50% 54%, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 78%)',
+              'radial-gradient(58% 62% at 50% 54%, hsl(var(--background) / 0.86) 0%, hsl(var(--background) / 0.55) 45%, hsl(var(--background) / 0) 78%)',
           }}
         />
       </div>
@@ -102,7 +79,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.65, duration: 0.8 }}
-          className="text-base sm:text-lg text-white/85 mb-10 max-w-2xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg text-ink-strong mb-10 max-w-2xl mx-auto leading-relaxed"
         >
           Oxynet extracts physiological structure from cardiopulmonary exercise test signals and
           returns it as structured measurements: consistent across protocols, populations and
