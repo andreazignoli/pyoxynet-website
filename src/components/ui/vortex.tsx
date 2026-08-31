@@ -162,9 +162,14 @@ export const Vortex = (props: VortexProps) => {
       const { ground, lightness, alpha, light } = themeRef.current
       tickRef.current++
 
+      // Cleared to TRANSPARENT, and the ground goes in last. The glow below
+      // composites the whole canvas onto itself with brightness(200%), so
+      // anything already painted gets amplified along with the particles: a
+      // #0a0a0a ground goes 10 -> 30 -> 90 and the hero greys out. The stock
+      // component hides this because its default ground is pure black, where
+      // 0 x 2 = 0 is a fixed point; every other colour lifts.
       ctx.clearRect(0, 0, w, h)
-      ctx.fillStyle = ground
-      ctx.fillRect(0, 0, w, h)
+      ctx.globalCompositeOperation = 'source-over'
 
       const p = propsRef.current
       for (let i = 0; i < particlePropsLength; i += particlePropCount) {
@@ -207,9 +212,11 @@ export const Vortex = (props: VortexProps) => {
       // leaves the white ground untouched (white x white is white) and lets the
       // strokes bleed into it, which is the same gesture read the other way up.
       if (light) {
+        // On transparent, a soft halo rather than a darkening pass: the ground
+        // is not there yet to multiply against.
         ctx.save()
         ctx.filter = 'blur(6px)'
-        ctx.globalCompositeOperation = 'multiply'
+        ctx.globalAlpha = 0.55
         ctx.drawImage(canvas, 0, 0, w, h)
         ctx.restore()
       } else {
@@ -224,6 +231,14 @@ export const Vortex = (props: VortexProps) => {
         ctx.drawImage(canvas, 0, 0, w, h)
         ctx.restore()
       }
+
+      // The ground, painted BEHIND everything now that the glow has run, so it
+      // is exactly the theme's background and nothing has amplified it.
+      ctx.save()
+      ctx.globalCompositeOperation = 'destination-over'
+      ctx.fillStyle = ground
+      ctx.fillRect(0, 0, w, h)
+      ctx.restore()
     },
     [initParticle, particlePropsLength, noise3D],
   )
