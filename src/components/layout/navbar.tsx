@@ -15,6 +15,7 @@ const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
   { label: 'Integration', href: '/integration' },
   { label: 'Package', href: '/#package' },
   { label: 'Publications', href: '/#publications' },
+  { label: 'Manual (PDF)', href: '/manual', external: true },
   { label: 'Contact', href: '/#contact' },
 ]
 
