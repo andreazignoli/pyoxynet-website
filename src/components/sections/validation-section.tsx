@@ -1,10 +1,11 @@
 import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GradientText } from '@/components/shared/gradient-text'
+import { PEER_REVIEWED_COUNT } from '@/content/publications'
 
 const METRICS = [
   { value: 'VT1', label: 'First ventilatory threshold', note: 'Strong agreement with expert labelling' },
   { value: 'VT2', label: 'Second ventilatory threshold', note: 'Evaluated across multiple populations' },
-  { value: '12', label: 'Peer-reviewed papers', note: 'Methodology and evaluation' },
+  { value: String(PEER_REVIEWED_COUNT()), label: 'Peer-reviewed papers', note: 'Methodology and evaluation' },
 ]
 
 export function ValidationSection() {
