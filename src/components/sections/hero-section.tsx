@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Vortex } from '@/components/ui/vortex'
 import { Button } from '@/components/ui/button'
 import { GradientText } from '@/components/shared/gradient-text'
+import { PEER_REVIEWED_COUNT } from '@/content/publications'
 
 export function HeroSection() {
   return (
@@ -112,7 +113,7 @@ export function HeroSection() {
           {[
             { value: '21', label: 'Metabolimeter formats read' },
             { value: 'REST, MCP, Python', label: 'Ways to call it' },
-            { value: '12', label: 'Peer-reviewed papers' },
+            { value: String(PEER_REVIEWED_COUNT()), label: 'Peer-reviewed papers' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-xl font-bold text-ink-strong">{stat.value}</div>

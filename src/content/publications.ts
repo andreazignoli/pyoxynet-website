@@ -1,5 +1,20 @@
 import type { Publication } from '@/types'
 
+/**
+ * Peer-reviewed journal articles in the list below. Derived, never asserted:
+ * this array also holds a preprint and several blog and Medium pieces, which
+ * are writing about the work and not evidence for it. The site and the PDF
+ * manual both count from here, so the two cannot drift.
+ */
+export const PEER_REVIEWED_COUNT = (): number =>
+  PUBLICATIONS.filter(
+    (p) =>
+      (p.type === 'research' || p.type === 'review') &&
+      p.year !== undefined &&
+      p.journal !== undefined &&
+      p.journal !== 'Preprint'
+  ).length
+
 export const PUBLICATIONS: Publication[] = [
   {
     type: 'research',
@@ -42,7 +57,7 @@ export const PUBLICATIONS: Publication[] = [
     title: 'LSTM for Intensity Domain Estimation',
     description:
       'Using LSTM neural networks for automatic detection of exercise intensity domains in CPET data.',
-    url: 'https://www.tandfonline.com/doi/abs/10.1080/17461391.2019.1587523?journalCode=tejs20',
+    url: 'https://doi.org/10.1080/17461391.2019.1587523',
     year: 2019,
     journal: 'European Journal of Sport Science',
   },
@@ -51,7 +66,7 @@ export const PUBLICATIONS: Publication[] = [
     title: 'Crowdsourcing and CNN for Intensity Domain Determination',
     description:
       'Combining crowdsourced expert labels with convolutional neural networks for CPET intensity domain classification.',
-    url: 'https://www.tandfonline.com/doi/abs/10.1080/17461391.2020.1866081?journalCode=tejs20',
+    url: 'https://doi.org/10.1080/17461391.2020.1866081',
     year: 2021,
     journal: 'European Journal of Sport Science',
   },
@@ -68,7 +83,7 @@ export const PUBLICATIONS: Publication[] = [
     title: 'Regression, Generation, and Explanation',
     description:
       'Multi-task deep learning framework combining regression, data generation, and explainability for CPET analysis.',
-    url: 'https://www.mdpi.com/1424-8220/23/2/826',
+    url: 'https://doi.org/10.3390/s23020826',
     year: 2023,
     journal: 'Sensors (MDPI)',
   },
