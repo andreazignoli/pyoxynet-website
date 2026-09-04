@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "manual": "node manual/build.mjs && node manual/fit.mjs && node manual/render.mjs",
+    "manual:html": "node manual/build.mjs",
+    "manual:check": "node manual/build.mjs && node manual/fit.mjs",
+    "manual:pdf": "node manual/render.mjs"
   },
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.0",

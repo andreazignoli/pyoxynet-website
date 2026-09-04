@@ -30,6 +30,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {[
                 { label: 'Oxynet app', href: 'https://app.oxynet.net' },
+                { label: 'The manual (PDF)', href: '/manual' },
                 { label: 'API documentation', href: 'https://app.oxynet.net/docs' },
                 { label: 'OpenAPI schema', href: 'https://app.oxynet.net/v1/openapi.json' },
                 { label: 'Agent guide (llms.txt)', href: 'https://app.oxynet.net/llms.txt' },

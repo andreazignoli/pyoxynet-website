@@ -20,3 +20,6 @@ node_modules/
 
 # Claude
 .claude/
+
+# Manual build intermediates (the PDF in public/manual is committed)
+manual/.out/
