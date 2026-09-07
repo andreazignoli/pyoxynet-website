@@ -48,11 +48,11 @@ export function whatItIsNot() {
         </div>
         <div>
           ${chip('Available', BLUE, '#1557991a')}
-          <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:8px 0 0">Shipped and usable: the surface, not the science: the MCP endpoint, the schema, the package, the deployment options.</p>
+          <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:8px 0 0">Shipped and usable. These are the interfaces and the deployment options; the science behind them sits in the first column.</p>
         </div>
         <div>
           ${chip('Research', WARN, '#92400e14')}
-          <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:8px 0 0">Real, running, and not yet transportable. Oscillation analysis sits here on one cohort. It says so wherever it appears.</p>
+          <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:8px 0 0">Running, and not yet shown to transport. Oscillation analysis sits here on one cohort, and says so wherever it appears.</p>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@ export function evidence() {
   const main = `
     ${eyebrow(`Part Four ${SEP} 4.2`)}
     ${h1('The evidence record', 'margin-bottom:12px')}
-    ${stand('What has been shown, how a model is held to it, and what has not been shown. The third column is the one worth reading.', 'margin-bottom:18px')}
+    ${stand('What has been shown, how a model is held to it, and what has not been shown.', 'margin-bottom:18px')}
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
       ${status('Validated', ACCENT_TEXT, '#00dc8214', [
         'Threshold detection against expert labelling, across cohorts differing in population, protocol, ergometer and metabolimeter.',
@@ -178,7 +178,7 @@ export function offer() {
       <div>
         ${route(1, 'Integrate', 'Call Oxynet from software you already ship. Your interface, your reporting, your customer relationship, our physiology, kept current.')}
         ${route(2, 'Embed', 'Make it part of the product itself, on your infrastructure or on the device, for interpretation during the test rather than after it.')}
-        ${route(3, 'Validate', 'Run cohorts through the engine to establish new capabilities and the evidence behind them. Oscillation analysis needs a second population before it can leave research, and that is a collaboration, not a purchase.')}
+        ${route(3, 'Validate', 'Run cohorts through the engine to establish new capabilities and the evidence behind them. Oscillation analysis needs a second population before it can leave research, and that would be a collaboration.')}
         ${route(4, 'Partner', 'A broader commercial relationship around distribution, licensing or joint product development.')}
         <p style="font-size:12.5px;line-height:1.55;color:${L.subtle};margin:12px 0 0">Commercial and licensing structure follows from the route, the deployment and the scope of rights, so it is deliberately not fixed here. Investment conversations are welcome and are a separate one.</p>
       </div>

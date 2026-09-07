@@ -1057,6 +1057,6 @@ export function figCollective({ OUTER = 670, PAD = 16 } = {}) {
       `<text x="0" y="${Y + ph + 38}" font-family="${SANS}" font-size="9.5" fill="#8c8c8c">as the cart wrote it.</text>` +
       `<text x="${fmt(pw + gap)}" y="${Y + ph + 38}" font-family="${SANS}" font-size="9.5" fill="#8c8c8c">not columns in a file.</text>` +
       `<text x="${fmt(2 * (pw + gap))}" y="${Y + ph + 38}" font-family="${SANS}" font-size="9.5" fill="#8c8c8c">thousands of expert labels.</text>` +
-      `<text x="${fmt(3 * (pw + gap))}" y="${Y + ph + 38}" font-family="${SANS}" font-size="9.5" fill="#8c8c8c">Not one opinion. All of them.</text>`)}
+      `<text x="${fmt(3 * (pw + gap))}" y="${Y + ph + 38}" font-family="${SANS}" font-size="9.5" fill="#8c8c8c">carried into one answer.</text>`)}
   </div>`
 }
