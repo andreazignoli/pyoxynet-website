@@ -3,7 +3,7 @@
 import { L, GREEN, ACCENT_TEXT, BLUE, WARN, MONO } from '../tokens.mjs'
 import {
   page, runhead, folio, grid, wide, eyebrow, h1, stand,
-  railBlock, rp, callout, caption, code, table, betaChip, engineLine, SEP,
+  railBlock, rp, callout, caption, code, table, betaChip, SEP,
 } from '../lib.mjs'
 import { xref } from '../toc.mjs'
 import { api, preds, figThresholds, figIntegrity, figOscillation, figSubstrate, figWavelet, figProbabilities } from '../figures.mjs'
@@ -57,9 +57,9 @@ export function technology() {
     ${layer('Deep learning', 'Convolutional networks over the breath series',
       'The promoted threshold models are CNNs over the detrended series, trained per cohort. Recurrent (LSTM and GRU), temporal-convolutional and transformer variants are trained and benchmarked against them; what ships is whatever clears the gate on a held-out cohort.')}
     ${layer('Representation learning', 'Structure without labels',
-      'An unsupervised representation learned from the recordings themselves, in which the intensity domains emerge as regions rather than lines. It is how a threshold acquires an extent instead of being an instant.')}
+      'An unsupervised representation learned from the recordings themselves, in which the intensity domains emerge as regions, not lines. It is how a threshold acquires an extent instead of being an instant.')}
     ${layer('Ablation', 'Not every channel, every time',
-      'Models are trained and evaluated with channels deliberately withheld, so what each one actually contributes is measured rather than assumed. A model that needs five channels when three carry the signal is a model that cannot run on half the exports in the field, and the registry records what each one requires.')}
+      'Promoted models do not all need the same inputs, and the registry records what each one requires so a caller can check before uploading. Withholding channels during evaluation is how that is established: a model needing five channels where three carry the signal cannot run on a large share of the exports in the field.')}
     ${layer('Self-supervised learning', 'In development, not deployed',
       'Pretraining on unlabelled recordings before fine-tuning on the labelled ones. The corpus is far larger than its labelled subset, so this is where the next gain is expected. It is in no promoted model today and nothing here rests on it.')}`
 
@@ -82,9 +82,9 @@ export function qualityLeft() {
   const main = `
     ${eyebrow(`Part Two ${SEP} 2.2 ${SEP} Worked example`)}
     ${h1('Whether the numbers can be believed', 'max-width:560px;margin-bottom:14px')}
-    ${stand('Before any physiology is reported, the engine establishes whether the recording can support it, in terms that describe the file rather than the patient.', 'max-width:600px;margin-bottom:8px')}
+    ${stand('Before any physiology is reported, the engine establishes whether the recording can support it, in terms that describe the file, not the patient.', 'max-width:600px;margin-bottom:8px')}
     <div style="margin-top:20px">${figIntegrity()}</div>
-    ${caption(`Two raw breath series exactly as the cart wrote them, with the conditioned trace running through each and the breaths a robust rule flags as outliers ringed. The shaded span at the start is the resting phase the engine excluded, ${api.substrate.flags[0].detail.match(/(\d+) resting samples/)[1]} samples of it, before any window was taken. No intensity colouring here on purpose: domains are physiology, and nothing physiological should be claimed until the trace itself has been believed.`, 'max-width:620px')}
+    ${caption(`Two raw breath series exactly as the cart wrote them, with a conditioned trace running through each. The ringed breaths sit more than four median absolute deviations from the local median: that rule is applied here, to show what conditioning has to contend with, and is not a flag the API returns. The shaded span at the start is the resting portion the substrate analysis dropped before taking its windows, ${api.substrate.flags[0].detail.match(/(\d+) resting samples/)[1]} samples of it. No intensity colouring here on purpose: domains are physiology, and nothing physiological should be claimed until the trace itself has been believed.`, 'max-width:620px')}
     ${columns([
       ['Gas agreement', 'Do the channels behave as the physiology requires? A cart with a drifting analyser fails here while every individual trace still looks plausible.'],
       ['Sampling adequacy', 'Which oscillation periods can this file resolve at all? Coarse sampling narrows the searchable band; it does not invalidate the recording, and the narrowing is reported.'],
@@ -126,7 +126,7 @@ export function qualityRight() {
       <p style="font-size:14px;line-height:1.6;margin:0">The boundaries are estimated and the estimate carries a mean error of about thirty-four seconds. That number is published rather than hidden, and it propagates: peak oxygen uptake is taken over the whole record instead of the detected exercise phase, because the peak sits at the boundary where that error bites.</p>
     </div>
     <div style="margin-top:14px">${callout(`These describe the recording, not the patient. A file can fail every check and come from a healthy subject. <b style="color:${L.strong}">An absent check is not a passed check:</b> <span class="mono" style="font-size:11.5px">n_checks</span> reports how many were runnable.`)}</div>
-    ${engineLine()}`
+`
 
   return page({ id: 'p14', body: rh('2.2 Signal quality') + wide(main) + folio('14') })
 }
@@ -138,11 +138,11 @@ export function thresholdsLeft() {
     ${h1('Where VT1 and VT2 sit, and whether they are there at all', 'max-width:560px;margin-bottom:14px')}
     ${stand('The entry product, and the part most often read differently by two competent people looking at the same test.', 'max-width:600px;margin-bottom:4px')}
     <div style="margin-top:14px">${figThresholds()}</div>
-    ${caption('Both panels against oxygen uptake, which is the axis these are read on, breath by breath and unsmoothed. Above, ventilation. Below, the ventilatory equivalents, where the textbook criteria live: VT1 sits at the nadir of the equivalent for oxygen while the one for carbon dioxide is still flat, and VT2 where the carbon dioxide equivalent turns up as well. The equivalents come from the file\'s own columns and the dashed lines are what the model returned, so whether the two agree is visible rather than asserted.', 'max-width:620px')}
+    ${caption('Both panels against oxygen uptake, which is the axis these are read on, breath by breath and unsmoothed. Above, ventilation. Below, the ventilatory equivalents, where the textbook criteria live: VT1 sits at the nadir of the equivalent for oxygen while the one for carbon dioxide is still flat, and VT2 where the carbon dioxide equivalent turns up as well. The equivalents come from the file\'s own columns and the dashed lines are what the model returned, so whether the two agree is there to be seen, not asserted.', 'max-width:620px')}
     <div style="margin-top:14px;padding-top:12px;border-top:1px solid ${L.line}">
       <h3 style="margin-bottom:6px">What the network actually emits</h3>
       ${figProbabilities()}
-      ${caption(`Three class probabilities every second, stacked, straight from the model. The thresholds are a detector run over these curves rather than a separate model, which is why a subject who never leaves the moderate domain simply never produces a crossing. Taken by calling the same model on the breath records directly: that path conditions the file slightly differently from the upload path used opposite, so it places the thresholds at ${preds._provenance.vt1_time_s} and ${preds._provenance.vt2_time_s} seconds against ${api.vt.findings.vt1_time_s} and ${api.vt.findings.vt2_time_s}. Same weights, different conditioning, and both are reported rather than reconciled.`, 'max-width:620px')}
+      ${caption(`Three class probabilities every second, stacked, straight from the model. The thresholds are a detector run over these curves rather than a separate model, which is why a subject who never leaves the moderate domain simply never produces a crossing. Taken by calling the same model on the breath records directly: that path conditions the file slightly differently from the upload path used opposite, so it places the thresholds at ${preds._provenance.vt1_time_s} and ${preds._provenance.vt2_time_s} seconds against ${api.vt.findings.vt1_time_s} and ${api.vt.findings.vt2_time_s}. Same weights, different conditioning, and both are reported, not reconciled.`, 'max-width:620px')}
     </div>`
 
   return page({ id: 'p15', body: rh('2.3 Ventilatory thresholds') + wide(main) + folio('15') })
@@ -194,7 +194,7 @@ export function thresholdsRight() {
       <p style="font-size:14px;line-height:1.6;margin:0">In a symptom-limited clinical cohort a subject may stop before a threshold is crossed, and a model that always returns two numbers will invent one. The current generation answers the presence question separately from the location question. In a development cohort of 103 clinical tests, 22 had no threshold at all; reporting them as located would have been the more confident output and the wrong one.</p>
     </div>
     <div style="margin-top:14px">${callout(`<b style="color:${L.strong}">No result carries a confidence score.</b> Nothing in Oxynet is calibrated against clinical outcomes, so a percentage would be a number without a meaning. The <span class="mono" style="font-size:11.5px">quality</span> field describes the recording, not the certainty of the answer.`)}</div>
-    ${engineLine()}`
+`
 
   return page({ id: 'p16', body: rh('2.3 Ventilatory thresholds') + wide(main) + folio('16') })
 }
@@ -205,11 +205,11 @@ export function oscillationLeft() {
   const main = `
     ${eyebrow(`Part Two ${SEP} 2.4 ${SEP} Worked example`)}
     ${h1(`Oscillation, measured rather than declared${betaChip()}`, 'max-width:580px;margin-bottom:14px')}
-    ${stand('Conventionally reported as present or absent. What the engine returns is the rhythm itself, with the evidence that it is real and the reason it was not graded.', 'max-width:600px;margin-bottom:4px')}
+    ${stand('Conventionally reported as present or absent. What the engine returns is the rhythm itself, the evidence that it is real, and the reason it was not graded.', 'max-width:600px;margin-bottom:4px')}
     <div style="margin-top:10px">${figOscillation({ COMPACT: true })}</div>
     ${caption(`The episode in the raw traces first: ventilation cycling while end-tidal carbon dioxide moves against it, ${Math.abs(e.phase_deg).toFixed(0)} degrees out of phase, which is what a disturbance in the ventilatory control loop does and what a movement artefact does not.`, 'max-width:620px;margin-bottom:8px')}
     <div>${figWavelet({ H: 194 })}</div>
-    ${caption(`The same view the Oxynet application draws: a wavelet map of ventilation, time against oscillation period, brighter where the rhythm is stronger, with the detected episode boxed and dashed because it was flagged and not graded. The box, its period band and everything quantitative about it came back from the API. The map behind it is computed from the same ventilation trace for this figure, because the detector returns the episode list rather than the raster.`, 'max-width:620px')}
+    ${caption(`The same view the Oxynet application draws: a wavelet map of ventilation, time against oscillation period, brighter where the rhythm is stronger, with the detected episode boxed and dashed because it was flagged and not graded. The box, its period band and everything quantitative about it came back from the API. The map behind it is computed from the same ventilation trace for this figure, because the detector returns the episode list without the raster behind it.`, 'max-width:620px')}
     ${tiles([
       ['Period', `${e.period_peak_s.toFixed(0)} s`, `band ${e.period_lo_s.toFixed(0)} to ${e.period_hi_s.toFixed(0)} s`],
       ['Amplitude', `${e.amplitude_pct_ve.toFixed(0)} %`, `of ventilation, ${e.amplitude_l_min.toFixed(1)} L/min`],
@@ -244,7 +244,7 @@ export function oscillationRight() {
       <div>
         <h3>Not graded, and not normal either</h3>
         <p style="font-size:13.5px;line-height:1.6;margin-bottom:9px">The published definitions cover periods between roughly forty and one hundred and forty seconds. This rhythm ran at twenty-one, so it falls outside them and the engine declines to grade it. The burden is returned as zero, which is the correct answer to the question that was asked.</p>
-        <p style="font-size:13.5px;line-height:1.6;margin:0">It also reports the rhythm, because a classifier answering only "no" would have discarded a corroborated oscillation seven times above background in a patient's recording. Which fact matters is the clinician's call, not ours.</p>
+        <p style="font-size:13.5px;line-height:1.6;margin:0">It also reports the rhythm, because a classifier answering only "no" would have discarded a corroborated oscillation 6.7 times above background in a patient’s recording. Which fact matters is the clinician's call, not ours.</p>
       </div>
     </div>
     <div style="margin-top:16px;border-left:2px solid ${WARN};padding-left:16px">
@@ -263,7 +263,7 @@ export function substrateLeft() {
     ${h1('Which fuel, at which intensity', 'max-width:560px;margin-bottom:14px')}
     ${stand('Fat and carbohydrate oxidation read from gas exchange by indirect calorimetry, so it runs on any test with oxygen uptake and carbon dioxide output, with or without an ergometer channel.', 'max-width:600px;margin-bottom:8px')}
     <div style="margin-top:18px">${figSubstrate()}</div>
-    ${caption(`Twelve 60-second windows from the reference recording, each a measurement rather than a fitted point. FATMAX at ${s.fatmax.pct_vo2peak} per cent of peak oxygen uptake is the turning point of a fitted cubic, not a measured sample. Beyond RER 1.0 the shaded region begins: there the exhaled carbon dioxide includes a non-metabolic part, the stoichiometry stops holding, and the fat figure is an upper bound that reads low and can read negative. Open markers are those bounds, drawn because hiding them would make the curve look better than the measurement is.`, 'max-width:620px')}
+    ${caption(`Twelve 60-second windows from the reference recording, each one a measurement, not a fitted point. FATMAX at ${s.fatmax.pct_vo2peak} per cent of peak oxygen uptake is the turning point of a fitted cubic, not a measured sample. Beyond RER 1.0 the shaded region begins: there the exhaled carbon dioxide includes a non-metabolic part, the stoichiometry stops holding, and the fat figure is an upper bound that reads low and can read negative. Open markers are those bounds, drawn because hiding them would make the curve look better than the measurement is.`, 'max-width:620px')}
     ${tiles([
       ['FATMAX', `${s.fatmax.pct_vo2peak} %`, 'of peak oxygen uptake'],
       ['Peak fat rate', `${s.fatmax.fat_g_min} g/min`, `${s.fatmax.pct_ee_fat} % of energy`],
@@ -298,13 +298,13 @@ export function substrateRight() {
     ${payloadHead('POST /v1/cpet/&#123;id&#125;/analyze', '&#123;"analyses": ["substrate"]&#125;')}
     ${code(payload, { size: 11 })}
     <div style="margin-top:18px;padding-top:16px;border-top:1px solid ${L.line}">
-      <h3>Two refusals, and why they are the point</h3>
-      <p style="font-size:14px;line-height:1.6;margin-bottom:10px">The crossover was not found, and the engine says why: carbohydrate was already the larger fuel at the lowest intensity this protocol reached, so the crossover lies below anything the test covered. That is a fact about the protocol, not a missing value, and a system returning the lowest measured point as the crossover would be wrong rather than incomplete.</p>
-      <p style="font-size:14px;line-height:1.6;margin:0">Gross efficiency was refused outright. It is mechanical work over metabolic energy and this export carries no work rate. Watts could be back-calculated from oxygen uptake, but only by assuming the efficiency the calculation is meant to measure, so the engine declines rather than returning a circular number.</p>
+      <h3>Two refusals, and why they matter</h3>
+      <p style="font-size:14px;line-height:1.6;margin-bottom:10px">The crossover was not found, and the engine says why: carbohydrate was already the larger fuel at the lowest intensity this protocol reached, so the crossover lies below anything the test covered. That is a fact about the protocol, not a missing value, and a system returning the lowest measured point as the crossover would be wrong, not merely incomplete.</p>
+      <p style="font-size:14px;line-height:1.6;margin:0">Gross efficiency was refused outright. It is mechanical work over metabolic energy and this export carries no work rate. Watts could be back-calculated from oxygen uptake, but only by assuming the efficiency the calculation is meant to measure, so the engine declines instead of returning a circular number.</p>
     </div>
-    <div style="margin-top:14px">${callout(`One more caveat rides in the response and belongs in any report built on it: these windows are clock bins on a ramp, not steady-state stages. Nothing settled, so FATMAX reads high and is not comparable with a value from a graded test. The engine reports <span class="mono" style="font-size:11.5px">steady_state: false</span> rather than leaving the reader to notice.`)}</div>
+    <div style="margin-top:14px">${callout(`One more caveat rides in the response and belongs in any report built on it: these windows are clock bins on a ramp, not steady-state stages. Nothing settled, so FATMAX reads high and is not comparable with a value from a graded test. Every window in the response is marked <span class="mono" style="font-size:11.5px">settled: false</span>, and the summary metric reports the same thing as <span class="mono" style="font-size:11.5px">steady_state</span>. The reader is told; they do not have to notice.`)}</div>
     <p class="cap" style="margin-top:12px">Method: fat and carbohydrate rates from Frayn (1983) and Jeukendrup and Wallis (2001), assuming negligible protein oxidation; energy at 9.75 and 4.18 kcal per gram. FATMAX is the peak of a cubic through the origin fitted after Achten and Jeukendrup, a fitted turning point that carries no confidence.</p>
-    ${engineLine('The figures in this part are the interface. The payloads are the engine.')}`
+    `
 
   return page({ id: 'p20', body: rh('2.5 Substrate use and FATMAX') + wide(main) + folio('20') })
 }

@@ -14,7 +14,7 @@
 
 import { groupedPublications } from './publications.mjs'
 
-export const VERSION = '1.8'
+export const VERSION = '1.9'
 export const DATE = 'September 2026'
 
 export const ENGINE = {
@@ -71,6 +71,8 @@ export const OUTPUT = {
 
 export const CHANGELOG = [
   ['1.0', 'September 2026', 'First edition.'],
+  ['1.9', 'September 2026',
+    'Ninth round, an editorial pass over the whole text. Four accuracy corrections: the outlier rule on the signal-quality figure is applied for the figure and is not an API flag, and now says so; the shaded span there is the substrate window trim, not a general phase annotation; the substrate page cites settled on the windows instead of attributing steady_state to the wrong response; and the ablation paragraph now states what the registry can show instead of asserting a programme of studies. Clarity is quoted as 6.7 times throughout instead of drifting to seven. Softened several absolutes and generalisations, including the claim about where research programmes stop. The interface and engine line appeared six times and now appears once. Uses of "rather than" cut from 29 to 12.'],
   ['1.8', 'September 2026',
     'Eighth review round. Every URL is a real anchor carrying the full target: they were printed as plain text, so the PDF viewer was linkifying the shortened visible string and producing links to truncated addresses that failed. All 18 external links and 25 internal anchors checked. Three publication URLs moved to their DOIs, two of them because the journal changed publisher. The lifecycle figure no longer accents deployment alone: all three stages are Oxynet and the accent is on the cycle, with the research stage described as where the physiology comes from rather than as what somebody else does. Softened several claims about the status quo and the field.'],
   ['1.7', 'September 2026',

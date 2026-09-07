@@ -119,7 +119,7 @@ export function divider(part) {
     <div style="margin-top:40px;border-top:1px solid ${D.line}">${rows}</div>
   </div>
   <div style="position:absolute;left:${PAGE.ML}px;right:${PAGE.MR}px;bottom:${PAGE.MB}px;display:flex;justify-content:space-between;align-items:baseline">
-    <span style="font-size:15px;color:${D.subtle};font-style:italic">The graph is the interface. This is the engine.</span>
+    ${part.numeral === '02' ? `<span style="font-size:15px;color:${D.subtle};font-style:italic">The figures are the interface. The payloads are the engine.</span>` : ''}
     <span style="font-family:${MONO};font-size:9.5px;letter-spacing:.1em;color:${D.faint}">${part.divider}</span>
   </div>`
   return page({ id: `divider-${part.numeral}`, light: false, full: true, body })

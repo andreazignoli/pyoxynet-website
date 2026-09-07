@@ -173,7 +173,3 @@ export function shortUrl(url, max = 46) {
   return host + rest.slice(0, room) + '…'
 }
 
-/** The recurring line that separates the interface from the engine. */
-export function engineLine(text = 'The figure opposite is the interface. This is the engine.') {
-  return `<p style="margin:16px 0 0;font-size:14px;color:${L.subtle};font-style:italic">${text}</p>`
-}

@@ -41,9 +41,9 @@ get_cpet_series(id, ["VE"])    # only to draw a picture`)}`
   const rail =
     railBlock('accent', 'Ask first, do not discover',
       rp('Analyses are sold separately, so a key holding thresholds does not necessarily hold oscillation.') +
-      rp(`<span class="mono" style="font-size:11.5px">get_capabilities</span> reports what the key may do, which models it can reach and what the limits are. Cheaper than handling a refusal.`, true)) +
+      rp(`<span class="mono" style="font-size:11.5px">get_capabilities</span> reports what the key may do, which models it can reach and what the limits are. That is cheaper than handling a refusal.`, true)) +
     railBlock('surface', 'Ephemeral by default',
-      rp(`Uploaded bytes are parsed and discarded, never stored. The parsed record is deleted after ${api.capabilities.limits.retention_hours} hours unless the caller asks for longer, up to ${api.capabilities.limits.max_retain_hours}.`, true))
+      rp(`Uploaded bytes are parsed and discarded, never stored. The parsed record is deleted after ${api.capabilities.limits.retention_hours} hours unless the caller asks for longer, up to ${api.capabilities.limits.max_retain_hours} hours.`, true))
 
   return page({ id: 'p22', body: rh('3.1 The architectural rule') + grid(main, rail) + folio('22') })
 }
@@ -65,7 +65,7 @@ export function inputs() {
     ['V̇CO₂', 'mL/min', 'req', 'req', 'req', 'Without it there is no substrate analysis at all'],
     ['V̇E', 'L/min', 'req', 'req', 'pref', 'The channel the oscillation is measured in'],
     ['PetO₂', 'mmHg', 'req', 'pref', 'no', 'Half of the end-tidal closure check'],
-    ['PetCO₂', 'mmHg', 'req', 'req', 'no', 'Without it an oscillation cannot be corroborated, and the analysis says so rather than guessing'],
+    ['PetCO₂', 'mmHg', 'req', 'req', 'no', 'Without it an oscillation cannot be corroborated, and the analysis says so instead of guessing'],
     ['Heart rate', 'bpm', 'opt', 'opt', 'opt', 'Needed for O₂ pulse, and for nothing else'],
     ['Breathing frequency', 'min⁻¹', 'opt', 'pref', 'no', 'Separates a rhythm driven by rate from one driven by volume'],
     ['Work rate', 'W', 'opt', 'opt', 'pref', 'Without it there is no gross efficiency, and FATMAX is an intensity rather than a wattage'],
@@ -183,7 +183,7 @@ export function mcp() {
     turn('Agent', L.faint,
       `<span style="font-size:14.5px;line-height:1.6;color:${L.body}"><b style="color:${L.strong}">Not by the graded definition, and that is not the whole answer.</b>
        Oxynet found one rhythm, from 9.8 to 10.5 minutes: breathing cycled every 21 seconds, swinging 17 % of ventilation,
-       seven times above this recording&rsquo;s own background, with end-tidal CO₂ moving in antiphase to corroborate it.
+       6.7 times above this recording&rsquo;s own background, with end-tidal CO₂ moving in antiphase to corroborate it.
        That period is faster than the 40 to 140 seconds the EOV definitions cover, so it is flagged and not graded.
        <span style="display:block;margin-top:8px;color:${L.subtle};font-size:13.5px">Oscillation analysis is beta and was developed on a single heart-failure cohort, so treat this as a research finding. There is no work-rate channel in this export, so nothing here is read against a work rate.</span></span>`)
 
@@ -204,7 +204,7 @@ export function mcp() {
     railBlock('warn', 'Why this matters',
       rp('A general-purpose assistant asked to read a CPET will estimate a threshold from the numbers in front of it. Through MCP it calls the model that was evaluated against expert labelling, and reports what came back.', true)) +
     railBlock('surface', 'A refusal is information',
-      rp('Where a recording cannot support an analysis the API says so and says why, and the assistant is instructed to report that rather than work around it. So is declining to attach a confidence to a result that has none.', true))
+      rp('Where a recording cannot support an analysis the API says so and says why, and the assistant is instructed to report that, not work around it. So is declining to attach a confidence to a result that has none.', true))
 
   return page({ id: 'p25', body: rh('3.4 MCP') + grid(main, rail) + folio('25') })
 }
@@ -227,7 +227,7 @@ export function deployment() {
   const main = `
     ${eyebrow(`Part Three ${SEP} 3.5`)}
     ${h1('Cloud, local, embedded', 'margin-bottom:12px')}
-    ${stand('The same engine, deployed three ways. Which one fits is a product, regulatory and infrastructure decision rather than a technical one, and it is a conversation rather than a menu.', 'margin-bottom:18px')}
+    ${stand('The same engine, deployed three ways. Which one fits is a product, regulatory and infrastructure decision more than a technical one, and one to work through together.', 'margin-bottom:18px')}
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
       ${option('A', 'Hosted API',
         'your software\n   ↓ HTTPS\nOxynet, hosted\n   ↓ JSON\nyour software',
@@ -243,7 +243,7 @@ export function deployment() {
         'your product\n ┌─────────────┐\n │   Oxynet    │\n │   engine    │\n └─────────────┘',
         'interpretation inside the product, available during the test rather than after it, no network at all',
         'the tightest coupling, and the longest conversation about versioning and support',
-        'Models are small convolutional networks and export to on-device runtimes. Real-time and edge deployment is a direction the architecture supports, and a joint scoping exercise rather than a shipping product.', icons.device)}
+        'Models are small convolutional networks and export to on-device runtimes. Real-time and edge deployment is a direction the architecture supports, and a joint scoping exercise, not a shipping product.', icons.device)}
     </div>
     <div style="margin-top:20px">${callout(`The engine is the same in all three. What changes is where it runs and who operates it, so a partnership can start on the hosted API and move inward without the interpretation changing underneath the customer.`)}</div>`
 
