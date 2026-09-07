@@ -48,7 +48,7 @@ export function whatItIsNot() {
         </div>
         <div>
           ${chip('Available', BLUE, '#1557991a')}
-          <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:8px 0 0">Shipped and usable, and the surface rather than the science: the MCP endpoint, the schema, the package, the deployment options.</p>
+          <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:8px 0 0">Shipped and usable: the surface, not the science: the MCP endpoint, the schema, the package, the deployment options.</p>
         </div>
         <div>
           ${chip('Research', WARN, '#92400e14')}
@@ -100,7 +100,7 @@ export function evidence() {
       <div>
         <h3>The landmarks corroborate, they do not adjudicate</h3>
         <p style="font-size:13.5px;line-height:1.6;margin:0 0 9px">The engine can also compute the classical criteria: the V-slope and respiratory compensation break points, the ventilatory equivalent nadir, the end-tidal carbon dioxide peak. They are textbook rules evaluated on the file's own signal. They carry no confidence and they never override a model.</p>
-        <p style="font-size:13.5px;line-height:1.6;margin:0">On the reference recording the automated V-slope fit returned slopes of 1.30 and 1.42 either side of its break point. Slopes that barely differ mean no break point was found, and the response reports the fit so a reader can see that rather than being handed a number to trust.</p>
+        <p style="font-size:13.5px;line-height:1.6;margin:0">On the reference recording the automated V-slope fit returned slopes of 1.30 and 1.42 either side of its break point. Slopes that barely differ mean no break point was found, and the response reports the fit so a reader can see it instead of being handed a number to trust.</p>
       </div>
       <div>${railBlock('accent', 'Promotion gate',
         rp('Evaluated on a cohort it never saw, on both axes, and all four must clear:') +
@@ -178,7 +178,7 @@ export function offer() {
       <div>
         ${route(1, 'Integrate', 'Call Oxynet from software you already ship. Your interface, your reporting, your customer relationship, our physiology, kept current.')}
         ${route(2, 'Embed', 'Make it part of the product itself, on your infrastructure or on the device, for interpretation during the test rather than after it.')}
-        ${route(3, 'Validate', 'Run cohorts through the engine to establish new capabilities and the evidence behind them. Oscillation analysis needs a second population before it can leave research, and that is a collaboration rather than a purchase.')}
+        ${route(3, 'Validate', 'Run cohorts through the engine to establish new capabilities and the evidence behind them. Oscillation analysis needs a second population before it can leave research, and that is a collaboration, not a purchase.')}
         ${route(4, 'Partner', 'A broader commercial relationship around distribution, licensing or joint product development.')}
         <p style="font-size:12.5px;line-height:1.55;color:${L.subtle};margin:12px 0 0">Commercial and licensing structure follows from the route, the deployment and the scope of rights, so it is deliberately not fixed here. Investment conversations are welcome and are a separate one.</p>
       </div>

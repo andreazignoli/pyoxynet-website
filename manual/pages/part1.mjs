@@ -167,7 +167,7 @@ export function lifecycle() {
       <p style="font-size:16px;line-height:1.55;color:${L.strong};font-weight:500;margin:0 0 12px;max-width:620px">All three stages are Oxynet. The research is not a credential attached to a product; it is where the physiology comes from, and it is maintained rather than cited.</p>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
         ${[
-          ['Research', 'Cohorts arrive from laboratories that do this work for its own sake. Experts label them. Models are trained and evaluated, and what is learned is written up and put through peer review, which is the part we do not control and the reason to trust it.'],
+          ['Research', 'Cohorts arrive from laboratories that do this work for its own sake. Experts label them. Models are trained and evaluated, and what is learned is written up and put through peer review, which is the part of the process we do not control.'],
           ['Development', 'A model that clears the gate on a cohort it never saw is promoted, versioned and pinned, with the evaluation that let it through stored beside the weights.'],
           ['Deployment', 'It answers on an endpoint, in a package, or inside a partner’s product. What it then cannot yet do is the next research question, and the cycle closes.'],
         ].map(([h, b]) => `
@@ -176,7 +176,7 @@ export function lifecycle() {
           <p style="font-size:12.5px;line-height:1.55;color:${L.body};margin:0">${b}</p>
         </div>`).join('')}
       </div>
-      <p style="font-size:14px;line-height:1.6;margin:16px 0 0;max-width:620px">Most groups doing this work stop after the first stage, not because they cannot go further but because a paper is what the work is for. Oxynet carries the same scientific standard through to something a laboratory can call and a manufacturer can ship, and sends what it learns there back to the beginning.</p>
+      <p style="font-size:14px;line-height:1.6;margin:16px 0 0;max-width:620px">A research programme normally ends at the first stage, because a published result is what it is funded to produce. Oxynet carries the same standard of evidence through to something a laboratory can call and a manufacturer can ship, and returns what that use reveals to the beginning of the cycle.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:18px;padding-top:16px;border-top:1px solid ${L.line}">
       ${[
@@ -205,13 +205,13 @@ export function whyBuildOnIt() {
   const main = `
     ${eyebrow(`Part One ${SEP} 1.6`)}
     ${h1('Why build on Oxynet', 'margin-bottom:16px')}
-    ${lead('Nobody has to change what they already do. The layer sits underneath all of it.')}
+    ${lead('The layer sits underneath what is already there. Nothing upstream has to change for it to be useful.')}
     ${who('For device manufacturers', 'Computational interpretation, without building a physiology stack',
       'Add advanced interpretation to the product you already ship, with no change to acquisition hardware and no physiology team to hire. The numbers stay comparable across an installed base that spans a dozen markets.')}
     ${who('For clinical software', 'Raw exports become structured, reproducible outputs',
       'Turn whatever the cart wrote into the same shape every time, in your own interface and your own report. One integration covers twenty-one vendor formats.')}
     ${who('For laboratories and researchers', 'Heterogeneous data, processed consistently',
-      'Pool cohorts across devices, protocols and years without pooling the readers with them. A method section a reviewer can reproduce, and a result that does not move when the rota does.')}
+      'Pool cohorts across devices, protocols and years without pooling the readers with them. A method section a reviewer can reproduce, and a result that does not shift when the staff do.')}
     ${who('For AI systems', 'Physiological computation an agent can call',
       'An assistant reaches the validated models directly instead of estimating a threshold from numbers in its context. The agent orchestrates and explains. It does not do the physiology.')}
     <div style="margin-top:20px">${callout(`The four capabilities behind all of this are shown on one real recording over the next ten pages, each with the payload the API returned and the caveat that travels with it. They begin on page ${PARTS[1].divider + 1}.`)}</div>`
