@@ -182,7 +182,7 @@ export function lifecycle() {
       ${[
         [`${CORPUS.papers} peer-reviewed papers`, 'on the methods and their evaluation, the first in 2019 and the most recent in 2026.'],
         ['Four continents', 'Cohorts contributed by laboratories in Europe, North and South America and Oceania.'],
-        ['In production, not in a paper', 'Every capability marked Production on page 6 is answering on a live endpoint today.'],
+        ['In production today', 'Every capability marked Production on page 6 is answering on a live endpoint.'],
       ].map(([h, b]) => `
       <div>
         <p style="font-size:15.5px;font-weight:600;color:${L.strong};margin:0 0 3px">${h}</p>

@@ -14,7 +14,7 @@
 
 import { groupedPublications } from './publications.mjs'
 
-export const VERSION = '1.9'
+export const VERSION = '2.0'
 export const DATE = 'September 2026'
 
 export const ENGINE = {
@@ -71,6 +71,8 @@ export const OUTPUT = {
 
 export const CHANGELOG = [
   ['1.0', 'September 2026', 'First edition.'],
+  ['2.0', 'September 2026',
+    'Tenth round, plainer prose. The document leaned on contrastive framing (this, not that) 25 times; it is down to eight, all of them substantive distinctions such as a fitted point against a measured one. Removed the hypotheticals about what another system would do and replaced them with what this one does. Dropped the knowing section labels ("why they matter", "the third column is the one worth reading", "two fields people misread", "ask first, do not discover") for plain ones. Softened the claims about how a general-purpose assistant behaves. No content removed, and no caveat weakened.'],
   ['1.9', 'September 2026',
     'Ninth round, an editorial pass over the whole text. Four accuracy corrections: the outlier rule on the signal-quality figure is applied for the figure and is not an API flag, and now says so; the shaded span there is the substrate window trim, not a general phase annotation; the substrate page cites settled on the windows instead of attributing steady_state to the wrong response; and the ablation paragraph now states what the registry can show instead of asserting a programme of studies. Clarity is quoted as 6.7 times throughout instead of drifting to seven. Softened several absolutes and generalisations, including the claim about where research programmes stop. The interface and engine line appeared six times and now appears once. Uses of "rather than" cut from 29 to 12.'],
   ['1.8', 'September 2026',

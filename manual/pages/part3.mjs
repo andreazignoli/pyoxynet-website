@@ -39,9 +39,9 @@ compute_metrics(id, ["vo2max"])
 get_cpet_series(id, ["VE"])    # only to draw a picture`)}`
 
   const rail =
-    railBlock('accent', 'Ask first, do not discover',
+    railBlock('accent', 'Check what the key allows',
       rp('Analyses are sold separately, so a key holding thresholds does not necessarily hold oscillation.') +
-      rp(`<span class="mono" style="font-size:11.5px">get_capabilities</span> reports what the key may do, which models it can reach and what the limits are. That is cheaper than handling a refusal.`, true)) +
+      rp(`<span class="mono" style="font-size:11.5px">get_capabilities</span> reports what the key may do, which models it can reach and what the limits are. Checking is cheaper than handling a refusal.`, true)) +
     railBlock('surface', 'Ephemeral by default',
       rp(`Uploaded bytes are parsed and discarded, never stored. The parsed record is deleted after ${api.capabilities.limits.retention_hours} hours unless the caller asks for longer, up to ${api.capabilities.limits.max_retain_hours} hours.`, true))
 
@@ -108,9 +108,9 @@ export function inputs() {
         <p style="font-size:13px;line-height:1.55;color:${L.body};margin:0">The raw interval sets which oscillation periods can be resolved at all, so a coarse export narrows the searchable band. The narrowing is reported rather than being allowed to look like an absence.</p>
       </div>
       <div>
-        <h3>What is never inferred</h3>
+        <h3>What is not inferred</h3>
         <p style="font-size:13px;line-height:1.55;color:${L.body};margin:0 0 8px">A channel that was not recorded is reported as absent, with the reason, and nothing is substituted for it.</p>
-        <p style="font-size:13px;line-height:1.55;color:${L.body};margin:0">Work rate is the case that matters commercially: watts can be back-calculated from oxygen uptake only by assuming the efficiency such a calculation is meant to measure. The engine refuses instead.</p>
+        <p style="font-size:13px;line-height:1.55;color:${L.body};margin:0">Work rate is the case that matters commercially: watts can be back-calculated from oxygen uptake only by assuming the efficiency such a calculation is meant to measure. The engine reports the channel as absent instead.</p>
       </div>
     </div>`
 
@@ -151,7 +151,7 @@ export function rest() {
     </div>`
 
   const rail =
-    railBlock('warn', 'Two fields people misread',
+    railBlock('warn', 'Two fields to read carefully',
       rp(`<span class="mono" style="font-size:11.5px">quality</span> describes the INPUT recording. It is not a confidence in the answer, and there is no field that is.`) +
       rp(`<span class="mono" style="font-size:11.5px">notes</span> is not decoration. It carries the caveats that must travel with the numbers into any report built on them.`, true)) +
     railBlock('surface', 'Machine-readable',
@@ -202,9 +202,9 @@ export function mcp() {
     railBlock('surface', 'One line to connect',
       `<p style="font-family:${MONO};font-size:10px;line-height:1.75;color:${L.strong};margin:0;overflow-wrap:break-word">claude mcp add --transport http oxynet ${LINKS.mcp} --header "X-API-Key: ..."</p>`) +
     railBlock('warn', 'Why this matters',
-      rp('A general-purpose assistant asked to read a CPET will estimate a threshold from the numbers in front of it. Through MCP it calls the model that was evaluated against expert labelling, and reports what came back.', true)) +
-    railBlock('surface', 'A refusal is information',
-      rp('Where a recording cannot support an analysis the API says so and says why, and the assistant is instructed to report that, not work around it. So is declining to attach a confidence to a result that has none.', true))
+      rp('A general-purpose assistant given a CPET will tend to estimate a threshold from the numbers in its context. Through MCP it calls the model that was evaluated against expert labelling, and reports what came back.', true)) +
+    railBlock('surface', 'When an analysis cannot run',
+      rp('Where a recording cannot support an analysis the API says so and says why, and the assistant is instructed to report it. It is also instructed not to attach a confidence to a result that has none.', true))
 
   return page({ id: 'p25', body: rh('3.4 MCP') + grid(main, rail) + folio('25') })
 }
