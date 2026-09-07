@@ -1,12 +1,13 @@
 import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GlassCard } from '@/components/shared/glass-card'
 import { GradientText } from '@/components/shared/gradient-text'
+import { IconClinic, IconManufacturer, IconResearch } from '@/components/shared/icons'
 
 const APP_URL = 'https://app.oxynet.net'
 
 const AUDIENCES = [
   {
-    icon: '🏥',
+    Icon: IconClinic,
     label: 'For clinics & hospitals',
     headline: 'Consistent interpretation at scale',
     description:
@@ -14,7 +15,7 @@ const AUDIENCES = [
     cta: { label: 'Open the app', href: APP_URL, external: true },
   },
   {
-    icon: '⚙️',
+    Icon: IconManufacturer,
     label: 'For manufacturers & software partners',
     headline: 'A physiology engine behind your system',
     description:
@@ -22,7 +23,7 @@ const AUDIENCES = [
     cta: { label: 'See the integration', href: '/integration' },
   },
   {
-    icon: '🔬',
+    Icon: IconResearch,
     label: 'For researchers',
     headline: 'A cohort, analysed in one pass',
     description:
@@ -53,7 +54,7 @@ export function AudienceSection() {
         <div className="grid md:grid-cols-3 gap-5">
           {AUDIENCES.map((audience, i) => (
             <GlassCard key={audience.label} delay={i * 0.1}>
-              <div className="text-3xl mb-4">{audience.icon}</div>
+              <audience.Icon className="w-6 h-6 text-accent mb-4" />
               <p className="text-xs font-mono uppercase tracking-widest text-accent/70 mb-2">
                 {audience.label}
               </p>

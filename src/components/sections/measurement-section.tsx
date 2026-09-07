@@ -2,6 +2,13 @@ import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GradientText } from '@/components/shared/gradient-text'
 
 /**
+ * NOT MOUNTED. Removed from the home page when the site was aligned with the
+ * PDF manual: the manual dropped the classification-to-measurement framing
+ * after review, on the grounds that it asks the reader to hold an abstraction
+ * before they have seen anything the engine does. The outputs section covers
+ * the same ground concretely. Kept here because restoring it is one import and
+ * one line in app/page.tsx.
+ *
  * The conceptual hinge of the site.
  *
  * The first generation of Oxynet used a model to recognise a pattern experts

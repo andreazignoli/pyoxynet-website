@@ -25,9 +25,10 @@ export function AboutSection() {
                 Interpretation variability limits clinical utility
               </h3>
               <p className="text-ink-body leading-relaxed text-sm">
-                CPET interpretation is variable and often requires manual adjustment. Different
-                software tools can produce inconsistent results, increasing clinician workload and
-                introducing uncertainty into clinical decision-making.
+                Threshold determination is a visual judgment made against several criteria that do
+                not always agree. Where they disagree, the answer depends on which criterion the
+                reader weighted and how the data were smoothed before plotting, and none of that
+                reaches the report.
               </p>
             </div>
 

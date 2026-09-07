@@ -1,19 +1,20 @@
 import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GlassCard } from '@/components/shared/glass-card'
 import { GradientText } from '@/components/shared/gradient-text'
+import { IconResearch, IconSignal } from '@/components/shared/icons'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
 const MODELS = [
   {
-    icon: '🔬',
+    Icon: IconResearch,
     title: 'Inference Model',
     description:
       'Estimates exercise intensity domains from CPET data with high accuracy. Supports VO₂, VCO₂, VE, PetO₂, PetCO₂, VE/VO₂, and VE/VCO₂ inputs.',
     badge: 'TFLite',
   },
   {
-    icon: '⚗️',
+    Icon: IconSignal,
     title: 'Generator Model',
     description:
       'Creates realistic synthetic CPET data for research and validation using a Conditional GAN (CGAN) architecture.',
@@ -62,7 +63,7 @@ export function PackageSection() {
           {MODELS.map((model, i) => (
             <GlassCard key={model.title} delay={i * 0.1}>
               <div className="flex items-start justify-between mb-4">
-                <div className="text-3xl">{model.icon}</div>
+                <model.Icon className="w-6 h-6 text-accent" />
                 <Badge>{model.badge}</Badge>
               </div>
               <h3 className="text-lg font-semibold text-foreground mb-3">{model.title}</h3>
@@ -79,7 +80,7 @@ export function PackageSection() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                🐍 Install from PyPI
+                Install from PyPI
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild>
@@ -88,7 +89,7 @@ export function PackageSection() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                📖 Read the Docs
+                Read the docs
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild>

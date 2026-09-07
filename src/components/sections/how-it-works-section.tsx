@@ -41,7 +41,7 @@ export function HowItWorksSection() {
               <h3 className="text-lg font-semibold text-foreground mb-6">Direct use</h3>
               <StepList
                 steps={[
-                  'Upload or stream CPET time-series data from your existing system.',
+                  'Upload the file your system already exports, in whatever format it writes.',
                   'Oxynet processes the signals and detects ventilatory thresholds automatically.',
                   'Receive structured outputs (intensity domains, VT1, VT2) ready for clinical review.',
                 ]}
