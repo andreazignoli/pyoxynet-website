@@ -5,6 +5,7 @@ import { Vortex } from '@/components/ui/vortex'
 import { Button } from '@/components/ui/button'
 import { GradientText } from '@/components/shared/gradient-text'
 import { PEER_REVIEWED_COUNT } from '@/content/publications'
+import { VENDOR_FORMATS } from '@/content/facts'
 
 export function HeroSection() {
   return (
@@ -111,7 +112,7 @@ export function HeroSection() {
           className="mt-20 flex flex-wrap justify-center gap-x-10 gap-y-4"
         >
           {[
-            { value: '21', label: 'Metabolimeter formats read' },
+            { value: String(VENDOR_FORMATS), label: 'Metabolimeter formats read' },
             { value: 'REST, MCP, Python', label: 'Ways to call it' },
             { value: String(PEER_REVIEWED_COUNT()), label: 'Peer-reviewed papers' },
           ].map((stat) => (

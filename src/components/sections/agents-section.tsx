@@ -1,6 +1,7 @@
 import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GlassCard } from '@/components/shared/glass-card'
 import { GradientText } from '@/components/shared/gradient-text'
+import { VENDOR_FORMATS } from '@/content/facts'
 
 /**
  * Everything named here is live on app.oxynet.net today: the MCP endpoint, the
@@ -14,7 +15,7 @@ const CHANNELS = [
     title: 'HTTP API',
     endpoint: '/v1/cpet · /v1/cpet/{id}/analyze',
     description:
-      'Upload the vendor file exactly as exported and work with the handle you get back. Twenty metabolimeter formats are detected automatically, so nothing upstream has to normalise units or columns first.',
+      `Upload the vendor file exactly as exported and work with the handle you get back. ${VENDOR_FORMATS} metabolimeter formats are detected automatically, so nothing upstream has to normalise units or columns first.`,
   },
   {
     label: 'MCP',

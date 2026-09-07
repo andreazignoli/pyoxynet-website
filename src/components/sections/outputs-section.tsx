@@ -69,7 +69,7 @@ const FAMILIES = [
       'Clock integrity: many carts restart the clock at each phase',
     ],
     description:
-      'The measurement nobody asks for and everybody needs. These describe the recording, not the patient, and a repair is always reported rather than silently applied.',
+      'These describe the recording, not the patient. A file can fail every check and come from a healthy subject, and where the engine repairs something it says so instead of applying it silently.',
   },
 ]
 
