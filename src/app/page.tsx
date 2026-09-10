@@ -3,6 +3,7 @@ import { DemoSection } from '@/components/sections/demo-section'
 import { AboutSection } from '@/components/sections/about-section'
 import { OutputsSection } from '@/components/sections/outputs-section'
 import { AgentsSection } from '@/components/sections/agents-section'
+import { McpDemoSection } from '@/components/sections/mcp-demo-section'
 import { AudienceSection } from '@/components/sections/audience-section'
 import { HowItWorksSection } from '@/components/sections/how-it-works-section'
 import { DeploymentSection } from '@/components/sections/deployment-section'
@@ -23,6 +24,7 @@ export default function HomePage() {
       <AboutSection />
       <OutputsSection />
       <AgentsSection />
+      <McpDemoSection />
       <AudienceSection />
       <HowItWorksSection />
       <DeploymentSection />

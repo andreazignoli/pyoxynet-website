@@ -23,3 +23,7 @@ node_modules/
 
 # Manual build intermediates (the PDF in public/manual is committed)
 manual/.out/
+
+# Recorded demo clips and their frame scratch
+.clip-frames/
+*.mp4

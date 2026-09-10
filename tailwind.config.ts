@@ -56,6 +56,22 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        // The demo stage. Fixed values, deliberately outside the themed ramp:
+        // the product demos are a dark cinematic surface that stays dark when
+        // the rest of the page is in the light theme, the way a video does.
+        // Neutrals carry a faint green cast so the brand accent sits in them
+        // rather than on them.
+        demo: {
+          void: '#070808',
+          bg: '#0a0b0b',
+          panel: '#0f1111',
+          raised: '#151817',
+          line: '#1d2120',
+          line2: '#2b302f',
+          ink: '#e7e9e8',
+          dim: '#9aa2a0',
+          faint: '#5f6665',
+        },
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', ...fontFamily.sans],
@@ -84,11 +100,21 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        caret: {
+          '0%, 45%': { opacity: '1' },
+          '55%, 100%': { opacity: '0' },
+        },
+        'signal-pulse': {
+          '0%': { opacity: '0.9', transform: 'scale(1)' },
+          '70%, 100%': { opacity: '0', transform: 'scale(2.6)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.6s ease-out',
+        caret: 'caret 1.05s steps(1) infinite',
+        'signal-pulse': 'signal-pulse 2.2s cubic-bezier(0.25,0.46,0.45,0.94) infinite',
       },
     },
   },
