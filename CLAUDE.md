@@ -29,6 +29,7 @@ deliberately indistinguishable to a visitor who moves between them.
 | Accent | `#00dc82` | `accent.DEFAULT` | `brand-400` |
 | Gradient | `#00dc82 → #155799` | `.gradient-text` | `.gradient-text` |
 | Type | Geist Sans + Geist Mono | `geist/font` | Google Fonts |
+| Intensity domains | moderate `#34d399`, heavy `#fbbf24`, severe `#f87171` | `content/demos/mcp-demo.ts` | `CpetScatterChart.tsx` |
 
 `.glass` is defined identically in both repos. The **mark** is generated from
 `oxynet/api/assets/oxynet-icon.svg` in the app repo into `src/components/shared/duck-mark.tsx`
@@ -39,7 +40,7 @@ which cannot inherit across document boundaries. Regenerate rather than hand-edi
 
 The narrative is **measurement, not classification**. Oxynet is sold as a computational
 layer that extracts physiological structure from CPET signals; VT1/VT2 is the entry
-product, not the ceiling. Three rules that have been decided:
+product, not the ceiling. Six rules that have been decided:
 
 1. **Do not sell the AI.** Deep learning, Keras, TensorFlow and TFLite are the mechanism.
    A hospital or a device manufacturer is buying a new capability to interpret CPET, not
@@ -56,7 +57,12 @@ product, not the ceiling. Three rules that have been decided:
    for exercise testing", "One engine, three doors" and similar lines are wanted. Plainer
    is not automatically better here. Cut a line when it claims something untrue, not
    because it has energy.
-5. **Never invent confidence.** Nothing is calibrated against clinical outcomes, so no
+5. **The model must not improvise physiology.** An LLM asked to read a CPET will
+   estimate a threshold from the trace, and it will sound right. The reason the MCP
+   server exists is to stop that: the assistant routes the question and explains the
+   answer, the validated models decide the physiology. Copy about agents should say
+   which of the two did what, and never imply the assistant worked it out.
+6. **Never invent confidence.** Nothing is calibrated against clinical outcomes, so no
    percentage confidence appears anywhere. Oscillation analysis is beta, developed on a
    single heart-failure cohort, with transportability untested. Say so wherever it is
    mentioned rather than in one buried footnote.
@@ -89,6 +95,109 @@ hand. The API reference is deliberately a link rather than generated content;
 the CI job that would render an endpoint appendix is noted as a gap in the
 README and `config.mjs` isolates the engine snapshot ready for it.
 
+## The demos
+
+The MCP demo is a cinematic, browser-only animation of an AI agent reaching
+Oxynet. It lives on the landing page as `McpDemoSection`, under the developer
+section that makes the claim it carries out. Its anchor is **`agent-demo`**,
+not `demo`: that id belongs to the before/after slider higher up the page, and
+the rail already names that one "Demo".
+
+It is the first of a family (interface, API, MCP), so it is built as a player
+plus a script rather than as one animation:
+
+- `src/content/demos/types.ts` is the contract: a demo is a list of `DemoEvent`s,
+  each carrying its own `durationMs`. Nothing in `src/components/demo/` knows what
+  a ventilatory threshold is.
+- `src/content/demos/mcp-demo.ts` is the whole story: dialogue, tool calls,
+  latencies, results, threshold values, pacing. A second demo is a second file
+  registered in `src/content/demos/index.ts` and rendered by the same player.
+- `src/hooks/use-demo-timeline.ts` reveals event `i` at the sum of the durations
+  before it, and knows nothing else.
+- `src/lib/demo-invoker.ts` holds the seam. Tool results arrive through a
+  `ToolInvoker` promise, so replacing the scripted one with a live MCP client is a
+  prop on `<DemoPlayer>`, not a rewrite.
+
+**The agent never discovers anything.** The narrative is: connect your provider
+to the Oxynet MCP server, then ask it to analyse a CPET with Oxynet
+capabilities. The run opens on the reader attaching a spreadsheet and asking,
+and the connected server appears *inside the agent's turn*, after it says it
+will look at what tools it has. No copy anywhere may suggest the assistant went
+looking for a physiological engine and happened to find one. Someone chose
+Oxynet; everything after that is what the choice buys.
+
+**The reader's line is set larger than the agent's**, and there is no standing
+tool inventory beside the transcript. Both were tried the other way. A rail
+listing ten tools and their summaries was the most detailed thing on screen and
+the least important, and it pulled the eye out of the conversation, which is
+the only thing the section is selling.
+
+**The player is lazily mounted and must stay that way.** It pulls in Framer
+Motion, the chart and the script, which put about 32 kB on the landing page's
+First Load JS (229 kB to 261 kB) for a section several screens down that does
+not animate until scrolled to. `demo-player-lazy.tsx` fetches it once the
+reader is within 600 px and holds the space with a skeleton until then, which
+puts the page back to 231 kB. Import `DemoPlayerLazy` on the landing page, not
+`DemoPlayer`.
+
+**The window is 4:5 (34rem wide), not a wide console.** It is meant to be
+screen-recorded and posted, and a 16:9 developer console crops to nothing in a
+LinkedIn feed. On a wide page the copy sits beside it and takes the space the
+window gives back. Anything added to the stage has to survive at 544px.
+
+**The MCP surface in the script is checked against `scripts/mcp_server.py` in
+the interpreter repo and must stay that way.** Ten tools, in the order the
+server declares them. Three things there are easy to get wrong and are wrong in
+any script that guesses: `get_capabilities` is called first, because the
+analyses are licensed separately; a file named by path goes through
+`create_upload` and then a **curl**, because Oxynet mints a one-shot URL rather
+than taking bytes through the conversation; and `analyze_cpet` returns a
+`quality` that describes the recording, never a confidence in the answer. The
+demo says so out loud, and the values are invented, which is what the
+"simulated interaction" line under the window is for.
+
+The chart is the app's VT view, not a new picture. Two panels share one VO2
+axis: breath-by-breath VE on top, every point coloured by the domain the model
+assigned it, and the un-stacked zone probabilities underneath, drawn as
+`ProbabilityTraceChart` draws them. There is deliberately **no fitted line**
+through the scatter, because a regression a reader could have drawn themselves
+would say the opposite of what the section says. The dashed threshold lines run
+through both panels, because the point of stacking them is that the crossings
+are the thresholds: moderate meets heavy at VT1, heavy meets severe at VT2. One
+probability function feeds both the point colours and the traces, and the
+marker positions come from the VO2 numbers in the script, so editing a
+threshold moves the crossing, the colour change and the label together. The rest of the stage uses the fixed `demo.*`
+palette in `tailwind.config.ts` rather than the themed ink ramp, so it stays
+dark when the page is in the light theme.
+
+### Sharing it
+
+Three surfaces, one script and one component behind all of them:
+
+```bash
+npm run build && npm run clip   # writes oxynet-mcp-demo.mp4, 1080x1372
+CLIP_WIDTH=1080 CLIP_MS=48000 npm run clip
+```
+
+- `/demo` is the link to send someone. It carries its own OpenGraph card at
+  `public/og-agent-demo.png`, so pasting the URL into LinkedIn or an email
+  unfurls with the chart rather than with the site's default hero.
+- `/demo/clip` is the recording stage: no navbar, no page ground, no disclosure
+  line, the window pinned to a fixed height and rendered at 2x. Nobody should
+  land on it, hence `robots: noindex`.
+- `scripts/record-clip.mjs` serves the production build, takes a CDP
+  screencast, and encodes with the ffmpeg on the machine. It **measures** the
+  window and crops to it, so the output ratio follows the component: change the
+  header and the clip still frames correctly. Frames arrive on paint rather than
+  on a clock, so ffmpeg gets a concat list with real per-frame durations; a
+  fixed frame rate drifts against the animation.
+
+To screenshot rather than record, drive Chrome over CDP on the wall clock and
+scroll the section into view first (the player starts on `useInView`).
+`--virtual-time-budget` fast-forwards the timers but leaves Framer Motion
+unstarted, so the capture comes back blank. And never pipe `next build` into
+`head`: the SIGPIPE kills it mid-write and leaves `.next` unusable.
+
 ## Tech Stack
 
 - **Framework:** Next.js 14 (App Router, TypeScript)
@@ -120,7 +229,24 @@ src/
     page.tsx            # Home page: assembles all section components
     globals.css         # Tailwind base + CSS vars + .glass + .gradient-text utilities
     not-found.tsx       # 404 page
+    demo/
+      page.tsx          # The standalone, shareable demo page
+      clip/page.tsx     # Bare recording stage for `npm run clip` (noindex)
   components/
+    demo/
+      demo-player-lazy.tsx # Mounts the player only within 600px of the viewport
+      demo-player.tsx      # The demo shell: timing, tool status, transport
+      chat-message.tsx     # User prompt and agent reply
+      thinking-indicator.tsx
+      mcp-panel.tsx        # The connected server and its tool list, in the transcript
+      tool-call.tsx        # One call, from issue to answer, via ToolInvoker
+      tool-result.tsx
+      metrics-panel.tsx    # The prominent result, with the chart
+      physiological-chart.tsx  # Abstract VE against VO2, markers from the script
+      final-screen.tsx     # The reveal
+      attachment.tsx       # The + press, and the file chip in the header
+      shell-step.tsx       # A curl the agent runs, not a tool it calls
+      demo-text.tsx        # Typewriter, **bold** parser, eyebrow
     layout/
       navbar.tsx        # Fixed glassmorphism nav ('use client')
       footer.tsx        # Disclaimer, acknowledgments, links
@@ -140,6 +266,7 @@ src/
       usage-tabs.tsx          # Radix Tabs client component
       publications-section.tsx # 12 publication cards
       contact-section.tsx     # Two contact cards with mailto links
+      mcp-demo-section.tsx    # The MCP demo on the landing page (#agent-demo)
     shared/
       duck-mark.tsx        # The Oxynet mark, inlined (generated from the app repo)
       section-wrapper.tsx  # Framer Motion useInView entrance animation ('use client')
@@ -150,8 +277,15 @@ src/
   content/
     code-examples.ts     # Typed code snippet strings (install, usage, generation)
     publications.ts      # Typed array of all 11 publications
+    demos/
+      types.ts           # The DemoEvent contract and the ToolInvoker seam
+      mcp-demo.ts        # The MCP demo script: every word, value and pause
+      index.ts           # The demo registry, live and planned
+  hooks/
+    use-demo-timeline.ts # Walks a script on wall-clock timers
   lib/
     shiki.ts             # Module-level Shiki singleton + highlight() helper
+    demo-invoker.ts      # Scripted ToolInvoker + tool-input JSON formatting
     utils.ts             # shadcn cn() helper
   types/
     index.ts             # Publication, CodeExample, NavItem types

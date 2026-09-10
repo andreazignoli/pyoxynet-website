@@ -191,6 +191,28 @@
     @apply py-28 px-6;
   }
 
+  /* The demo stage scrolls internally. A default scrollbar on a cinematic
+     dark panel reads as a bug, so it is thinned rather than hidden: hiding it
+     outright removes the only cue that there is more above. */
+  .demo-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #2b302f transparent;
+  }
+
+  .demo-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .demo-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .demo-scroll::-webkit-scrollbar-thumb {
+    background: #2b302f;
+    border-radius: 999px;
+  }
+
   .section-container {
     @apply max-w-6xl mx-auto;
   }

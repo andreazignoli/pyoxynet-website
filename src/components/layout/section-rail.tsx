@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 /**
  * Where you are on a 14,845 pixel page.
  *
- * Thirteen sections, about sixteen screens. The navbar names seven of them and
+ * Fourteen sections, about seventeen screens. The navbar names seven of them and
  * never says which one you are in, so finding something a second time meant
- * scrolling for it. This is the second, quieter axis: it holds all thirteen and
+ * scrolling for it. This is the second, quieter axis: it holds all fourteen and
  * never competes with "Open the app", which stays the only button in the bar.
  *
  * Deliberately absent below `xl`. On a narrow window there is no room beside the
@@ -19,6 +19,7 @@ const SECTIONS = [
   { id: 'measurement', label: 'Measurement' },
   { id: 'outputs', label: 'Outputs' },
   { id: 'agents', label: 'For developers' },
+  { id: 'agent-demo', label: 'Agent demo' },
   { id: 'audience', label: 'Who it is for' },
   { id: 'how-it-works', label: 'How it works' },
   { id: 'deployment', label: 'Deployment' },
