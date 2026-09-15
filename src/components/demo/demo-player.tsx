@@ -8,10 +8,12 @@ import { useDemoTimeline, usePrefersReducedMotion } from '@/hooks/use-demo-timel
 import { createScriptedInvoker } from '@/lib/demo-invoker'
 import { AttachChip, AttachRow } from './attachment'
 import { AssistantMessage, UserMessage } from './chat-message'
+import { HttpCall } from './http-call'
 import { Eyebrow } from './demo-text'
 import { FinalScreen } from './final-screen'
 import { McpConnectBlock, McpToolsBlock } from './mcp-panel'
 import { MetricsPanel } from './metrics-panel'
+import { ResultTable } from './result-table'
 import { ShellStep } from './shell-step'
 import { ThinkingIndicator } from './thinking-indicator'
 import { ToolCall } from './tool-call'
@@ -84,7 +86,10 @@ export function DemoPlayer({
     if (status === 'done') setResolved((n) => n + 1)
   }, [])
 
-  const connected = visible.some((e) => e.kind === 'mcp-connect')
+  // Lit once the demo has actually reached the engine, whichever door it uses.
+  const connected = visible.some(
+    (e) => e.kind === 'mcp-connect' || e.kind === 'http' || e.kind === 'tool-call'
+  )
   const attached = visible.find((e) => e.kind === 'attach')
   const final = visible.find((e) => e.kind === 'final')
 
@@ -137,7 +142,7 @@ export function DemoPlayer({
                 </span>
                 <span className="hidden sm:block h-3.5 w-px bg-demo-line2" />
                 <span className="hidden sm:block font-mono text-[11px] tracking-wide text-demo-faint">
-                  MCP Demo
+                  {script.label}
                 </span>
               </div>
 
@@ -154,7 +159,7 @@ export function DemoPlayer({
                     />
                   </span>
                   <span className="font-mono text-[10px] text-demo-faint">
-                    {connected ? 'MCP' : 'Idle'}
+                    {connected ? script.statusText : 'Idle'}
                   </span>
                 </span>
                 {attached && attached.kind === 'attach' && (
@@ -246,9 +251,27 @@ export function DemoPlayer({
                           )
 
                         case 'shell':
-                      return <ShellStep key={event.id} event={event} instant={reduced} />
+                          return (
+                            <ShellStep key={event.id} event={event} instant={reduced} />
+                          )
 
-                    case 'metrics':
+                        case 'http':
+                          return (
+                            <HttpCall
+                              key={event.id}
+                              event={event}
+                              invoke={activeInvoke}
+                              onResolved={() => setResolved((n) => n + 1)}
+                              instant={reduced}
+                            />
+                          )
+
+                        case 'table':
+                          return (
+                            <ResultTable key={event.id} event={event} instant={reduced} />
+                          )
+
+                        case 'metrics':
                           return (
                             <MetricsPanel
                               key={event.id}

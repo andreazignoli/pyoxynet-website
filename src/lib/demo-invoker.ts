@@ -20,7 +20,7 @@ import type { DemoEvent, ToolInvoker, ToolResultPayload } from '@/content/demos/
 export function createScriptedInvoker(events: DemoEvent[]): ToolInvoker {
   const calls = new Map<string, { latencyMs: number; result: ToolResultPayload }>()
   for (const event of events) {
-    if (event.kind === 'tool-call') {
+    if (event.kind === 'tool-call' || event.kind === 'http') {
       calls.set(event.id, { latencyMs: event.latencyMs, result: event.result })
     }
   }

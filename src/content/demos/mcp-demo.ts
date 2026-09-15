@@ -38,6 +38,8 @@ const SEVERE = '#f87171'
 export const mcpDemo: DemoScript = {
   slug: 'mcp',
   title: 'Oxynet over MCP',
+  label: 'MCP Demo',
+  statusText: 'MCP',
   blurb:
     'Connect an agentic system to the Oxynet MCP server and ask it to analyse a CPET with Oxynet capabilities. The validated models decide the physiology; the assistant explains the answer.',
   disclosure:

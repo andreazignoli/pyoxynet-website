@@ -149,6 +149,29 @@ export type DemoEvent =
       runMs: number
       output: ToolResultPayload
     })
+  /**
+   * A request against the REST API. Goes through the same `ToolInvoker` as a
+   * tool call, so the latency, the spinner and a future live implementation
+   * all behave the same way whichever door the demo is showing.
+   */
+  | (BaseEvent & {
+      kind: 'http'
+      method: 'GET' | 'POST' | 'DELETE'
+      path: string
+      /** Pretty-printed JSON, shown under the request line. */
+      body?: string
+      latencyMs: number
+      status: number
+      result: ToolResultPayload
+    })
+  /** Rows landing in the caller's own store, one after another. */
+  | (BaseEvent & {
+      kind: 'table'
+      title: string
+      columns: string[]
+      rows: string[][]
+      caption?: string
+    })
   | (BaseEvent & {
       kind: 'metrics'
       title: string
@@ -170,6 +193,10 @@ export type DemoEvent =
 export interface DemoScript {
   slug: string
   title: string
+  /** Sits beside the wordmark in the window header. */
+  label: string
+  /** The status word next to the indicator dot, once the first call lands. */
+  statusText: string
   /** One line, used on the demo index and as the page description. */
   blurb: string
   /** Sits under the window as a standing honesty note. */

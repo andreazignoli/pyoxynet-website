@@ -1,8 +1,8 @@
 /**
  * Record the MCP demo as an mp4, sized for a LinkedIn post.
  *
- *   npm run clip                     # 1080x1350 (4:5), the default
- *   CLIP_SIZE=1080x1080 npm run clip # square
+ *   npm run clip                     # the MCP demo
+ *   CLIP_DEMO=api npm run clip       # any registered demo slug
  *
  * How it works: start the production server, open /demo/clip in the Chrome
  * already on the machine, and take a CDP screencast. Screencast frames arrive
@@ -45,8 +45,9 @@ const [W, H] = (process.env.CLIP_VIEWPORT ?? '1240x1800').split('x').map(Number)
 const OUT_W = Number(process.env.CLIP_WIDTH ?? 1080)
 const SCALE = 1 // the page scales itself; see /demo/clip
 const PORT = Number(process.env.CLIP_PORT ?? 3210)
-const URL = `http://localhost:${PORT}/demo/clip`
-const OUT = process.env.CLIP_OUT ?? 'oxynet-mcp-demo.mp4'
+const DEMO = process.env.CLIP_DEMO ?? 'mcp'
+const URL = `http://localhost:${PORT}/demo/clip/${DEMO}`
+const OUT = process.env.CLIP_OUT ?? `oxynet-${DEMO}-demo.mp4`
 const FRAMES = join('.clip-frames')
 
 // The run is 44.8 s; a couple of seconds either side covers the start delay and
