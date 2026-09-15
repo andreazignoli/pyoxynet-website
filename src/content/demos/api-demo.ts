@@ -42,45 +42,23 @@ export const apiDemo: DemoScript = {
   startDelayMs: 600,
 
   events: [
-    // ── One helper, so the calls that follow read as calls ─────────────────
+    // ── Enough setup to make the call read, and no more ────────────────────
+    // The first cut opened with an eleven-line fetch helper. It is the least
+    // interesting code on screen and it pushed the round trip, which is the
+    // part worth watching, past the halfway mark of the video.
     {
       id: 'setup',
       kind: 'code',
       chapter: 'Setup',
       filename: 'analyze.js',
       speed: 11,
-      code: `const KEY = process.env.OXYNET_KEY
+      code: `const BASE = 'https://app.oxynet.net/v1'
+const file = './subject_042.xlsx'
 
-const api = (path, body) =>
-  fetch('https://app.oxynet.net' + path, {
-    method: 'POST',
-    headers: {
-      Authorization: \`Bearer \${KEY}\`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  }).then((r) => r.json())`,
-      durationMs: 6200,
-    },
-
-    // ── The file goes straight to Oxynet, not through your server ──────────
-    {
-      id: 'upload',
-      kind: 'code',
-      chapter: 'Upload',
-      filename: 'analyze.js',
-      speed: 12,
-      code: `// a one-shot URL, so the recording never
-// passes through your own server
-const { upload_url } = await api('/v1/uploads', {
-  count: 1,
-})
-
-const { cpet_id } = await postFile(
-  upload_url,
-  './subject_042.xlsx',
-)`,
-      durationMs: 6400,
+// goes straight to Oxynet, never through
+// your own server
+const { cpet_id } = await upload(file)`,
+      durationMs: 3600,
     },
 
     // ── The one call that matters ──────────────────────────────────────────
@@ -89,19 +67,20 @@ const { cpet_id } = await postFile(
       kind: 'code',
       chapter: 'Analyse',
       filename: 'analyze.js',
-      speed: 12,
-      code: `// the validated models decide the physiology,
-// not your code and not a language model
-const { results } = await api(
-  \`/v1/cpet/\${cpet_id}/analyze\`,
-  { analyses: ['vt'] },
-)
-
-console.log(results[0].findings)`,
-      durationMs: 5800,
+      speed: 11,
+      code: `// the validated models decide the physiology
+const res = await fetch(
+  \`\${BASE}/cpet/\${cpet_id}/analyze\`,
+  {
+    method: 'POST',
+    headers: { Authorization: \`Bearer \${KEY}\` },
+    body: JSON.stringify({ analyses: ['vt'] }),
+  },
+)`,
+      durationMs: 4600,
     },
 
-    // ── Run it ─────────────────────────────────────────────────────────────
+    // ── Out, inference, back ───────────────────────────────────────────────
     {
       id: 'run',
       kind: 'run',
@@ -111,7 +90,7 @@ console.log(results[0].findings)`,
       request: `{ "analyses": ["vt"] }`,
       endpoint: '/v1/cpet/{cpet_id}/analyze',
       inference: 'oxynet-vt',
-      runMs: 4400,
+      runMs: 3800,
       response: `{
   "cpet_id": "cpet_8f3a91c4",
   "results": [
@@ -124,14 +103,11 @@ console.log(results[0].findings)`,
         "vo2peak": { "vo2": 3.18, "hr": 184 }
       },
       "quality": "good",
-      "provenance": {
-        "model": "oxynet-vt",
-        "inputs": ["VO2", "VCO2", "VE"]
-      }
+      "provenance": { "model": "oxynet-vt" }
     }
   ]
 }`,
-      durationMs: 11000,
+      durationMs: 9000,
     },
 
     // ── The reveal, aimed at whoever is integrating ────────────────────────
@@ -145,7 +121,7 @@ console.log(results[0].findings)`,
       channels: ['Interface', 'API', 'MCP'],
       activeChannel: 'API',
       site: 'oxynet.net',
-      durationMs: 5000,
+      durationMs: 4200,
     },
   ],
 }
