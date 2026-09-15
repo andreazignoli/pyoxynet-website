@@ -160,11 +160,22 @@ export type DemoEvent =
       /** Milliseconds per character. */
       speed?: number
     })
-  /** Running what was just written, and the payload that comes back. */
+  /**
+   * Running what was just written: the payload leaving the machine, crossing to
+   * the engine, the inference, and the answer coming back. The round trip is
+   * the point. A request and a response with nothing between them look like a
+   * local function call, which is exactly what this is not.
+   */
   | (BaseEvent & {
       kind: 'run'
       filename: string
       command: string
+      /** The outgoing body, held up on its own while it crosses. */
+      request?: string
+      /** Where it is going, named on the far end of the track. */
+      endpoint?: string
+      /** What runs there, named while it runs. */
+      inference?: string
       runMs: number
       /** Pretty-printed JSON, highlighted as JSON rather than as source. */
       response: string

@@ -223,17 +223,191 @@ export function CodeBlock({ event, instant }: { event: CodeEvent; instant: boole
   )
 }
 
-/** Running the file, and what the API sent back. */
+type Phase = 'out' | 'infer' | 'back' | 'done'
+
+/** The caller: a terminal, because that is what is on screen above it. */
+function ClientGlyph() {
+  return (
+    <svg viewBox="0 0 20 20" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
+      <rect
+        x="1.6"
+        y="3.2"
+        width="16.8"
+        height="13.6"
+        rx="2.4"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <path d="M1.6 7h16.8" stroke="currentColor" strokeWidth="1.2" />
+      <path
+        d="m5.6 10.4 2 1.9-2 1.9M9.8 14.2h4.6"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+/** Where it goes. */
+function CloudGlyph() {
+  return (
+    <svg viewBox="0 0 24 18" className="h-[18px] w-[22px]" fill="none" aria-hidden="true">
+      <path
+        d="M6.6 15.2h11.1a3.9 3.9 0 0 0 .5-7.8 5.6 5.6 0 0 0-10.6-1.5 4.35 4.35 0 0 0-1 9.3Z"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+/** What happens there. */
+function ModelGlyph() {
+  return (
+    <svg viewBox="0 0 20 20" className="h-[18px] w-[18px]" fill="none" aria-hidden="true">
+      <rect x="6" y="6" width="8" height="8" rx="1.3" stroke="currentColor" strokeWidth="1.2" />
+      <path
+        d="M8.3 2.6v3.2M11.7 2.6v3.2M8.3 14.2v3.2M11.7 14.2v3.2M2.6 8.3h3.2M2.6 11.7h3.2M14.2 8.3h3.2M14.2 11.7h3.2"
+        stroke="currentColor"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function Node({
+  children,
+  label,
+  active,
+  ring,
+}: {
+  children: React.ReactNode
+  label: string
+  active: boolean
+  ring?: boolean
+}) {
+  return (
+    <div className="flex w-[4.5rem] shrink-0 flex-col items-center gap-1.5">
+      <span
+        className={`relative grid h-10 w-10 place-items-center rounded-xl border transition-colors duration-500 ${
+          active
+            ? 'border-accent-fill/45 bg-accent-fill/[0.07] text-accent-fill'
+            : 'border-demo-line2 bg-demo-raised/50 text-demo-faint'
+        }`}
+      >
+        {ring && (
+          <span className="absolute inset-0 rounded-xl border border-accent-fill/50 animate-signal-pulse" />
+        )}
+        {children}
+      </span>
+      <span
+        className={`text-center font-mono text-[9.5px] leading-tight transition-colors duration-500 ${
+          active ? 'text-accent-fill' : 'text-demo-faint'
+        }`}
+      >
+        {label}
+      </span>
+    </div>
+  )
+}
+
+/**
+ * The payload crossing to the engine and the answer coming back, as a diagram.
+ *
+ * A line with dots on it was not enough: nothing on screen said cloud, and
+ * nothing said inference, so the viewer had to be told in words what the
+ * picture should have shown. Two nodes and a labelled track say it without the
+ * caption, and the far node swaps its cloud for a model while the model is what
+ * is working, which is the one moment worth spelling out.
+ *
+ * Packets rather than a card carrying the JSON: a card wide enough to hold the
+ * body is most of the track, so it never reads as travelling. Dots do, and they
+ * leave the body sitting still above where it can be read.
+ */
+function Transit({ phase, inference }: { phase: Phase; inference?: string }) {
+  const moving = phase === 'out' || phase === 'back'
+  const forward = phase === 'out'
+
+  return (
+    <div className="rounded-xl border border-demo-line bg-demo-raised/25 px-3 py-3">
+      <div className="flex items-start justify-between gap-2">
+        <Node label="your machine" active={forward}>
+          <ClientGlyph />
+        </Node>
+
+        <div className="relative mt-[1.15rem] h-4 flex-1">
+          <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-demo-line2" />
+
+          {moving &&
+            [0, 1, 2, 3].map((i) => (
+              <motion.span
+                key={`${phase}-${i}`}
+                className="absolute top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full bg-accent-fill"
+                initial={{ left: forward ? '0%' : '97%', opacity: 0 }}
+                animate={{
+                  left: forward ? ['0%', '97%'] : ['97%', '0%'],
+                  opacity: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 1.05,
+                  delay: i * 0.13,
+                  ease: 'linear',
+                  repeat: Infinity,
+                }}
+              />
+            ))}
+        </div>
+
+        <Node
+          label={phase === 'infer' ? (inference ?? 'inference') : 'Oxynet'}
+          active={phase !== 'out'}
+          ring={phase === 'infer'}
+        >
+          {phase === 'infer' ? <ModelGlyph /> : <CloudGlyph />}
+        </Node>
+      </div>
+
+      <p className="mt-2.5 text-center font-mono text-[10px] text-demo-faint">
+        {phase === 'out' && 'the recording handle goes up'}
+        {phase === 'infer' && 'the models decide the physiology'}
+        {phase === 'back' && 'the measurements come back'}
+      </p>
+    </div>
+  )
+}
+
+/** Running the file: what goes out, what happens there, what comes back. */
 export function RunBlock({ event, instant }: { event: RunEvent; instant: boolean }) {
-  const [done, setDone] = useState(instant)
+  const [phase, setPhase] = useState<Phase>(instant ? 'done' : 'out')
   const tokens = useMemo(() => tokenize(event.response, true), [event.response])
+  const requestTokens = useMemo(
+    () => (event.request ? tokenize(event.request, true) : []),
+    [event.request]
+  )
 
   useEffect(() => {
-    if (instant) return
-    setDone(false)
-    const timer = setTimeout(() => setDone(true), event.runMs)
-    return () => clearTimeout(timer)
+    if (instant) {
+      setPhase('done')
+      return
+    }
+    setPhase('out')
+    // Out, think, back. The middle is the longest because that is where the
+    // work actually happens, and the demo should not pretend otherwise.
+    const out = event.runMs * 0.3
+    const infer = event.runMs * 0.45
+    const timers = [
+      setTimeout(() => setPhase('infer'), out),
+      setTimeout(() => setPhase('back'), out + infer),
+      setTimeout(() => setPhase('done'), event.runMs),
+    ]
+    return () => timers.forEach(clearTimeout)
   }, [event.id, event.runMs, instant])
+
+  const done = phase === 'done'
 
   return (
     <motion.div
@@ -250,15 +424,32 @@ export function RunBlock({ event, instant }: { event: RunEvent; instant: boolean
         </p>
       </div>
 
-      {!done ? (
-        <motion.p
-          className="pl-1 font-mono text-[11.5px] text-demo-faint"
-          animate={{ opacity: [0.35, 1, 0.35] }}
-          transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+      {event.request && !done && (
+        <motion.div
+          layout
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="overflow-hidden rounded-xl border border-accent-fill/35 bg-accent-fill/[0.05]"
         >
-          waiting for the engine&hellip;
-        </motion.p>
-      ) : (
+          <div className="flex items-center justify-between border-b border-accent-fill/15 px-3 py-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-fill">
+              Request
+            </span>
+            <span className="font-mono text-[10px] text-demo-faint">
+              POST {event.endpoint ?? ''}
+            </span>
+          </div>
+          <div className="overflow-x-auto px-3 py-2.5">
+            <Lines tokens={requestTokens} caret={false} />
+          </div>
+        </motion.div>
+      )}
+
+      {!done && (
+        <Transit phase={phase} inference={event.inference} />
+      )}
+
+      {done && (
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}

@@ -108,7 +108,10 @@ console.log(results[0].findings)`,
       chapter: 'Response',
       filename: 'analyze.js',
       command: 'node analyze.js',
-      runMs: 2400,
+      request: `{ "analyses": ["vt"] }`,
+      endpoint: '/v1/cpet/{cpet_id}/analyze',
+      inference: 'oxynet-vt',
+      runMs: 4400,
       response: `{
   "cpet_id": "cpet_8f3a91c4",
   "results": [
@@ -128,7 +131,7 @@ console.log(results[0].findings)`,
     }
   ]
 }`,
-      durationMs: 9000,
+      durationMs: 11000,
     },
 
     // ── The reveal, aimed at whoever is integrating ────────────────────────
