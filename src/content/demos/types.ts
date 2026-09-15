@@ -149,6 +149,38 @@ export type DemoEvent =
       runMs: number
       output: ToolResultPayload
     })
+  /** The app's upload screen, and a recording landing in it. */
+  | (BaseEvent & {
+      kind: 'drop'
+      title: string
+      subtitle: string
+      filename: string
+      meta: string
+      note?: string
+      /** How long the zone sits empty before the file arrives. */
+      landMs: number
+    })
+  /** What the file can be taken to once it is in. */
+  | (BaseEvent & {
+      kind: 'tabs'
+      filename: string
+      tabs: string[]
+      active: string
+      note?: string
+    })
+  /**
+   * The crossing on its own, for a demo with no code to run. The same picture
+   * the `run` event draws, because it is the same journey.
+   */
+  | (BaseEvent & {
+      kind: 'transit'
+      from: string
+      to: string
+      fromGlyph?: 'terminal' | 'browser'
+      inference: string
+      runMs: number
+      captions: { out: string; infer: string; back: string }
+    })
   /**
    * A block of source being written. In `editor` layout each one replaces the
    * last, because the story is somebody building up a script, not a log.

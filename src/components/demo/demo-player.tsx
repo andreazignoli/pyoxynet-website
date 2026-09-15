@@ -7,6 +7,7 @@ import type { DemoScript, ToolInvoker } from '@/content/demos/types'
 import { useDemoTimeline, usePrefersReducedMotion } from '@/hooks/use-demo-timeline'
 import { createScriptedInvoker } from '@/lib/demo-invoker'
 import { AttachChip, AttachRow } from './attachment'
+import { DropZone, TabBar, TransitStep } from './browser-stage'
 import { AssistantMessage, UserMessage } from './chat-message'
 import { CodeBlock, RunBlock } from './code-stage'
 import { HttpCall } from './http-call'
@@ -93,7 +94,8 @@ export function DemoPlayer({
       e.kind === 'mcp-connect' ||
       e.kind === 'http' ||
       e.kind === 'tool-call' ||
-      e.kind === 'run'
+      e.kind === 'run' ||
+      e.kind === 'transit'
   )
   const editor = script.layout === 'editor'
   // In editor layout the reveal is the only thing that should stack, so the
@@ -264,6 +266,21 @@ export function DemoPlayer({
                         case 'shell':
                           return (
                             <ShellStep key={event.id} event={event} instant={reduced} />
+                          )
+
+                        case 'drop':
+                          return (
+                            <DropZone key={event.id} event={event} instant={reduced} />
+                          )
+
+                        case 'tabs':
+                          return (
+                            <TabBar key={event.id} event={event} instant={reduced} />
+                          )
+
+                        case 'transit':
+                          return (
+                            <TransitStep key={event.id} event={event} instant={reduced} />
                           )
 
                         case 'code':
