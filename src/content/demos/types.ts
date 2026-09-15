@@ -150,6 +150,26 @@ export type DemoEvent =
       output: ToolResultPayload
     })
   /**
+   * A block of source being written. In `editor` layout each one replaces the
+   * last, because the story is somebody building up a script, not a log.
+   */
+  | (BaseEvent & {
+      kind: 'code'
+      filename: string
+      code: string
+      /** Milliseconds per character. */
+      speed?: number
+    })
+  /** Running what was just written, and the payload that comes back. */
+  | (BaseEvent & {
+      kind: 'run'
+      filename: string
+      command: string
+      runMs: number
+      /** Pretty-printed JSON, highlighted as JSON rather than as source. */
+      response: string
+    })
+  /**
    * A request against the REST API. Goes through the same `ToolInvoker` as a
    * tool call, so the latency, the spinner and a future live implementation
    * all behave the same way whichever door the demo is showing.
@@ -197,6 +217,12 @@ export interface DemoScript {
   label: string
   /** The status word next to the indicator dot, once the first call lands. */
   statusText: string
+  /**
+   * `transcript` stacks events, which suits a conversation. `editor` shows only
+   * the current one, which suits somebody writing a file: the block being
+   * worked on is the only thing on screen.
+   */
+  layout?: 'transcript' | 'editor'
   /** One line, used on the demo index and as the page description. */
   blurb: string
   /** Sits under the window as a standing honesty note. */

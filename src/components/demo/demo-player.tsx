@@ -8,6 +8,7 @@ import { useDemoTimeline, usePrefersReducedMotion } from '@/hooks/use-demo-timel
 import { createScriptedInvoker } from '@/lib/demo-invoker'
 import { AttachChip, AttachRow } from './attachment'
 import { AssistantMessage, UserMessage } from './chat-message'
+import { CodeBlock, RunBlock } from './code-stage'
 import { HttpCall } from './http-call'
 import { Eyebrow } from './demo-text'
 import { FinalScreen } from './final-screen'
@@ -88,8 +89,16 @@ export function DemoPlayer({
 
   // Lit once the demo has actually reached the engine, whichever door it uses.
   const connected = visible.some(
-    (e) => e.kind === 'mcp-connect' || e.kind === 'http' || e.kind === 'tool-call'
+    (e) =>
+      e.kind === 'mcp-connect' ||
+      e.kind === 'http' ||
+      e.kind === 'tool-call' ||
+      e.kind === 'run'
   )
+  const editor = script.layout === 'editor'
+  // In editor layout the reveal is the only thing that should stack, so the
+  // body renders just the current event and lets AnimatePresence swap it.
+  const shown = editor ? visible.slice(-1) : visible
   const attached = visible.find((e) => e.kind === 'attach')
   const final = visible.find((e) => e.kind === 'final')
 
@@ -177,13 +186,15 @@ export function DemoPlayer({
               <div
                 ref={transcriptRef}
                 aria-label={`${script.title}, an animated demonstration`}
-                className="demo-scroll flex-1 min-w-0 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6"
+                className={`demo-scroll flex-1 min-w-0 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6 ${
+                  editor ? 'flex flex-col justify-center' : ''
+                }`}
               >
                 <div className="flex flex-col gap-4">
-                  <AnimatePresence initial={false}>
-                    {visible.map((event, i) => {
-                      const isLast = i === visible.length - 1
-                      const previous = visible[i - 1]
+                  <AnimatePresence initial={false} mode={editor ? 'wait' : 'sync'}>
+                    {shown.map((event, i) => {
+                      const isLast = editor || i === shown.length - 1
+                      const previous = shown[i - 1]
 
                       switch (event.kind) {
                         case 'attach':
@@ -253,6 +264,16 @@ export function DemoPlayer({
                         case 'shell':
                           return (
                             <ShellStep key={event.id} event={event} instant={reduced} />
+                          )
+
+                        case 'code':
+                          return (
+                            <CodeBlock key={event.id} event={event} instant={reduced} />
+                          )
+
+                        case 'run':
+                          return (
+                            <RunBlock key={event.id} event={event} instant={reduced} />
                           )
 
                         case 'http':
