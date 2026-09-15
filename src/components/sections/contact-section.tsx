@@ -15,18 +15,40 @@ function MailIcon() {
   )
 }
 
-const CONTACTS = [
+const TEAM_EMAIL = 'oxynetcpetinterpreter@gmail.com'
+
+/**
+ * Three intents, not one inbox.
+ *
+ * This used to ask whether the reader was "interested in collaboration", which
+ * treated a device manufacturer, a lab with a cohort and a strategic partner as
+ * the same person. They want different things and they arrive knowing which,
+ * so the section names the three rather than making them work it out.
+ */
+const DOORS = [
   {
-    label: 'Feedback & Issues',
-    name: 'Oxynet Team',
-    email: 'oxynetcpetinterpreter@gmail.com',
-    description: 'Bug reports, feature requests, and general inquiries about the Oxynet project.',
+    audience: 'Researchers and laboratories',
+    action: 'Run a cohort',
+    description:
+      'Bring a set of recordings through the engine and get structured measurements back, consistently across protocols and devices.',
+    email: 'andrea.zignoli@unitn.it',
+    subject: 'Oxynet: running a cohort',
   },
   {
-    label: 'Principal Investigator',
-    name: 'Andrea Zignoli',
+    audience: 'Software, devices, developers',
+    action: 'Integrate Oxynet',
+    description:
+      'Call the engine from the software you already ship. Your product, your reporting, our physiology.',
+    email: TEAM_EMAIL,
+    subject: 'Oxynet: integration',
+  },
+  {
+    audience: 'Strategic and commercial',
+    action: 'Partner with Oxynet',
+    description:
+      'Build on the computational layer: licensing, deployment options and joint validation work.',
     email: 'andrea.zignoli@unitn.it',
-    description: 'Research collaborations, academic partnerships, and scientific enquiries.',
+    subject: 'Oxynet: partnership',
   },
 ]
 
@@ -43,29 +65,43 @@ export function ContactSection() {
               <GradientText>Contact</GradientText>
             </h2>
             <p className="text-ink-body max-w-xl mx-auto text-lg">
-              Interested in collaboration or have questions about the project?
+              Three ways to start, depending on what you need.
             </p>
           </div>
         </SectionWrapper>
 
-        <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-          {CONTACTS.map((contact, i) => (
-            <GlassCard key={contact.email} delay={i * 0.1}>
+        <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {DOORS.map((door, i) => (
+            <GlassCard key={door.action} delay={i * 0.1} className="flex flex-col">
               <p className="text-accent text-xs font-mono uppercase tracking-wider mb-3">
-                {contact.label}
+                {door.audience}
               </p>
-              <h3 className="text-foreground font-semibold text-lg mb-2">{contact.name}</h3>
-              <p className="text-ink-subtle text-sm leading-relaxed mb-5">{contact.description}</p>
+              <h3 className="text-foreground font-semibold text-lg mb-2">{door.action}</h3>
+              <p className="text-ink-subtle text-sm leading-relaxed mb-5 flex-1">
+                {door.description}
+              </p>
               <a
-                href={`mailto:${contact.email}`}
+                href={`mailto:${door.email}?subject=${encodeURIComponent(door.subject)}`}
                 className="inline-flex items-center gap-2 text-sm text-accent hover:underline underline-offset-2 font-medium"
               >
                 <MailIcon />
-                {contact.email}
+                {door.action}
               </a>
             </GlassCard>
           ))}
         </div>
+
+        {/* The old "feedback and issues" card became this line rather than
+            disappearing: it is a real route, it is just not one of the three. */}
+        <p className="text-ink-subtle text-sm text-center mt-8">
+          Bugs, feature requests and anything else:{' '}
+          <a
+            href={`mailto:${TEAM_EMAIL}`}
+            className="text-accent hover:underline underline-offset-2"
+          >
+            {TEAM_EMAIL}
+          </a>
+        </p>
       </div>
     </section>
   )

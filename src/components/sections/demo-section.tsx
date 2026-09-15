@@ -14,8 +14,11 @@ export function DemoSection() {
             <p className="text-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">
               See how it works
             </p>
+            {/* Not "clinical insight". The page says in the same breath that
+                this is not a diagnosis and not a medical device, and the
+                narrative is measurement rather than interpretation. */}
             <h2 className="text-4xl sm:text-5xl font-bold mb-5">
-              From Raw Data to <GradientText>Clinical Insight</GradientText>
+              From Raw CPET Signals to <GradientText>Structured Physiology</GradientText>
             </h2>
             <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
               Drag the slider to see how raw CPET measurements are transformed into standardised
