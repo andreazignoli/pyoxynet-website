@@ -5,6 +5,7 @@ import { SectionWrapper } from '@/components/shared/section-wrapper'
 import { GlassCard } from '@/components/shared/glass-card'
 import { GradientText } from '@/components/shared/gradient-text'
 import { Button } from '@/components/ui/button'
+import { VENDOR_FORMATS } from '@/content/facts'
 
 export const metadata: Metadata = {
   title: 'Integration | Oxynet',
@@ -410,7 +411,7 @@ function DataFlowSection() {
     {
       n: '02',
       label: 'Oxynet interpretation',
-      body: 'Oxynet parses the vendor file as exported: twenty-one formats, each with its own unit conventions and clock quirks, then measures the physiology in it.',
+      body: `Oxynet parses the vendor file as exported: ${VENDOR_FORMATS} formats, each with its own unit conventions and clock quirks, then measures the physiology in it.`,
     },
     {
       n: '03',
@@ -459,7 +460,7 @@ function DataFlowSection() {
               >
                 API documentation
               </a>{' '}
-              lists every endpoint and the twenty vendor formats detected automatically. Oxynet&apos;s
+              lists every endpoint and the {VENDOR_FORMATS} vendor formats detected automatically. Oxynet&apos;s
               outputs are not intended to replace clinical review. They provide a consistent,
               reproducible measurement baseline.
             </p>

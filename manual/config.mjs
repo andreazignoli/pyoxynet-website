@@ -13,6 +13,7 @@
  */
 
 import { groupedPublications } from './publications.mjs'
+import { VENDOR_FORMATS } from './generated/registry.mjs'
 
 export const VERSION = '2.0'
 export const DATE = 'September 2026'
@@ -50,7 +51,8 @@ export const LINKS = {
  */
 export const CORPUS = {
   tests: 'thousands of expert-labelled exercise tests',
-  formats: 21,
+  // Generated from oxynet-core's parser; the site reads the same value.
+  formats: VENDOR_FORMATS,
   // Counted from src/content/publications.ts at build time, never asserted.
   // The same list also holds a preprint and four blog or Medium pieces, which
   // are writing about the work and not evidence for it. The site counts from

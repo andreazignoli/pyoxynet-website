@@ -1,5 +1,6 @@
 import type { DemoScript } from './types'
 import { VENDOR_FORMATS } from '../facts'
+import { DOMAINS } from '../../generated/registry'
 
 /**
  * Demo three of the three doors: Oxynet in a browser.
@@ -18,9 +19,9 @@ import { VENDOR_FORMATS } from '../facts'
  * The values are invented, as the disclosure says.
  */
 
-const MODERATE = '#34d399'
-const HEAVY = '#fbbf24'
-const SEVERE = '#f87171'
+const MODERATE = DOMAINS.moderate
+const HEAVY = DOMAINS.heavy
+const SEVERE = DOMAINS.severe
 
 export const browserDemo: DemoScript = {
   slug: 'browser',

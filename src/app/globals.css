@@ -19,19 +19,21 @@
     --card-foreground: 0 0% 90%;
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 90%;
-    --primary: 152 100% 43%;
+    /* #00dc82 is hue 155. It read 152 until 2026-09-16, a slightly bluer green than
+       the app's; registry.py check compares these against registry/brand.toml. */
+    --primary: 155 100% 43%;
     --primary-foreground: 0 0% 4%;
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 90%;
     --muted: 0 0% 12%;
     --muted-foreground: 0 0% 55%;
-    --accent: 152 100% 43%;
+    --accent: 155 100% 43%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 152 100% 43%;
+    --ring: 155 100% 43%;
     --radius: 0.75rem;
 
     /* The semantic ink ramp. The site used to spell these as white/NN, which

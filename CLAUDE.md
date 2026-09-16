@@ -15,10 +15,17 @@ measurements.
 ## The sister repo: this is not the only Oxynet property
 
 `app.oxynet.net` is the product; this site is the front door to it. It is built from
-`oxynet-interpreter-tf2/ui` (React + Vite) in a separate repository, and the two are
+`../oxynet-core/ui` (React + Vite) in a separate repository, and the two are
 deliberately indistinguishable to a visitor who moves between them.
 
-**The design tokens are duplicated on purpose and must be changed in both places:**
+**The shared values are generated, not hand-copied.** Since 2026-09-16 their source is the
+orchestration repo (`~/oxynet`, the parent of this checkout): `registry/brand.toml` for the
+tokens and domain colours, and `registry/core-surface.json`, extracted from the app repo, for
+the format count, the MCP tool list and the mark. `python3 harness/registry.py sync` there
+writes `src/generated/registry.ts` and `manual/generated/registry.mjs`; never edit either,
+and commit both, because Vercel builds from this repo alone. `globals.css` cannot import a
+module, so `registry.py check` compares its dark-theme values instead. The table below is
+where each value lands:
 
 | Token | Value | Here | App |
 |---|---|---|---|
@@ -146,8 +153,10 @@ LinkedIn feed. On a wide page the copy sits beside it and takes the space the
 window gives back. Anything added to the stage has to survive at 544px.
 
 **The MCP surface in the script is checked against `scripts/mcp_server.py` in
-the interpreter repo and must stay that way.** Ten tools, in the order the
-server declares them. Three things there are easy to get wrong and are wrong in
+the app repo and must stay that way.** The tool list is typed
+`satisfies Record<McpToolName, string>`, and `McpToolName` is generated from the
+server, so a tool added or removed there fails `tsc` here; `registry.py check`
+covers the individual `tool:` calls. Three things there are easy to get wrong and are wrong in
 any script that guesses: `get_capabilities` is called first, because the
 analyses are licensed separately; a file named by path goes through
 `create_upload` and then a **curl**, because Oxynet mints a one-shot URL rather

@@ -3,13 +3,16 @@
  *
  * They live here because the page used to disagree with itself: the hero said
  * twenty-one vendor formats while the deployment and developer sections said
- * twenty. A number a reader can check has to come from one place, and the PDF
- * manual counts from its own copy of the same value in `manual/config.mjs`.
- * Change one, change the other.
+ * twenty. A number a reader can check has to come from one place.
+ *
+ * The format count is no longer typed here at all. It is generated from the
+ * parser in oxynet-core, the same count /llms.txt and /v1/formats state, by the
+ * orchestration repo's `harness/registry.py sync`. The manual reads the same
+ * generated value.
  */
 
 /** Vendor export formats read with automatic detection. */
-export const VENDOR_FORMATS = 21
+export { VENDOR_FORMATS } from '../generated/registry'
 
 /**
  * Retention, stated the way the API states it. Uploaded bytes are parsed and

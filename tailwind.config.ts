@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
+import { BRAND, BRAND_GRADIENT } from './src/generated/registry'
 
 const config: Config = {
   darkMode: ['class'],
@@ -34,8 +35,8 @@ const config: Config = {
           // ground is 1.75:1. `fill` is the brand green itself and never
           // flips, so buttons and the mark stay exactly as they are.
           DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
-          fill: '#00dc82',
-          blue: '#155799',
+          fill: BRAND.accent,
+          blue: BRAND.gradient_to,
           green: '#159957',
         },
         // The themed ink ramp that replaced the white/NN utilities.
@@ -79,7 +80,7 @@ const config: Config = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-accent': 'linear-gradient(135deg, #00dc82 0%, #155799 100%)',
+        'gradient-accent': BRAND_GRADIENT,
         'hero-overlay': 'linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.85) 100%)',
       },
       borderRadius: {

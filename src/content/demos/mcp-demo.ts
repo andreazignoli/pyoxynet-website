@@ -1,4 +1,5 @@
 import type { DemoScript } from './types'
+import { DOMAINS, type McpToolName } from '../../generated/registry'
 
 /**
  * Demo one of the family: an AI agent reaching Oxynet over MCP.
@@ -28,12 +29,27 @@ import type { DemoScript } from './types'
 
 const CPET_ID = 'cpet_8f3a91c4'
 
-// The intensity-domain palette from ui/src/components/CpetScatterChart.tsx.
-// Duplicated here on purpose, the same way the design tokens are: if the app
-// changes them, this changes too.
-const MODERATE = '#34d399'
-const HEAVY = '#fbbf24'
-const SEVERE = '#f87171'
+// The intensity-domain palette, generated from the shared registry that the
+// app's charts are painted from too.
+const MODERATE = DOMAINS.moderate
+const HEAVY = DOMAINS.heavy
+const SEVERE = DOMAINS.severe
+
+// Every tool the server serves, in the order this demo lists them. The type is
+// generated from scripts/mcp_server.py, so a tool added to or removed from the
+// server fails the build here until the list is updated.
+const TOOL_SUMMARIES = {
+  get_capabilities: 'What this key is licensed for',
+  get_sample_cpet: 'A synthetic recording to try',
+  create_upload: 'One-shot URL for a file on disk',
+  upload_cpet: 'Upload contents already in hand',
+  get_cpet: 'Format, channels, sampling, protocol',
+  list_metrics: 'The derived-quantity registry',
+  compute_metrics: 'Phases, gas quality, sampling',
+  analyze_cpet: 'Thresholds, oscillation, substrate',
+  get_cpet_series: 'Downsampled signals, to plot',
+  delete_cpet: 'Remove the recording now',
+} satisfies Record<McpToolName, string>
 
 export const mcpDemo: DemoScript = {
   slug: 'mcp',
@@ -53,18 +69,7 @@ export const mcpDemo: DemoScript = {
     endpoint: 'app.oxynet.net/oxynet-mcp',
     // All ten, as the server exposes them. The five this agent reaches for
     // light up; the rest stay dim, which is the honest picture of discovery.
-    tools: [
-      { name: 'get_capabilities', summary: 'What this key is licensed for' },
-      { name: 'get_sample_cpet', summary: 'A synthetic recording to try' },
-      { name: 'create_upload', summary: 'One-shot URL for a file on disk' },
-      { name: 'upload_cpet', summary: 'Upload contents already in hand' },
-      { name: 'get_cpet', summary: 'Format, channels, sampling, protocol' },
-      { name: 'list_metrics', summary: 'The derived-quantity registry' },
-      { name: 'compute_metrics', summary: 'Phases, gas quality, sampling' },
-      { name: 'analyze_cpet', summary: 'Thresholds, oscillation, substrate' },
-      { name: 'get_cpet_series', summary: 'Downsampled signals, to plot' },
-      { name: 'delete_cpet', summary: 'Remove the recording now' },
-    ],
+    tools: Object.entries(TOOL_SUMMARIES).map(([name, summary]) => ({ name, summary })),
   },
 
   startDelayMs: 700,

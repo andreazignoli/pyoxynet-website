@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { L, GREEN, BLUE, ACCENT_TEXT, DOMAIN, SANS, MONO, WARN, WARN_DARK } from './tokens.mjs'
 import { morletPower, logPeriods, rasterURI, magma } from './wavelet.mjs'
+import { CORPUS } from './config.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const test = JSON.parse(readFileSync(join(here, 'data/reference-test.json'), 'utf8'))
@@ -603,7 +604,7 @@ export function figLayer({ W = 670 } = {}) {
   const left = column(0, 'HOW IT USUALLY WORKS', 'muted', [
     { label: 'Exercise test', note: 'the cart records it' },
     { label: 'Acquisition software', note: 'vendor format, vendor conventions' },
-    { label: 'Export', note: 'a file, in one of twenty-one dialects', flag: 'heterogeneous' },
+    { label: 'Export', note: `a file, in one of ${CORPUS.formats} dialects`, flag: 'heterogeneous' },
     { label: 'A person reads it', note: 'plots, judgment, experience', flag: 'operator dependent' },
     { label: 'Thresholds by eye', note: 'the number, not the reasoning', flag: 'hard to reproduce' },
     { label: 'Report', note: 'peak oxygen uptake, and little else' },
