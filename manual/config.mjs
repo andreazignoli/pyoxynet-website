@@ -15,7 +15,7 @@
 import { groupedPublications } from './publications.mjs'
 import { VENDOR_FORMATS } from './generated/registry.mjs'
 
-export const VERSION = '2.0'
+export const VERSION = '2.1'
 export const DATE = 'September 2026'
 
 export const ENGINE = {
@@ -72,6 +72,8 @@ export const OUTPUT = {
 }
 
 export const CHANGELOG = [
+  ['2.1', 'September 2026',
+    'The format count on 3.1 was typed as twenty-one and is now generated from the parser, like every other statement of it. No other change.'],
   ['1.0', 'September 2026', 'First edition.'],
   ['2.0', 'September 2026',
     'Tenth round, plainer prose. The document leaned on contrastive framing (this, not that) 25 times; it is down to eight, all of them substantive distinctions such as a fitted point against a measured one. Removed the hypotheticals about what another system would do and replaced them with what this one does. Dropped the knowing section labels ("why they matter", "the third column is the one worth reading", "two fields people misread", "ask first, do not discover") for plain ones. Softened the claims about how a general-purpose assistant behaves. No content removed, and no caveat weakened.'],

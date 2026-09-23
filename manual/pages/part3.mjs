@@ -21,7 +21,7 @@ export function rule() {
     <p style="margin-bottom:8px">The caller posts the vendor file exactly as the cart exported it and receives a handle. Every later operation names the handle, and the signals never pass back through the caller unless a picture is being drawn.</p>
     <div>
       ${[
-        ['The parsing stays where the knowledge is', 'Twenty-one vendor formats, each with its own column names, unit conventions and clock quirks. A caller that normalises the file first has to reimplement all of it, and will lose information doing so.'],
+        ['The parsing stays where the knowledge is', `${CORPUS.formats} vendor formats, each with its own column names, unit conventions and clock quirks. A caller that normalises the file first has to reimplement all of it, and will lose information doing so.`],
         ['The measurement runs at full resolution', 'Every analysis runs on the complete record, never on a decimated copy, so a narrow feature cannot fall between two kept samples.'],
         ['A cohort becomes possible', 'A 360 KB export is roughly ninety thousand tokens inlined into a conversation. Through a handle, an assistant works through a hundred recordings holding only the structured results.'],
       ].map(([h, b]) => `
