@@ -23,6 +23,8 @@ node_modules/
 
 # Manual build intermediates (the PDF in public/manual is committed)
 manual/.out/
+# Data agreement build intermediates (the PDF in public/agreement is committed)
+agreement/.out/
 
 # Recorded demo clips and their frame scratch
 .clip-frames/

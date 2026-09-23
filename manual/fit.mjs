@@ -66,10 +66,10 @@ window.addEventListener('load', function () {
 });
 </script>`
 
-export function measure() {
-  const src = join(here, '.out/manual.html')
-  if (!existsSync(src)) throw new Error('manual: build first (node manual/build.mjs)')
-  const probed = join(here, '.out/manual.probe.html')
+/** `src` defaults to the manual; the data agreement (../agreement) measures its own build with it. */
+export function measure(src = join(here, '.out/manual.html')) {
+  if (!existsSync(src)) throw new Error(`build first: ${src} does not exist`)
+  const probed = src.replace(/\.html$/, '.probe.html')
   writeFileSync(probed, readFileSync(src, 'utf8').replace('</head>', PROBE + '</head>'))
 
   const dom = execFileSync(
