@@ -10,7 +10,7 @@ const APP_URL = 'https://app.oxynet.net'
 
 const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
   { label: 'Outputs', href: '/#outputs' },
-  { label: 'For developers', href: '/#agents' },
+  { label: 'Developers', href: '/developers' },
   { label: 'Integration', href: '/integration' },
   { label: 'Package', href: '/#package' },
   { label: 'Publications', href: '/#publications' },

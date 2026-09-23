@@ -548,6 +548,15 @@ function PartnersSection() {
                 </a>
               </Button>
             </div>
+
+            <p className="text-ink-faint text-xs leading-relaxed mt-6 text-center">
+              Technical onboarding is self-service: formats, sample data, API reference and a quick
+              start are in the{' '}
+              <a href="/developers/partners" className="text-accent hover:underline underline-offset-2">
+                developer and partner hub
+              </a>
+              .
+            </p>
           </div>
         </SectionWrapper>
       </div>

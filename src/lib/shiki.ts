@@ -1,6 +1,6 @@
 import { createHighlighter, type Highlighter } from 'shiki'
 
-type SupportedLang = 'python' | 'sh' | 'bash'
+type SupportedLang = 'python' | 'sh' | 'bash' | 'json'
 
 declare global {
   // eslint-disable-next-line no-var
@@ -11,7 +11,7 @@ async function getHighlighter(): Promise<Highlighter> {
   if (globalThis.__shikiHighlighter) return globalThis.__shikiHighlighter
   globalThis.__shikiHighlighter = await createHighlighter({
     themes: ['github-dark-dimmed'],
-    langs: ['python', 'sh', 'bash'],
+    langs: ['python', 'sh', 'bash', 'json'],
   })
   return globalThis.__shikiHighlighter
 }

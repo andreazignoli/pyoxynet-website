@@ -9,7 +9,7 @@ export interface Publication {
   journal?: string
 }
 
-export type CodeLang = 'python' | 'sh' | 'bash'
+export type CodeLang = 'python' | 'sh' | 'bash' | 'json'
 
 export interface CodeExample {
   lang: CodeLang

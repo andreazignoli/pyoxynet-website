@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "oxynet": {
+      "httpUrl": "https://app.oxynet.net/oxynet-mcp",
+      "headers": { "X-API-Key": "YOUR_KEY" }
+    }
+  }
+}
