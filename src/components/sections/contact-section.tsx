@@ -30,7 +30,7 @@ const DOORS = [
     audience: 'Researchers and laboratories',
     action: 'Run a cohort',
     description:
-      'Bring a set of recordings through the engine and get structured measurements back, consistently across protocols and devices.',
+      'Bring a set of recordings through the engine and get structured measurements back, consistently across protocols and devices. Or bring labelled tests and have a model fine-tuned on them.',
     email: 'andrea.zignoli@unitn.it',
     subject: 'Oxynet: running a cohort',
   },
@@ -65,7 +65,7 @@ export function ContactSection() {
               <GradientText>Contact</GradientText>
             </h2>
             <p className="text-ink-body max-w-xl mx-auto text-lg">
-              Three ways to start, depending on what you need.
+              Say what you need, and it reaches the right person.
             </p>
           </div>
         </SectionWrapper>

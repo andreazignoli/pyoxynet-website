@@ -31,6 +31,8 @@ export function Footer() {
               {[
                 { label: 'Oxynet app', href: 'https://app.oxynet.net' },
                 { label: 'Developers and partners', href: '/developers' },
+                { label: 'Integration', href: '/integration' },
+                { label: 'Data transfer agreement', href: '/data-agreement' },
                 { label: 'The manual (PDF)', href: '/manual' },
                 { label: 'API documentation', href: 'https://app.oxynet.net/docs' },
                 { label: 'OpenAPI schema', href: 'https://app.oxynet.net/v1/openapi.json' },

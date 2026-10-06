@@ -86,3 +86,11 @@ export const IconSignal = (p: IconProps) => (
     <path d="M2.6 10h2.6l1.8-5 2.6 10 2.4-7 1.6 4h3.8" />
   </Svg>
 )
+
+/** A speech bubble: an assistant, reaching the engine over MCP. */
+export const IconAgent = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M4.2 4h11.6a1.6 1.6 0 0 1 1.6 1.6v6.6a1.6 1.6 0 0 1-1.6 1.6H9.4L6 16.4v-2.6H4.2a1.6 1.6 0 0 1-1.6-1.6V5.6A1.6 1.6 0 0 1 4.2 4Z" />
+    <path d="M7 8.9h.01M10 8.9h.01M13 8.9h.01" />
+  </Svg>
+)

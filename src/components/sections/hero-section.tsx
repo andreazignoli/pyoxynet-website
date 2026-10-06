@@ -97,10 +97,11 @@ export function HeroSection() {
           <Button size="lg" asChild>
             <a href="https://app.oxynet.net">Open the Oxynet app →</a>
           </Button>
+          {/* The second door used to be the API docs, which is the right
+              page for one visitor in three. The doors section serves all
+              three, and carries the docs link for the one. */}
           <Button size="lg" variant="outline" asChild>
-            <a href="https://app.oxynet.net/docs" target="_blank" rel="noopener noreferrer">
-              Read the API docs
-            </a>
+            <a href="#doors">Browser, API or MCP ↓</a>
           </Button>
         </motion.div>
 
@@ -113,7 +114,7 @@ export function HeroSection() {
         >
           {[
             { value: String(VENDOR_FORMATS), label: 'Metabolimeter formats read' },
-            { value: 'REST, MCP, Python', label: 'Ways to call it' },
+            { value: 'Browser, API, MCP', label: 'Ways in' },
             { value: String(PEER_REVIEWED_COUNT()), label: 'Peer-reviewed papers' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
@@ -122,16 +123,19 @@ export function HeroSection() {
             </div>
           ))}
         </motion.div>
-      </div>
 
-      {/* Scroll cue */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-ink-faint text-sm"
-      >
-        ↓
-      </motion.div>
+        {/* Scroll cue. In the flow under the stats rather than pinned to the
+            bottom of the viewport: pinned, it sat on top of the stats row on
+            any screen shorter than about 1000px. */}
+        <motion.div
+          aria-hidden="true"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          className="mt-12 pb-10 text-ink-faint text-sm"
+        >
+          ↓
+        </motion.div>
+      </div>
     </section>
   )
 }

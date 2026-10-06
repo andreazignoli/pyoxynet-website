@@ -4,6 +4,9 @@ import { GradientText } from '@/components/shared/gradient-text'
 import { IconResearch, IconSignal } from '@/components/shared/icons'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { UsageTabs } from './usage-tabs'
+import { highlight } from '@/lib/shiki'
+import { CODE_EXAMPLES } from '@/content/code-examples'
 
 const MODELS = [
   {
@@ -22,7 +25,30 @@ const MODELS = [
   },
 ]
 
-export function PackageSection() {
+/**
+ * The open research package, with its code examples.
+ *
+ * These were two sections (the package, then "Code Examples") in the middle of
+ * the product story. They are one now and sit after it: pyoxynet runs the open
+ * research models locally, it is not a door into the engine, and researchers
+ * are the audience for both halves. Still an async Server Component, so Shiki
+ * renders here and never ships to the client.
+ */
+export async function PackageSection() {
+  const [installPipHtml, installGitHtml, usageHtml, generationHtml] = await Promise.all([
+    highlight(CODE_EXAMPLES.install_pip.code, CODE_EXAMPLES.install_pip.lang),
+    highlight(CODE_EXAMPLES.install_git.code, CODE_EXAMPLES.install_git.lang),
+    highlight(CODE_EXAMPLES.basic_usage.code, CODE_EXAMPLES.basic_usage.lang),
+    highlight(CODE_EXAMPLES.generation.code, CODE_EXAMPLES.generation.lang),
+  ])
+
+  const tabs = [
+    { label: 'Install', filename: CODE_EXAMPLES.install_pip.filename, html: installPipHtml },
+    { label: 'Install (git)', filename: CODE_EXAMPLES.install_git.filename, html: installGitHtml },
+    { label: 'Inference', filename: CODE_EXAMPLES.basic_usage.filename, html: usageHtml },
+    { label: 'Generation', filename: CODE_EXAMPLES.generation.filename, html: generationHtml },
+  ]
+
   return (
     <section id="package" className="section-padding border-t border-hairline">
       <div className="section-container">
@@ -71,6 +97,18 @@ export function PackageSection() {
             </GlassCard>
           ))}
         </div>
+
+        {/* `usage` was the old code-examples section's id. */}
+        <SectionWrapper delay={0.15}>
+          <div id="usage" className="scroll-mt-24 max-w-4xl mx-auto mb-10">
+            <p className="text-ink-body text-sm leading-relaxed mb-5">
+              Requires <strong className="text-ink-strong">Python 3.8+</strong>. Pyoxynet
+              automatically handles data interpolation and supports second-by-second,
+              breath-by-breath, and averaged CPET data formats.
+            </p>
+            <UsageTabs tabs={tabs} />
+          </div>
+        </SectionWrapper>
 
         <SectionWrapper delay={0.2}>
           <div className="flex flex-wrap gap-4 justify-center">

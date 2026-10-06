@@ -9,10 +9,10 @@ import { ThemeToggle } from '@/components/shared/theme-toggle'
 const APP_URL = 'https://app.oxynet.net'
 
 const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
+  { label: 'Ways in', href: '/#doors' },
   { label: 'Outputs', href: '/#outputs' },
+  { label: 'Your model', href: '/#custom-models' },
   { label: 'Developers', href: '/developers' },
-  { label: 'Integration', href: '/integration' },
-  { label: 'Package', href: '/#package' },
   { label: 'Publications', href: '/#publications' },
   { label: 'Manual (PDF)', href: '/manual', external: true },
   { label: 'Contact', href: '/#contact' },

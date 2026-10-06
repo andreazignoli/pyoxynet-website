@@ -109,6 +109,11 @@ const config: Config = {
           '0%': { opacity: '0.9', transform: 'scale(1)' },
           '70%, 100%': { opacity: '0', transform: 'scale(2.6)' },
         },
+        // The dashes along a rail in the access diagram. The offset is one
+        // period of the 4/12 dash pattern, so the loop has no visible seam.
+        'rail-dash': {
+          to: { strokeDashoffset: '-16' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -116,6 +121,7 @@ const config: Config = {
         'fade-in': 'fade-in 0.6s ease-out',
         caret: 'caret 1.05s steps(1) infinite',
         'signal-pulse': 'signal-pulse 2.2s cubic-bezier(0.25,0.46,0.45,0.94) infinite',
+        'rail-dash': 'rail-dash 0.9s linear infinite',
       },
     },
   },

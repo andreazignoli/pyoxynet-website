@@ -113,14 +113,20 @@ go in this repo.
 
 ## The demos
 
-The MCP demo is a cinematic, browser-only animation of an AI agent reaching
-Oxynet. It lives on the landing page as `McpDemoSection`, under the developer
-section that makes the claim it carries out. Its anchor is **`agent-demo`**,
-not `demo`: that id belongs to the before/after slider higher up the page, and
-the rail already names that one "Demo".
+Three scripted demos, one per door: the browser (`browser-demo.ts`), the REST
+API (`api-demo.ts`) and the MCP server (`mcp-demo.ts`). On the landing page they
+live in the **three doors section** (`doors-section.tsx`, `#doors`): a flow map
+(export → engine → Browser / API / MCP) that is also the tab selector, and a
+panel under it with the chosen door's copy and its demo. The map is drawn in one
+1000 x 400 frame shared by the SVG viewBox and the percentage-positioned HTML
+nodes, in a box held at the same 5:2 ratio, so rails always meet their nodes;
+below `lg` it becomes a vertical stack. `doors-section.tsx` is a server component
+so the scripts travel as props, not in the client bundle. Old anchors still
+land: `#agents` and `#agent-demo` select the MCP door, `#how-it-works`,
+`#deployment` and `#audience` sit on the section, `#demo` is the slider inside
+`#about`, `#usage` the code tabs inside `#package`.
 
-It is the first of a family (interface, API, MCP), so it is built as a player
-plus a script rather than as one animation:
+The demos are built as a player plus a script rather than as animations:
 
 - `src/content/demos/types.ts` is the contract: a demo is a list of `DemoEvent`s,
   each carrying its own `durationMs`. Nothing in `src/components/demo/` knows what
@@ -302,21 +308,18 @@ src/
       footer.tsx        # Disclaimer, acknowledgments, links
     sections/
       hero-section.tsx        # Full-viewport hero, duck mark + CTAs ('use client')
-      demo-section.tsx        # Before/after compare slider
-      about-section.tsx       # Problem / solution pair
-      measurement-section.tsx # "From classification to measurement" — the hinge
-      outputs-section.tsx     # Four output families incl. oscillation + signal integrity
-      agents-section.tsx      # REST / MCP / OpenAPI / llms.txt
-      audience-section.tsx    # Clinics, manufacturers, researchers
-      how-it-works-section.tsx
-      deployment-section.tsx  # App, API+MCP, Python package
+      about-section.tsx       # Problem / solution pair, then the slider
+      compare-demo.tsx        # Before/after compare slider + domain legend (#demo)
+      doors-section.tsx       # One engine, three doors: Browser / API / MCP (#doors)
+      doors-explorer.tsx      # The flow map, the tab state, the door panel + demo
+      outputs-section.tsx     # Output families incl. oscillation + signal integrity
       validation-section.tsx  # Evidence, with the beta caveat
-      package-section.tsx     # Pyoxynet package info + links
-      usage-section.tsx       # async Server Component: pre-renders Shiki HTML
+      custom-models-section.tsx # Fine-tuned models for labs, clinics, universities
+      package-section.tsx     # async: pyoxynet package + Shiki code tabs (#usage)
       usage-tabs.tsx          # Radix Tabs client component
-      publications-section.tsx # 12 publication cards
-      contact-section.tsx     # Two contact cards with mailto links
-      mcp-demo-section.tsx    # The MCP demo on the landing page (#agent-demo)
+      publications-section.tsx # Publication cards
+      contact-section.tsx     # Three contact intents with mailto links
+      measurement-section.tsx # NOT MOUNTED: "From classification to measurement"
     shared/
       duck-mark.tsx        # The Oxynet mark, inlined (generated from the app repo)
       section-wrapper.tsx  # Framer Motion useInView entrance animation ('use client')
@@ -346,7 +349,7 @@ public/
 ### Key Architecture Decisions
 
 **Server/Client boundary for code tabs:**
-`usage-section.tsx` is an async Server Component that pre-renders all Shiki HTML and passes the strings to `usage-tabs.tsx` (Client Component with Radix Tabs). Shiki never ships to the client.
+`package-section.tsx` is an async Server Component that pre-renders all Shiki HTML and passes the strings to `usage-tabs.tsx` (Client Component with Radix Tabs). Shiki never ships to the client.
 
 **Shiki singleton:**
 `src/lib/shiki.ts` creates one `Highlighter` instance reused across requests. Theme: `github-dark-dimmed`, langs: `python`, `sh`, `bash`.

@@ -3,29 +3,23 @@
 import { useEffect, useState } from 'react'
 
 /**
- * Where you are on a 14,845 pixel page.
+ * Where you are on a long page.
  *
- * Fourteen sections, about seventeen screens. The navbar names seven of them and
- * never says which one you are in, so finding something a second time meant
- * scrolling for it. This is the second, quieter axis: it holds all fourteen and
+ * It was fourteen sections when this rail was added; the page was regrouped
+ * into nine in 2026-10. The navbar still never says which one you are in, so
+ * this is the second, quieter axis: it holds all of them and
  * never competes with "Open the app", which stays the only button in the bar.
  *
  * Deliberately absent below `xl`. On a narrow window there is no room beside the
  * content, and a rail that overlaps the text is worse than no rail.
  */
 const SECTIONS = [
-  { id: 'demo', label: 'Demo' },
   { id: 'about', label: 'About' },
-  { id: 'measurement', label: 'Measurement' },
+  { id: 'doors', label: 'Three ways in' },
   { id: 'outputs', label: 'Outputs' },
-  { id: 'agents', label: 'For developers' },
-  { id: 'agent-demo', label: 'Agent demo' },
-  { id: 'audience', label: 'Who it is for' },
-  { id: 'how-it-works', label: 'How it works' },
-  { id: 'deployment', label: 'Deployment' },
   { id: 'validation', label: 'Validation' },
-  { id: 'package', label: 'Package' },
-  { id: 'usage', label: 'Usage' },
+  { id: 'custom-models', label: 'Your own model' },
+  { id: 'package', label: 'Open source' },
   { id: 'publications', label: 'Publications' },
   { id: 'contact', label: 'Contact' },
 ]
