@@ -6,14 +6,13 @@ import type { Publication } from '@/types'
  * are writing about the work and not evidence for it. The site and the PDF
  * manual both count from here, so the two cannot drift.
  */
-export const PEER_REVIEWED_COUNT = (): number =>
-  PUBLICATIONS.filter(
-    (p) =>
-      (p.type === 'research' || p.type === 'review') &&
-      p.year !== undefined &&
-      p.journal !== undefined &&
-      p.journal !== 'Preprint'
-  ).length
+export const isPeerReviewed = (p: Publication): boolean =>
+  (p.type === 'research' || p.type === 'review') &&
+  p.year !== undefined &&
+  p.journal !== undefined &&
+  p.journal !== 'Preprint'
+
+export const PEER_REVIEWED_COUNT = (): number => PUBLICATIONS.filter(isPeerReviewed).length
 
 export const PUBLICATIONS: Publication[] = [
   {
