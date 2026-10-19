@@ -365,7 +365,11 @@ The `.glass` class is defined in `globals.css` — `background: rgba(255,255,255
 
 ## Deployment
 
-The site deploys automatically on Vercel from the `next` branch.
+Vercel deploys production from **`main`**: a push to `main` is a release, live in about
+90 seconds. Settled on 2026-10-15 from GitHub's deployment records (`gh api
+repos/andreazignoli/pyoxynet-website/deployments`), where every production deployment is a
+`main` commit; `579ba5b` went live that way. The project was originally wired to `next`,
+which is stale and deploys nothing.
 
 To run locally:
 ```bash
@@ -377,8 +381,14 @@ To deploy:
 git push origin main   # Vercel picks it up automatically
 ```
 
-Confirm the production branch in the Vercel dashboard before pushing — the project was
-originally wired to `next`, and `main` has since become the branch carrying the work.
+## `/llms.txt`
+
+`src/app/llms.txt/route.ts` serves www.oxynet.net/llms.txt as a static text route (added
+2026-10-15; the address was a 404 before). It says what Oxynet is and links to the app's
+`llms.txt` and `llms-full.txt` for the API rather than restating them. Nothing in it is
+typed: the format count is `VENDOR_FORMATS`, the documentation list is `DEV_NAV`, and the
+publications are filtered with `isPeerReviewed` from `content/publications.ts`, the rule
+the site and the manual count by. A new developer page appears there automatically.
 
 ### DNS / Domain
 Point `www.oxynet.net` to Vercel using the A records or CNAME provided in the Vercel dashboard under "Domains".
