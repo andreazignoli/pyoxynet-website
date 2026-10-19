@@ -9,17 +9,17 @@
  *
  * Decided by the founder on 2026-10-19: the provider is Andrea Zignoli,
  * self-employed, in Verona, until the company exists; Italian law; the courts of
- * Verona. Fields left null are rendered as a visible gap, never guessed.
+ * Verona. A field left null is rendered as a visible gap, never guessed.
  */
 
 export const PROVIDER = {
   name: 'Andrea Zignoli',
   form: 'self-employed',
-  city: 'Verona, Italy',
-  /** Business address. Required in a legal notice; not yet supplied. */
-  address: null as string | null,
-  /** Partita IVA. Required in a legal notice; not yet supplied. */
-  vat: null as string | null,
+  city: '37124 Verona, Italy',
+  /** Business address, as the founder chose to publish it (no house number). */
+  address: 'Via A. Milani, Parona' as string | null,
+  /** Partita IVA (check digit verified 2026-10-19; office code 023, Verona). */
+  vat: '04833240239' as string | null,
   email: 'andrea.zignoli@unitn.it',
   courts: 'Verona, Italy',
 } as const
