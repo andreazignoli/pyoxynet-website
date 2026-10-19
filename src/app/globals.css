@@ -241,3 +241,15 @@ html {
   background: transparent !important;
   font-size: inherit;
 }
+
+/* Printing a page, a lawyer reading the terms on paper above all: no fixed
+   navbar repeated on every sheet, no footer, no top padding left for the bar. */
+@media print {
+  body > nav,
+  footer {
+    display: none !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+}
