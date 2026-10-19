@@ -60,9 +60,10 @@ export default function TermsPage() {
       <Section id="who-may" title="3. Who may use free keys">
         <Prose>
           <p>
-            Free API keys are for professionals, researchers and students aged 18 or over. They are
-            not for personal medical decisions. Each person may hold one free key, tied to the email
-            address you sign in with.
+            Free API keys are for professionals, researchers and students aged 18 or over, for
+            research and testing only. They are not for clinical use or for personal medical
+            decisions. Each person may hold one free key, tied to the email address you sign in
+            with.
           </p>
           <p>
             <strong>Your key is personal.</strong> Do not share it, and do not put it in code or files
@@ -174,6 +175,24 @@ export default function TermsPage() {
           <p>
             When these terms change, we publish the new version here with its date. For a change of
             substance, you are asked to accept the new version the next time you sign in.
+          </p>
+        </Prose>
+      </Section>
+
+      {/* Arts. 1341-1342 c.c.: in standard terms, clauses that let the provider
+          suspend or end the service, limit its liability or fix the court bind
+          the other party only if approved specifically and separately. The
+          sign-up page has a second tick box naming these sections, stored with
+          the key (oxynet-core, signup-terms-v2). Keep the section numbers in step. */}
+      <Section id="specific-approval" title="12. Clauses approved specifically">
+        <Prose>
+          <p>
+            Under articles 1341 and 1342 of the Italian Civil Code, when you get a free key you
+            approve specifically, with a separate tick box, sections{' '}
+            <a href="#acceptable-use">6</a> (acceptable use and revocation of keys),{' '}
+            <a href="#availability">8</a> (availability and changes to the free tier),{' '}
+            <a href="#liability">9</a> (liability) and <a href="#law">10</a> (law and the courts of{' '}
+            {PROVIDER.courts}).
           </p>
         </Prose>
       </Section>
