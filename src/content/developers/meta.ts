@@ -11,8 +11,8 @@ import results from '../../../manual/data/api-results.json'
 
 export const DOCS = {
   /** Bump when a page changes in a way an integrator would care about. */
-  version: '1.0',
-  updated: '2026-09-22',
+  version: '1.1',
+  updated: '2026-10-19',
   /** The only API version that exists. Matches `info.version` in the OpenAPI schema. */
   apiVersion: 'v1',
 } as const

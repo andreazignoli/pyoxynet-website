@@ -29,14 +29,15 @@ export default function DataHandlingPage() {
         <Facts
           rows={[
             ['Uploaded bytes', 'Parsed from a temporary file and discarded. Never written to storage.'],
-            ['Parsed record', 'Kept so later calls can name it by cpet_id. Deleted 24 hours after upload by default.'],
+            ['Parsed record', 'Kept so later calls can name it by cpet_id. Deleted 24 hours after upload by default, and gone from the storage’s version history within about two days of deletion.'],
             ['Longer retention', 'Only when the caller asks (retain_hours), up to 168 hours. retain_hours: 0 expires it immediately.'],
             ['Where it lives', 'Amazon Web Services, region eu-central-1 (Frankfurt, Germany): the service on AWS App Runner, parsed records and models in Amazon S3. AWS is the only infrastructure provider that holds uploaded data.'],
             ['Encryption', 'HTTPS in transit. AES-256 server-side encryption at rest. Public access to the storage is blocked.'],
             ['Deletion on demand', <><code key="d">DELETE /v1/cpet/{'{id}'}</code> or the MCP tool <code key="m">delete_cpet</code>, at any time.</>],
             ['After expiry', <>The record reads back as <code key="n">CPET_NOT_FOUND</code>. Expired records are swept hourly.</>],
             ['Isolation', 'Records are partitioned per API key. One key cannot read another’s uploads.'],
-            ['What persists', 'A monthly count of analyses per API key, with the key’s name and a timestamp. It holds nothing from any recording. Logs record the record id, the detected format and the byte count, never file contents or filenames.'],
+            ['What persists', 'Counts of analyses per API key: per month, to apply its limit, and per hour by analysis, route (API, assistant, skill or browser), file format and outcome. They are tied to a one-way fingerprint of the key and hold nothing from any recording.'],
+            ['Logs', 'The request, the record id, the key’s fingerprint, the detected format, the byte count and the outcome. Never file contents, filenames, keys, key holders’ names or results. Deleted after 30 days.'],
             ['Results', 'Returned to the caller and not stored server-side.'],
             ['Failed parses', 'An unreadable file returns a structural probe (byte and delimiter counts) that carries none of its content.'],
             ['Upload URLs', 'One-shot, valid 5 minutes, carrying their own credential, so a script that posts a file handles no API key.'],
