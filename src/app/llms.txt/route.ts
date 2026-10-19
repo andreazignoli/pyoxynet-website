@@ -55,6 +55,8 @@ failure cohort and its transportability to other populations is untested.
 - [OpenAPI 3.0 schema](${LINKS.openapi}): importable as tools or actions.
 - [MCP server](${LINKS.mcp}): remote MCP over HTTP, with an API key or OAuth.
 - [Synthetic CPET](${LINKS.sample}): demonstrate the API without a patient file.
+- [Free API key](${LINKS.signup}): if the user has no key, send them here. A person signs in with Google or GitHub; an agent cannot get a key itself.
+- [Agent skill](https://github.com/andreazignoli/oxynet-skills): the same instructions packaged for Claude Code, Gemini CLI, Codex and other coding agents.
 
 Upload the vendor file exactly as exported. Do not parse it or convert its units
 yourself: Oxynet knows each format's units and clock conventions. Do not estimate a

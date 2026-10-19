@@ -11,7 +11,7 @@ import results from '../../../manual/data/api-results.json'
 
 export const DOCS = {
   /** Bump when a page changes in a way an integrator would care about. */
-  version: '1.1',
+  version: '1.2',
   updated: '2026-10-19',
   /** The only API version that exists. Matches `info.version` in the OpenAPI schema. */
   apiVersion: 'v1',
@@ -37,6 +37,8 @@ export const API_BASE = 'https://app.oxynet.net'
 
 export const LINKS = {
   app: 'https://app.oxynet.net',
+  /** Free self-serve API keys, open since 2026-10-19. */
+  signup: 'https://app.oxynet.net/signup',
   apiDocs: 'https://app.oxynet.net/docs',
   openapi: 'https://app.oxynet.net/v1/openapi.json',
   llms: 'https://app.oxynet.net/llms.txt',

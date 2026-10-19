@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { DocHeader, Section, Prose, Callout, Card, Facts, NextSteps } from '@/components/developers/doc'
 import { CodeBlock } from '@/components/shared/code-block'
 import { readExample } from '@/lib/examples'
-import { MAILTO, RECORDED } from '@/content/developers/meta'
+import { LINKS, MAILTO, RECORDED } from '@/content/developers/meta'
 import results from '../../../../manual/data/api-results.json'
 
 export const metadata: Metadata = {
@@ -70,15 +70,23 @@ export default function QuickStartPage() {
         <Prose>
           <p>
             Every call except the public ones below needs an API key in the{' '}
-            <code>X-API-Key</code> header. Keys are issued by Oxynet on request; there is no
-            self-service signup yet. A key starts with <code>sk_live_</code> and grants specific
-            analyses (thresholds, oscillation and substrate are licensed separately), so the first
-            call with it should be <code>GET /v1/capabilities</code>.
+            <code>X-API-Key</code> header. <strong>A free key takes a minute</strong>: sign in with
+            Google or GitHub at app.oxynet.net/signup and it is shown to you once, with the one
+            command that saves it for your system. Free keys are for research and testing with
+            de-identified data, with a monthly limit stated on that page. For more, or for clinical
+            use under a data processing agreement, request a key for your organisation.
+          </p>
+          <p>
+            A key starts with <code>sk_live_</code> and grants specific analyses, so the first call
+            with it should be <code>GET /v1/capabilities</code>.
           </p>
         </Prose>
         <div className="flex flex-wrap gap-3 my-6">
-          <a href={MAILTO.key} className="inline-flex items-center gap-1.5 text-sm font-medium bg-accent-fill text-black rounded-lg px-4 py-2 hover:bg-accent/85 transition-colors">
-            Request an API key
+          <a href={LINKS.signup} className="inline-flex items-center gap-1.5 text-sm font-medium bg-accent-fill text-black rounded-lg px-4 py-2 hover:bg-accent/85 transition-colors">
+            Get a free API key
+          </a>
+          <a href={MAILTO.key} className="inline-flex items-center text-sm font-medium border border-hairline rounded-lg px-4 py-2 hover:border-accent/40 transition-colors text-ink-strong">
+            Request a key for your organisation
           </a>
           <Link href="/developers/api/v1#auth" className="inline-flex items-center text-sm font-medium border border-hairline rounded-lg px-4 py-2 hover:border-accent/40 transition-colors text-ink-strong">
             How authentication works
@@ -86,12 +94,6 @@ export default function QuickStartPage() {
         </div>
         <Prose className="mb-4"><p>While you wait, this much works without one:</p></Prose>
         <CodeBlock code={NO_KEY} lang="sh" copy />
-        <Callout tone="todo" title="Not yet available" className="mt-6">
-          <p>
-            A self-service sandbox key. Until one exists, a request with a sentence on what you
-            want to build is enough to receive a trial key.
-          </p>
-        </Callout>
       </Section>
 
       <Section id="sample" title="2. Get sample data">
