@@ -174,7 +174,8 @@ export default function TermsPage() {
         <Prose>
           <p>
             When these terms change, we publish the new version here with its date. For a change of
-            substance, you are asked to accept the new version the next time you sign in.
+            substance, you are asked to accept the new version before you can get or replace a key. A
+            key you already hold keeps working under the version you accepted until it expires.
           </p>
         </Prose>
       </Section>
