@@ -5,6 +5,6 @@ const SITE = 'https://www.oxynet.net'
 
 /** The indexable pages. The recording stage (/demo/clip) is noindex and left out on purpose. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ['/', '/integration', '/demo', ...DEV_PAGES.map((p) => p.href)]
+  const pages = ['/', '/integration', '/demo', ...DEV_PAGES.map((p) => p.href), '/terms', '/privacy']
   return pages.map((p) => ({ url: `${SITE}${p === '/' ? '' : p}` }))
 }

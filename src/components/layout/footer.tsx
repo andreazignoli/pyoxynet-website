@@ -117,8 +117,10 @@ export function Footer() {
               </a>
               .
             </p>
-            <p className="text-ink-faint">
-              Built with Next.js &amp; Vercel
+            <p className="text-ink-faint flex items-center gap-4">
+              <a href="/terms" className="hover:text-ink-body underline">Terms of use</a>
+              <a href="/privacy" className="hover:text-ink-body underline">Privacy policy</a>
+              <span>Built with Next.js &amp; Vercel</span>
             </p>
           </div>
         </div>
