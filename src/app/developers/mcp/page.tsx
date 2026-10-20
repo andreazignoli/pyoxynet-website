@@ -32,7 +32,7 @@ const TOOL_SUMMARY = {
   delete_cpet: 'Remove a recording now rather than at the 24 h expiry.',
 } satisfies Record<McpToolName, string>
 
-const DESKTOP = `Settings → Connectors → Add custom connector
+const DESKTOP = `Not in the directory list? Settings → Connectors → Add custom connector
 URL: ${LINKS.mcp}
 Leave the other fields blank. A browser opens and asks for the API key once.`
 
@@ -118,7 +118,7 @@ export default function McpPage() {
           rows={[
             ['Endpoint', <code key="e">{LINKS.mcp}</code>],
             ['Transport', 'Streamable HTTP'],
-            ['Authentication', <>An <code key="k">X-API-Key</code> header, or OAuth in clients that use it (Claude Desktop), where the login is the same API key</>],
+            ['Authentication', <>An <code key="k">X-API-Key</code> header, or OAuth in clients that use it (Claude, Claude Code), where the login is the same API key</>],
             ['Key', <><a key="s" href={LINKS.signup} className="text-accent hover:underline">Free at app.oxynet.net/signup</a>, or <Link key="l" href="/developers/quickstart#access" className="text-accent hover:underline">issued by Oxynet</Link> for an organisation. The MCP server and REST share one key.</>],
           ]}
         />
@@ -128,9 +128,14 @@ export default function McpPage() {
             <CodeBlock code={claude.code} lang="bash" filename="mcp/claude-code.sh" download={claude.href} copy />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-ink-strong mb-3">Claude Desktop</h3>
+            <h3 className="text-sm font-semibold text-ink-strong mb-3">Claude (web, Desktop, mobile)</h3>
+            <p className="text-sm text-ink-body mb-3">
+              Oxynet is in Claude&apos;s connector directory:{' '}
+              <a href={LINKS.claudeDirectory} className="text-accent hover:underline">open the Oxynet listing</a>,
+              connect, and paste the API key once on Oxynet&apos;s sign-in page.
+            </p>
             <CodeBlock code={DESKTOP} lang="sh" />
-            <p className="text-xs text-ink-faint mt-2">Desktop has no shell, so files are attached to the chat and uploaded with <code className="font-mono">upload_cpet</code>.</p>
+            <p className="text-xs text-ink-faint mt-2">These apps have no shell, so files are attached to the chat and uploaded with <code className="font-mono">upload_cpet</code>.</p>
           </div>
           <div>
             <h3 className="text-sm font-semibold text-ink-strong mb-3">Gemini CLI</h3>
