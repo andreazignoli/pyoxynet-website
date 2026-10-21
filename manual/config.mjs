@@ -15,8 +15,8 @@
 import { groupedPublications } from './publications.mjs'
 import { VENDOR_FORMATS } from './generated/registry.mjs'
 
-export const VERSION = '2.1'
-export const DATE = 'September 2026'
+export const VERSION = '2.2'
+export const DATE = 'October 2026'
 
 export const ENGINE = {
   api: 'v1',
@@ -72,6 +72,8 @@ export const OUTPUT = {
 }
 
 export const CHANGELOG = [
+  ['2.2', 'October 2026',
+    'The assistant tools now run one analysis each: analyze_vt, analyze_eov and analyze_substrate replace analyze_cpet, which took a list, so the lifecycle code and the agent transcript name them. The REST API is unchanged. No other change.'],
   ['2.1', 'September 2026',
     'The format count on 3.1 was typed as twenty-one and is now generated from the parser, like every other statement of it. No other change.'],
   ['1.0', 'September 2026', 'First edition.'],

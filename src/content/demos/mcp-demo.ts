@@ -18,7 +18,7 @@ import { DOMAINS, type McpToolName } from '../../generated/registry'
  *     URL, and the bytes then travel by curl. Reading a 360 KB export into the
  *     conversation costs about 97,000 tokens and gains nothing, so the upload
  *     is a shell step, not a tool call.
- *   - `analyze_cpet` returns `quality`, which describes the RECORDING. It is
+ *   - `analyze_vt` returns `quality`, which describes the RECORDING. It is
  *     not a confidence in the answer, and the docstring is explicit that no
  *     numeric confidence exists to quote. The interpretation says so.
  *
@@ -46,7 +46,9 @@ const TOOL_SUMMARIES = {
   get_cpet: 'Format, channels, sampling, protocol',
   list_metrics: 'The derived-quantity registry',
   compute_metrics: 'Phases, gas quality, sampling',
-  analyze_cpet: 'Thresholds, oscillation, substrate',
+  analyze_vt: 'Ventilatory thresholds',
+  analyze_eov: 'Oscillatory ventilation (beta)',
+  analyze_substrate: 'Fat and carbohydrate use',
   get_cpet_series: 'Downsampled signals, to plot',
   delete_cpet: 'Remove the recording now',
 } satisfies Record<McpToolName, string>
@@ -219,8 +221,8 @@ export const mcpDemo: DemoScript = {
       id: 'call-analyze',
       kind: 'tool-call',
       chapter: 'Analysis',
-      tool: 'analyze_cpet',
-      input: { cpet_id: CPET_ID, analyses: ['vt'] },
+      tool: 'analyze_vt',
+      input: { cpet_id: CPET_ID },
       steps: [
         'Normalising breath-by-breath data',
         'Detecting exercise phases',
@@ -260,7 +262,7 @@ export const mcpDemo: DemoScript = {
       chapter: 'Thresholds',
       title: 'Ventilatory thresholds',
       caption:
-        'Returned by analyze_cpet. Every breath is coloured by the domain the model assigned it. The zone probabilities below run independently, so their crossings are the thresholds.',
+        'Returned by analyze_vt. Every breath is coloured by the domain the model assigned it. The zone probabilities below run independently, so their crossings are the thresholds.',
       metrics: [
         {
           label: 'VT1',
