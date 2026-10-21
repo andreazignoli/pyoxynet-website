@@ -175,7 +175,7 @@ covers the individual `tool:` calls. Three things there are easy to get wrong an
 any script that guesses: `get_capabilities` is called first, because the
 analyses are licensed separately; a file named by path goes through
 `create_upload` and then a **curl**, because Oxynet mints a one-shot URL rather
-than taking bytes through the conversation; and `analyze_cpet` returns a
+than taking bytes through the conversation; and `analyze_vt` returns a
 `quality` that describes the recording, never a confidence in the answer. The
 demo says so out loud, and the values are invented, which is what the
 "simulated interaction" line under the window is for.

@@ -81,7 +81,7 @@ tells the reader that nothing in the document is simulated, so those numbers are
 refreshed by re-running the API, never by editing the file:
 
 1. `create_upload()`, then POST `data/reference-test.json` to the URL returned.
-2. `analyze_cpet(cpet_id, ["vt", "eov", "substrate"])`.
+2. `analyze_vt`, `analyze_eov` and `analyze_substrate` on that `cpet_id`.
 3. `compute_metrics(cpet_id, [...])` for the metrics block.
 4. Paste the responses in, keep `_provenance` accurate, rebuild.
 

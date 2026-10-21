@@ -88,7 +88,8 @@ Every number in Part Two is a real API response, recorded in
 so the numbers must not be hand-edited. To refresh them:
 
 1. `create_upload()`, then POST `data/reference-test.json` to the URL it returns.
-2. `analyze_cpet(cpet_id, ["vt", "eov", "substrate"])`.
+2. `analyze_vt`, `analyze_eov` and `analyze_substrate` on that `cpet_id` (one
+   tool per analysis since 2026-10-21; REST `analyze` still takes the list).
 3. `compute_metrics(cpet_id, [...])` for the metrics block.
 4. Paste the responses into `data/api-results.json`, keeping `_provenance`
    accurate, and rebuild.
@@ -107,7 +108,7 @@ correct data is all they need.
   resting span the engine excluded, which it does report, but the full
   rest / warm-up / exercise / recovery annotation is not on the MCP surface.
   Draw the bands when the API returns them.
-- **Two paths, two answers, both printed.** `analyze_cpet` (upload, parsed and
+- **Two paths, two answers, both printed.** `analyze_vt` (upload, parsed and
   conditioned) puts the thresholds at 619 and 763 s; `predict_cpet` (raw
   records) puts them at 613 and 768 s. Same model and weights, different
   conditioning. Section 2.3 states both rather than reconciling them. If the
