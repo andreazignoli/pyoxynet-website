@@ -11,8 +11,8 @@ import results from '../../../manual/data/api-results.json'
 
 export const DOCS = {
   /** Bump when a page changes in a way an integrator would care about. */
-  version: '1.4',
-  updated: '2026-10-21',
+  version: '1.5',
+  updated: '2026-10-27',
   /** The only API version that exists. Matches `info.version` in the OpenAPI schema. */
   apiVersion: 'v1',
 } as const
@@ -46,6 +46,8 @@ export const LINKS = {
   mcp: 'https://app.oxynet.net/oxynet-mcp',
   /** Oxynet's listing in Claude's connector directory, published 2026-10-20. Opens for anyone signed in to Claude. */
   claudeDirectory: 'https://claude.ai/directory/oxynet',
+  /** The server's entry in the official MCP Registry, published 2026-10-27 (registry API, JSON). */
+  mcpRegistry: 'https://registry.modelcontextprotocol.io/v0.1/servers?search=net.oxynet/cpet',
   sample: 'https://app.oxynet.net/v1/sample',
   manual: '/manual',
   /** The data transfer agreement template (fillable PDF). Linked, not indexed. */

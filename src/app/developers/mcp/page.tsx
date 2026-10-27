@@ -120,6 +120,7 @@ export default function McpPage() {
           rows={[
             ['Endpoint', <code key="e">{LINKS.mcp}</code>],
             ['Transport', 'Streamable HTTP'],
+            ['MCP Registry', <><a key="r" href={LINKS.mcpRegistry} className="text-accent hover:underline"><code>net.oxynet/cpet</code></a> in the official MCP Registry, for clients that install servers from it</>],
             ['Authentication', <>An <code key="k">X-API-Key</code> header, or OAuth in clients that use it (Claude, Claude Code), where the login is the same API key</>],
             ['Key', <><a key="s" href={LINKS.signup} className="text-accent hover:underline">Free at app.oxynet.net/signup</a>, or <Link key="l" href="/developers/quickstart#access" className="text-accent hover:underline">issued by Oxynet</Link> for an organisation. The MCP server and REST share one key.</>],
           ]}
