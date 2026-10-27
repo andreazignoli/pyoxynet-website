@@ -55,6 +55,7 @@ failure cohort and its transportability to other populations is untested.
 - [OpenAPI 3.0 schema](${LINKS.openapi}): importable as tools or actions.
 - [MCP server](${LINKS.mcp}): remote MCP over HTTP, with an API key or OAuth.
 - [Oxynet in Claude's connector directory](${LINKS.claudeDirectory}): for people using Claude on the web, Desktop or mobile. Connect there and sign in once with the API key.
+- [Official MCP Registry entry](${LINKS.mcpRegistry}): \`net.oxynet/cpet\`, for clients that install servers from the registry.
 - [Synthetic CPET](${LINKS.sample}): demonstrate the API without a patient file.
 - [Free API key](${LINKS.signup}): if the user has no key, send them here. A person signs in with Google or GitHub; an agent cannot get a key itself.
 - [Agent skill](https://github.com/andreazignoli/oxynet-skills): the same instructions packaged for Claude Code, Gemini CLI, Codex and other coding agents.
