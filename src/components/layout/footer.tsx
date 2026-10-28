@@ -30,6 +30,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {[
                 { label: 'Oxynet app', href: 'https://app.oxynet.net' },
+                { label: 'VT1 and VT2 from a CPET file', href: '/ventilatory-thresholds' },
                 { label: 'Developers and partners', href: '/developers' },
                 { label: 'Integration', href: '/integration' },
                 { label: 'Data transfer agreement', href: '/data-agreement' },

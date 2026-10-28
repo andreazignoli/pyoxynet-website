@@ -2,6 +2,7 @@ import { DEV_NAV } from '@/content/developers/nav'
 import { LINKS } from '@/content/developers/meta'
 import { VENDOR_FORMATS } from '@/content/facts'
 import { PUBLICATIONS, isPeerReviewed } from '@/content/publications'
+import { VENDOR_GUIDES, guideHref } from '@/content/thresholds'
 
 /**
  * www.oxynet.net/llms.txt, the index an agent or crawler reads before the pages.
@@ -32,6 +33,12 @@ const docs = DEV_NAV.map(
 const evidence = PUBLICATIONS.filter(isPeerReviewed)
   .map((p) => `- [${p.title}](${p.url}): ${p.journal}, ${p.year}`)
   .join('\n')
+
+// The guides for a person holding a CPET file, from the same list as their pages.
+const guides = [
+  `- [VT1 and VT2 from a CPET file](${SITE}/ventilatory-thresholds): the three ways to run it, what comes back, who decides the threshold, common questions.`,
+  ...VENDOR_GUIDES.map((g) => `- [${g.title}](${SITE}${guideHref(g)}): which ${g.vendor} exports are read and what the parser handles in them.`),
+].join('\n')
 
 const BODY = `# Oxynet
 
@@ -64,6 +71,10 @@ Upload the vendor file exactly as exported. Do not parse it or convert its units
 yourself: Oxynet knows each format's units and clock conventions. Do not estimate a
 threshold from the trace either. The assistant routes the question and explains the
 answer; Oxynet's validated models decide the physiology.
+
+## If a person asks how to find VT1 and VT2 in their file
+
+${guides}
 
 ${docs}
 
