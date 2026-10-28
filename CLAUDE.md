@@ -273,6 +273,14 @@ the orchestration repo, `docs/visibility.md`).
 - Each vendor page names the vendor descriptively and says Oxynet is not affiliated with it.
   Shared frame and sections are in `components/thresholds/guide.tsx`.
 
+**Getting a new page fetched.** The site is a verified Domain property in Google Search
+Console, and Bing Webmaster Tools imported it from there (2026-10-28). After a deploy that adds
+or substantially changes a page, run `scripts/indexnow.sh <path> ...` (no arguments submits the
+whole live sitemap). That tells Bing and the other IndexNow engines; Google does not read
+IndexNow, so request indexing in Search Console's URL Inspection instead. The key file
+`public/1b409840bb393cb886a19730b82a760b.txt` is public by design and must stay deployed,
+because IndexNow verifies ownership by fetching it.
+
 ## Tech Stack
 
 - **Framework:** Next.js 14 (App Router, TypeScript)
