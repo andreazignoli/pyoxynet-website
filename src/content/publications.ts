@@ -66,7 +66,7 @@ export const PUBLICATIONS: Publication[] = [
     description:
       'Combining crowdsourced expert labels with convolutional neural networks for CPET intensity domain classification.',
     url: 'https://doi.org/10.1080/17461391.2020.1866081',
-    year: 2021,
+    year: 2022,
     journal: 'European Journal of Sport Science',
   },
   {
