@@ -62,10 +62,9 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               {[
-                { label: 'TensorFlow / TFLite', href: 'https://www.tensorflow.org/lite/guide/inference' },
+                { label: 'TensorFlow', href: 'https://www.tensorflow.org/' },
                 { label: 'Keras', href: 'https://keras.io/' },
-                { label: 'Amazon Lightsail', href: 'https://aws.amazon.com/getting-started/hands-on/serve-a-flask-app/' },
-                { label: 'Flask', href: 'https://flask.palletsprojects.com/en/2.0.x/' },
+                { label: 'LiteRT', href: 'https://ai.google.dev/edge/litert' },
                 { label: 'Uniplot', href: 'https://github.com/olavolav/uniplot' },
                 { label: 'Exercise Thresholds', href: 'https://www.exercisethresholds.com/' },
               ].map((link) => (

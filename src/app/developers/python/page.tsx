@@ -41,11 +41,11 @@ else:
 
 const LOCAL = `import pyoxynet
 
-# Load the TFLite model
-tfl_model = pyoxynet.load_tf_model(n_inputs=5, past_points=40, model='CNN')
+# The bundled example test, through the default model
+out_df, thresholds = pyoxynet.test_pyoxynet()
 
-# Make inference on a random input
-pyoxynet.test_pyoxynet(tfl_model)`
+print(thresholds['VT1']['time'], round(thresholds['VT1']['VO2']))  # 372 2979
+print(thresholds['VT2']['time'], round(thresholds['VT2']['VO2']))  # 550 3656`
 
 export default function PythonPage() {
   const full = readExample('examples/python/quickstart.py')
@@ -75,7 +75,7 @@ export default function PythonPage() {
               </tr>
             </thead>
             <tbody className="[&_td]:px-4 [&_td]:py-2.5 [&_td]:align-top [&_tr]:border-t [&_tr]:border-hairline">
-              <tr><td className="text-ink-subtle">What runs</td><td className="text-ink-body">The production engine: every analysis on the <Link href="/developers/analyses" className="text-accent hover:underline">catalogue</Link></td><td className="text-ink-body">The package&apos;s own research models (intensity-domain inference, synthetic CPET generation)</td></tr>
+              <tr><td className="text-ink-subtle">What runs</td><td className="text-ink-body">The production engine: every analysis on the <Link href="/developers/analyses" className="text-accent hover:underline">catalogue</Link></td><td className="text-ink-body">Two frozen research models from the papers (intensity domains, VT1 and VT2) and a synthetic CPET generator</td></tr>
               <tr><td className="text-ink-subtle">Vendor files</td><td className="text-ink-body">Read as exported, format detected</td><td className="text-ink-body">You prepare the input table yourself</td></tr>
               <tr><td className="text-ink-subtle">Where data goes</td><td className="text-ink-body">To app.oxynet.net, see <Link href="/developers/data-handling" className="text-accent hover:underline">Data handling</Link></td><td className="text-ink-body">Nowhere; runs on your machine</td></tr>
               <tr><td className="text-ink-subtle">Access</td><td className="text-ink-body">API key</td><td className="text-ink-body">Open source (MIT), no key</td></tr>
@@ -86,7 +86,8 @@ export default function PythonPage() {
         <p className="text-xs text-ink-faint mt-3 max-w-3xl">
           Results from the package are not guaranteed to match the hosted engine: the two are
           separate codebases, the package does not include the hosted parsers or signal
-          conditioning, and its models are maintained separately.
+          conditioning, and its models are the frozen research models, not the ones the hosted
+          engine runs.
         </p>
       </Section>
 
@@ -144,7 +145,8 @@ export default function PythonPage() {
           rows={[
             ['Install', <code key="i">pip install pyoxynet</code>],
             ['Version', `${PYOXYNET.version} on PyPI`],
-            ['Python', PYOXYNET.python],
+            ['Python', `${PYOXYNET.python}; Windows, Linux, macOS (Apple silicon)`],
+            ['Models', 'CNN (default, evaluated in Keir et al., Sports Medicine 2026) and LSTM; frozen'],
             ['Licence', PYOXYNET.license],
             ['Source', <a key="s" href={LINKS.pyoxynetRepo} className="text-accent hover:underline">github.com/andreazignoli/pyoxynet</a>],
             ['Documentation', <a key="d" href={LINKS.pyoxynetDocs} className="text-accent hover:underline">pyoxynet.readthedocs.io</a>],
@@ -152,10 +154,10 @@ export default function PythonPage() {
         />
         <Prose className="my-5">
           <p>
-            Model inference needs an extra: <code>pip install &quot;pyoxynet[tflite]&quot;</code>{' '}
-            (with the extra index URL given in the package README) or{' '}
-            <code>pip install &quot;pyoxynet[full]&quot;</code> for TensorFlow. The README&apos;s
-            own example:
+            The models are LiteRT files and run without TensorFlow. The input is a table with
+            the columns <code>time</code>, <code>VO2_I</code>, <code>VCO2_I</code>,{' '}
+            <code>VE_I</code>, <code>PetO2_I</code> and <code>PetCO2_I</code>, which you prepare
+            from your export. The README&apos;s own example:
           </p>
         </Prose>
         <CodeBlock code={LOCAL} lang="python" filename="from the pyoxynet README" copy />

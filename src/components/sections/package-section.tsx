@@ -11,10 +11,10 @@ import { CODE_EXAMPLES } from '@/content/code-examples'
 const MODELS = [
   {
     Icon: IconResearch,
-    title: 'Inference Model',
+    title: 'Inference Models',
     description:
-      'Estimates exercise intensity domains from CPET data with high accuracy. Supports VO₂, VCO₂, VE, PetO₂, PetCO₂, VE/VO₂, and VE/VCO₂ inputs.',
-    badge: 'TFLite',
+      'Two frozen models from the papers: the CNN evaluated in Sports Medicine (2026) and an LSTM. They read VO₂, VCO₂, VE, PetO₂ and PetCO₂ and place VT1 and VT2.',
+    badge: 'LiteRT',
   },
   {
     Icon: IconSignal,
@@ -61,8 +61,8 @@ export async function PackageSection() {
               The <GradientText>Pyoxynet</GradientText> Package
             </h2>
             <p className="text-ink-body max-w-2xl mx-auto text-lg leading-relaxed">
-              The open research side of Oxynet: the models and tools, in a package you can import.
-              Built with{' '}
+              The open research side of Oxynet: the models from the papers, in a package you can
+              import. Trained with{' '}
               <a
                 href="https://keras.io/"
                 target="_blank"
@@ -80,7 +80,7 @@ export async function PackageSection() {
               >
                 TensorFlow
               </a>
-              , models available in efficient TFLite format.
+              , run with LiteRT, so the package needs neither.
             </p>
           </div>
         </SectionWrapper>
@@ -102,9 +102,9 @@ export async function PackageSection() {
         <SectionWrapper delay={0.15}>
           <div id="usage" className="scroll-mt-24 max-w-4xl mx-auto mb-10">
             <p className="text-ink-body text-sm leading-relaxed mb-5">
-              Requires <strong className="text-ink-strong">Python 3.8+</strong>. Pyoxynet
-              automatically handles data interpolation and supports second-by-second,
-              breath-by-breath, and averaged CPET data formats.
+              Python <strong className="text-ink-strong">3.10 to 3.14</strong> on Windows, Linux
+              and macOS (Apple silicon). Pyoxynet puts second-by-second, breath-by-breath and
+              averaged data on a one-second grid itself.
             </p>
             <UsageTabs tabs={tabs} />
           </div>
