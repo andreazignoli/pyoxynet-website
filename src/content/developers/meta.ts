@@ -11,8 +11,8 @@ import results from '../../../manual/data/api-results.json'
 
 export const DOCS = {
   /** Bump when a page changes in a way an integrator would care about. */
-  version: '1.5',
-  updated: '2026-10-27',
+  version: '1.6',
+  updated: '2026-10-29',
   /** The only API version that exists. Matches `info.version` in the OpenAPI schema. */
   apiVersion: 'v1',
 } as const
@@ -28,8 +28,8 @@ export const RECORDED = {
 
 /** pyoxynet on PyPI. Checked by hand against pypi.org on the date above. */
 export const PYOXYNET = {
-  version: '0.1.12',
-  python: '>=3.10',
+  version: '1.0.0',
+  python: '3.10 to 3.14',
   license: 'MIT',
 } as const
 

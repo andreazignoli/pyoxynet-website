@@ -16,27 +16,26 @@ export const CODE_EXAMPLES = {
     filename: 'basic_usage.py',
     code: `import pyoxynet
 
-# Load the TFL model
-tfl_model = pyoxynet.load_tf_model()
+# The bundled example test, through the default model (the CNN)
+out_df, thresholds = pyoxynet.test_pyoxynet(plot=True)
+print(thresholds['VT1'], thresholds['VT2'])
 
-# Make inference on a random input
-test_tfl_model(tfl_model)
-
-# Plot the inference on a test dataset
-pyoxynet.test_pyoxynet()`,
+# Your own test: columns time, VO2_I, VCO2_I, VE_I, PetO2_I, PetCO2_I
+# out_df, thresholds = pyoxynet.test_pyoxynet(input_df=df, model='LSTM')`,
   },
   generation: {
     lang: 'python',
     filename: 'generate_cpet.py',
-    code: `from pyoxynet import *
+    code: `import pyoxynet
 
-# Call the generator
-generator = load_tf_generator()
+# The conditional GAN generator
+generator = pyoxynet.load_generator()
 
-# Generate a Pandas DataFrame with fake CPET data
-df = generate_CPET(generator, plot=True)
+# A synthetic ramp test, and the thresholds it was generated with
+df, info = pyoxynet.generate_CPET(generator, plot=True)
+print(info['VT1'], info['VT2'])
 
-# Call Oxynet for inference on fake data
-test_pyoxynet(input_df=df)`,
+# The models' thresholds on it
+out_df, thresholds = pyoxynet.test_pyoxynet(input_df=df)`,
   },
 } satisfies Record<string, CodeExample>
